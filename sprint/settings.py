@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users.apps.UsersConfig', # significa que users é um app do projeto
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+### SUPER IMPORTANTE TER ISSO ANTES DE QUALQUER MIGRATE ###
+# Para o Django saber qual é o modelo de usuário que estamos usando
+AUTH_USER_MODEL = 'users.CustomUser' # indica que o nosso modelo de usuário é o CustomUser e não o User padrão do Django
