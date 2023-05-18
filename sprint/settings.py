@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mbewq5=5070_j_(4dqu875c7l_m8z1cew!12@v*_sfnh1b)5tj'
+SECRET_KEY = 'django-insecure-uz6t7)l*&5ch(ui5+z(&=qe-qw#&+5&)akao%iv#w!do*^olab'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig', # significa que users é um app do projeto
 ]
 
 MIDDLEWARE = [
@@ -122,7 +121,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-### SUPER IMPORTANTE TER ISSO ANTES DE QUALQUER MIGRATE ###
-# Para o Django saber qual é o modelo de usuário que estamos usando
-AUTH_USER_MODEL = 'users.CustomUser' # indica que o nosso modelo de usuário é o CustomUser e não o User padrão do Django
