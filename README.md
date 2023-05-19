@@ -10,7 +10,10 @@
 ## Como executar
 
 Para executar o servidor local, é necessário ter o Python 3 instalado na máquina. Clone este repositório e execute o comando abaixo para instalar as dependências:
-
+Dependencias individuais(para pip install manual):
+*pip install Django
+*pip install django-AllAuth
+*pip install -U django-jazzmin
 ```
 pip install -r requirements.txt
 ```

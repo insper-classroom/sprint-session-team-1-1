@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #Jasmin NEEDS to be the FIRST
+    'jazzmin',
+
     'users.apps.UsersConfig', # app users
     'django.contrib.admin',
     'django.contrib.auth',
