@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'jazzmin',
 
     'users.apps.UsersConfig', # app users
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'allauth',
+    'allauth', # allauth
     'allauth.account',
     'allauth.socialaccount',
     #providers
@@ -124,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us' # linguagem português do Brasil é 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC' # fuso horário do Brasil é 'America/Sao_Paulo'
 
 USE_I18N = True
 
