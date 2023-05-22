@@ -1,3 +1,4 @@
+
 """
 URL configuration for sprint project.
 
@@ -19,5 +20,5 @@ from django.urls import path, include # include is new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    path('', include('allauth.urls')),
 ]
