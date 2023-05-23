@@ -80,6 +80,9 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR / 'sprint', "static"),
+]
 
 
 WSGI_APPLICATION = 'sprint.wsgi.application'
