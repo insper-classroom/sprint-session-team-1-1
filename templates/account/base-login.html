@@ -11,12 +11,20 @@
     {% block extra_head %}
     {% endblock %}
   </head>
+
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+
   <body>
     {% block body %}
-    <div class="square"></div>
-    <div class="triangle"></div>
-    <div class="square"></div>
-    {% if messages %}
+
+    <!-- {% if messages %}
     <div>
       <strong>{% trans "Messages:" %}</strong>
       <ul>
@@ -25,24 +33,25 @@
         {% endfor %}
       </ul>
     </div>
-    {% endif %}
+    {% endif %} -->
 
-    <div>
-      <strong>{% trans "Menu:" %}</strong>
-      <ul>
+    <!-- <div> -->
+      <!-- <strong>{% trans "Menu:" %}</strong> -->
+      <!-- <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">{% trans "Change E-mail" %}</a></li>
         <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
         {% else %}
         <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
         <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-        {% endif %}
-      </ul>
-    </div>
+        {% endif %} -->
+      <!-- </ul>
+    </div> -->
     {% block content %}
+   
     {% endblock %}
-    {% endblock %}
-    {% block extra_body %}
-    {% endblock %}
+    <!-- {% endblock %} -->
+    <!-- {% block extra_body %}
+    {% endblock %} -->
   </body>
 </html>
