@@ -1,6 +1,6 @@
 .bloco_login{
-  padding-left : 58%;
-  padding-top: 20%;
+  padding-left : 62%;
+  padding-top: 13%;
 }
 
 .logo{
@@ -12,8 +12,8 @@
 
 .logo img{
   display: block;
-  width: 150%;
-  height: 150%;
+  width: 120%;
+  height: 120%;
   object-fit: cover;
 }
 
@@ -36,4 +36,52 @@
 
 p{
   color: #3C5AF0;
+  font-family: 'Urbanist', sans-serif;
+  margin-left: 30px;
+  margin-top: 5%;
+}
+
+a{
+  color: #3C5AF0;
+  margin-top: 10%;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 19px;
+}
+
+h2{
+  color: #3C5AF0;
+  margin-left: 45px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+}
+
+.loginbottom{
+  display: block;  
+  margin-top: 3%;
+  margin-left: 30px;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login{
+  align-items: center;
+}
+
+button{
+  margin-left: 9%;
+}
+
+.socialaccount_providers{
+  margin-left: 55px;
+  margin-bottom: 2%;
 }
