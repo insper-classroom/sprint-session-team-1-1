@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'jazzmin',
 
     'users.apps.UsersConfig', # app users
+    'home.apps.HomeConfig', # app home
 
     'django.contrib.admin',
     'django.contrib.auth',
