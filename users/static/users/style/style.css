@@ -34,17 +34,24 @@ nav img{
 .nav-links{
     padding: 1% 6%;
     flex: 1;
-    margin-left: 100px;
+}
+
+.nav-links ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    left: 0px;
 }
 
 .nav-links ul li{
     display: inline-block;
-    padding: 20px 20px;
     position: relative;
+    margin: 0px 80px;
 }
 
 .nav-links ul li a{
-    margin-left: 112px;
     color: #969696;
     text-decoration: none;
     text-transform: uppercase;
@@ -52,7 +59,7 @@ nav img{
 }
 
 .perfil-link{
-    color: black, !important;
+    color: black !important;
 }
 
 .nav-links ul li a:hover{
