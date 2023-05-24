@@ -1,0 +1,21 @@
+{% extends "home-page/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+  <div class="background">
+    <img src="{% static 'home-page/img/background-home.png' %}"/>
+  </div>
+  <div class="logo">
+    <img src="{% static 'home-page/img/logo-telles.png' %}" width="325" alt="Fundação Telles"/>
+  </div>
+
+  <div class="descricao">
+      <p>Somos uma fundação que nasceu<br>com um grande sonho: transformar<br>o futuro de jovens de baixa renda<br>por meio do acesso à educação<br>e oportunidades relevantes.</p>
+  </div>
+
+
+  <button class="button-login" onclick="window.location.href='accounts/login/'"><a href="accounts/login/" class="link-botao">Login</a></button>
+</div>
+
+{% endblock %}  

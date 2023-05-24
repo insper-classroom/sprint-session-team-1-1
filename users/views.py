@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .forms import UserForm 
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 
