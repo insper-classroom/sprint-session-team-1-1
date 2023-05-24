@@ -3,6 +3,17 @@
   padding-top: 13%;
 }
 
+.bloco_login_reset1{
+  padding-left : 62%;
+  padding-top: 20%;
+}
+
+.bloco_login_reset2{
+  padding-left : 58%;
+  padding-top: 20%;
+  font-size: 120%;
+}
+
 .logo{
   display: block;
   position: absolute;
@@ -50,8 +61,9 @@ a{
 
 h2{
   color: #3C5AF0;
-  margin-left: 45px;
+  margin-left: 10px;
   margin-top: 5%;
+  margin-bottom: 0%;
   font-family: 'Urbanist', sans-serif;
   font-weight: normal;
 }
@@ -59,7 +71,7 @@ h2{
 .loginbottom{
   display: block;  
   margin-top: 3%;
-  margin-left: 30px;
+  margin-left: 8px;
   margin-bottom: 3%;
   background-color: rgb(60, 90, 240);
   color:white;
@@ -89,7 +101,29 @@ h2{
 }
 
 button{
-  margin-left: 9%;
+  display: block;  
+  margin-top: 3%;
+  margin-left: 145px;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+label{
+  color: #3C5AF0;
+  margin-left: 13px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+  font-size: 150%;
 }
 
 .socialaccount_providers{
