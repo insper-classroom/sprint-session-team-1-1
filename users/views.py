@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .forms import UserForm 
 from django.urls import reverse_lazy
+from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -29,3 +31,6 @@ class UserCreate(CreateView):
         context['outra_cor_ou_raca'] = self.request.POST.get('outra_cor_ou_raca')
         
         return context
+    
+def teste(request):
+    return HttpResponse('<h1>Teste</h1>')
