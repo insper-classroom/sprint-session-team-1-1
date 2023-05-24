@@ -2,7 +2,10 @@ from typing import Any, Dict
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .forms import UserForm 
+from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
 
@@ -29,3 +32,6 @@ class UserCreate(CreateView):
         context['outra_cor_ou_raca'] = self.request.POST.get('outra_cor_ou_raca')
         
         return context
+    
+def signup(request):
+    return render(request, 'account/signup.html')
