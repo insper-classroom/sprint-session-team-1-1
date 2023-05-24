@@ -4,8 +4,9 @@ from django.contrib.auth.forms import UserCreationForm # Classe que já vem com 
 from .models import Profile
 
 class UserForm(UserCreationForm):
-    # username não precisa ser obrigatório
-    username = forms.CharField(max_length=100, required=False) # O campo username não é obrigatório
+
+    #Formulario base
+    username = forms.CharField(max_length=100, required=True) # O campo username não é obrigatório
     email = forms.EmailField(max_length=100, required=True) # O campo email é obrigatório
     password1 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password1 é obrigatório
     password2 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password2 é obrigatório
@@ -14,9 +15,9 @@ class UserForm(UserCreationForm):
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
     rg = forms.CharField(max_length=12, required=True) # O campo rg é obrigatório
     telefone = forms.CharField(max_length=15, required=True) # O campo telefone é obrigatório
-    genero = forms.CharField(max_length=20, required=True) # O campo genero é obrigatório
+    genero = forms.ChoiceField(choices=Profile.Genders, required=True) # O campo genero é obrigatório
     outro_genero = forms.CharField(max_length=100, required=False) # O campo outro_genero não é obrigatório
-    cor_ou_raca = forms.CharField(max_length=20, required=True) # O campo cor_ou_raca é obrigatório
+    cor_ou_raca = forms.ChoiceField(choices=Profile.Race, required=True) # O campo cor_ou_raca é obrigatório
     outra_cor_ou_raca = forms.CharField(max_length=100, required=False) # O campo outra_cor_ou_raca não é obrigatório
 
     class Meta:
@@ -58,3 +59,13 @@ class UserForm(UserCreationForm):
             ) # Criamos um objeto do tipo Profile ligado ao usuário
             
         return user # Retornamos o usuário
+    
+    #Código feito pelo chatGPT para em conjunto do código em JS tornar os campos outra raça e outro genero visiveis apenas caso selecione-se a opção outro.
+    def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            if 'genero' in self.data and self.data['genero'] == 'Outro':
+                self.fields['outro_genero'].required = True
+                self.fields['outro_genero'].widget.attrs['style'] = '' #Torna visivel
+            if 'cor_ou_raca' in self.data and self.data['cor_ou_raca'] == 'Outra':
+                self.fields['outra_cor_ou_raca'].required = True
+                self.fields['outra_cor_ou_raca'].widget.attrs['style'] = '' #Torna visivel

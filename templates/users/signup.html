@@ -1,0 +1,90 @@
+{% extends "users/base-signup.html" %}
+
+{% block body %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.email.id_for_label }}">Email:</label>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}">Senha:</label>
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.nome_completo.id_for_label }}">Nome Completo:</label>
+      {{ form.nome_completo }}
+      {{ form.nome_completo.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
+      {{ form.data_nascimento }}
+      {{ form.data_nascimento.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.cpf.id_for_label }}">CPF:</label>
+      {{ form.cpf }}
+      {{ form.cpf.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.rg.id_for_label }}">RG:</label>
+      {{ form.rg }}
+      {{ form.rg.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+      {{ form.telefone }}
+      {{ form.telefone.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.genero.id_for_label }}">Gênero:</label>
+      {{ form.genero }}
+      {{ form.genero.errors }}
+    </div>
+  
+    <div id="outro-genero-group" class="form-group">
+      <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
+      {{ form.outro_genero }}
+      {{ form.outro_genero.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.cor_ou_raca.id_for_label }}">Cor ou Raça:</label>
+      {{ form.cor_ou_raca }}
+      {{ form.cor_ou_raca.errors }}
+    </div>
+  
+    <div id="outra-cor-ou-raca-group" class="form-group">
+      <label for="{{ form.outra_cor_ou_raca.id_for_label }}">Outra Cor ou Raça:</label>
+      {{ form.outra_cor_ou_raca }}
+      {{ form.outra_cor_ou_raca.errors }}
+    </div>
+  
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

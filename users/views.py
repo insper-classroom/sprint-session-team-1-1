@@ -1,10 +1,10 @@
 from typing import Any, Dict
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
-from .forms import UserForm 
+from django.contrib.auth.forms import UserCreationForm
+from . import forms
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 
@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 # Aqui nas views, teremos o cadastro de usuários
 class UserCreate(CreateView):
     # template_name = ""
-    form_class = UserForm # Aqui, definimos o formulário que será usado para o cadastro de usuários
+    form_class = forms.UserForm # Aqui, definimos o formulário que será usado para o cadastro de usuários
     # success_url = reverse_lazy('login') # Aqui, definimos a URL para onde o usuário será redirecionado após o cadastro
 
     def get_context_data(self, *args, **kwargs): # Sobrescrevemos o método get_context_data para adicionar mais campos ao contexto
@@ -35,4 +35,12 @@ class UserCreate(CreateView):
         return context
     
 def signup(request):
-    return render(request, 'account/signup.html')
+    
+    if request.method == 'POST':
+        form = forms.UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/login/')
+    else:
+        form = forms.UserForm()
+    return render(request, 'users/signup.html', {'form': form})
