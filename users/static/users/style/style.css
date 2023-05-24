@@ -1,0 +1,111 @@
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+}
+
+.background img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+}
+
+nav img{
+    padding: 10% 30%;   
+    width: 200px;
+}
+
+.nav-links{
+    padding: 1% 6%;
+    flex: 1;
+    margin-left: 100px;
+}
+
+.nav-links ul li{
+    display: inline-block;
+    padding: 20px 20px;
+    position: relative;
+}
+
+.nav-links ul li a{
+    margin-left: 112px;
+    color: #969696;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 19px;
+}
+
+.perfil-link{
+    color: black, !important;
+}
+
+.nav-links ul li a:hover{
+    color: rgb(0, 0, 0);
+    transition: 0.4s;
+}
+
+.profile{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 400px;
+    align-items: center;
+}
+
+.profile-info{
+    display: flex;
+    align-items: center;
+    border: 17px solid #3C5AF0;
+    border-radius: 3rem;
+    padding: 1rem 4rem 1rem 2rem;
+    gap: 3rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    margin: 0px;
+}
+
+.profile-info img{
+    border-radius: 50%;
+    width: 105px;
+}
+
+.button-editar{
+    display: flex;
+    background-color: rgb(60, 90, 240);
+    border: none;
+    border-radius: 100px;
+    font-size: 17px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    padding: 12px 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.link-botao{
+    text-decoration: none;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+button:hover{
+    background-color: rgb(45, 60, 255);
+    transition: 0.5s;
+}

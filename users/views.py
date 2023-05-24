@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .forms import UserForm 
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -29,3 +30,6 @@ class UserCreate(CreateView):
         context['outra_cor_ou_raca'] = self.request.POST.get('outra_cor_ou_raca')
         
         return context
+
+def profile(request):
+    return render(request, 'profile/profile.html', {'user': request.user})

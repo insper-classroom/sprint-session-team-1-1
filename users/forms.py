@@ -6,7 +6,7 @@ from .models import Profile
 class UserForm(UserCreationForm):
     # username não precisa ser obrigatório
     username = forms.CharField(max_length=100, required=False) # O campo username não é obrigatório
-    email = forms.EmailField(max_lengh=100, required=True) # O campo email é obrigatório
+    email = forms.EmailField(max_length=100, required=True) # O campo email é obrigatório
     password1 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password1 é obrigatório
     password2 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password2 é obrigatório
     nome_completo = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
