@@ -11,7 +11,8 @@ class UserForm(UserCreationForm):
     password1 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password1 é obrigatório
     password2 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password2 é obrigatório
     nome_completo = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
-    data_nascimento = forms.DateField(required=True) # O campo data_nascimento é obrigatório
+    #Cria o campo data de nascimento. Ocupa muito espaço pois deixo o formato dd/mm/yyyy por padrao, au invez do mm/dd/yyyy default.
+    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
     rg = forms.CharField(max_length=12, required=True) # O campo rg é obrigatório
     telefone = forms.CharField(max_length=15, required=True) # O campo telefone é obrigatório
