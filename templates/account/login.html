@@ -52,9 +52,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
         </div>
         
         {% if form.non_field_errors %}
-        <ul class="mensagem erro">
-          <li>A senha e/ou e-mail inseridos estão incorretos.</li>
-        </ul>
+          <p class="mensagem-erro">A senha e/ou e-mail inseridos estão incorretos.</p>
         {% endif %}
         
         {% if redirect_field_value %}

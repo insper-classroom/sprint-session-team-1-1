@@ -53,10 +53,11 @@ p{
 }
 
 a{
-  color: #3C5AF0;
+  color: #000000;
   margin-top: 10%;
   font-family: 'Urbanist', sans-serif;
-  font-size: 19px;
+  font-size: 16px;
+  text-decoration: none;
 }
 
 h2{
@@ -144,21 +145,27 @@ h2{
   line-height: 57px;
 }
 
-button{
-  display: block;  
+.googlebutton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 3%;
-  margin-left: 145px;
+  margin-left: 5px;
   margin-bottom: 3%;
-  background-color: rgb(60, 90, 240);
-  color:white;
-  border: none;
-  border-radius: 100px;
-  font-size: 20px;
+  margin-right: 50px;
+  background-color: rgb(255, 255, 255);
+  color:rgb(0, 0, 0, 0.54);
+  border: solid 2px #bbbcc0;
+  border-radius: 4px;
+  font-size: 14px;
   font-family: 'Urbanist', sans-serif;
   font-weight: 500;
-  padding: 8px 30px;
+  padding: 8px 20px;
   cursor: pointer;
-  transition: 0.3s;
+}
+
+.googlebutton img {
+  padding-right: 5px;
 }
 
 label{
@@ -181,4 +188,11 @@ label{
   font-family: 'Urbanist', sans-serif;
   font-size: 16px;
   text-decoration: none;
+}
+.mensagem-erro{
+  color: red;
+  margin-left: 13px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
 }
