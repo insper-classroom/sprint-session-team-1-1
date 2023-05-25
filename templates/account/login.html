@@ -57,24 +57,25 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
         </ul>
         {% endif %}
         
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="loginbuttom" type="submit">{% trans "Login" %}</button>
+        
         <div class="socialaccount_ballot">
           <ul class="socialaccount_providers">
             {% include "socialaccount/snippets/provider_list.html" with process="login" %}
           </ul>
         </div>
         
+        <!-- <label for="id_remember">
+          <input type="checkbox" name="remember" id="id_remember"> Lembre-me <br>
+        </label> -->
+        
+        
         <div class="remember-forgot">
-          <label for="id_remember">
-            <input type="checkbox" name="remember" id="id_remember"> Lembre-me <br>
-          </label>
           <a href="{% url 'account_reset_password' %}">{% trans "Esqueceu a senha?" %}</a>
         </div>
-        
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button class="loginbuttom" type="submit">{% trans "Login" %}</button>
-
 
     
 </div>
