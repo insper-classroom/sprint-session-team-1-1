@@ -68,7 +68,7 @@ h2{
   font-weight: normal;
 }
 
-.loginbottom{
+.loginbuttom{
   display: block;  
   margin-top: 3%;
   margin-left: 8px;
@@ -90,7 +90,6 @@ h2{
   width: 400px;
   height: 440px;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, .5);
   border-radius: 20px;
   box-shadow: 0 0 5px rgba(90, 87, 87, 0.5);
   display: flex;
@@ -98,6 +97,51 @@ h2{
   gap: 16px;
   justify-content: center;
   align-items: center;
+}
+
+.input-box{
+  position: relative;
+  width: 70%;
+  height: 50px;
+  border-bottom: 2px solid #3C5AF0;
+  margin: 30px 0 5px 0;
+}
+
+.input-box label{
+  position: relative;
+  top: -70%;
+  left: 5px;
+  transform: translateY(-100%);
+  color: #3C5AF0;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s;
+  font-size: 20px;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label{
+  top: -70px;
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8em;
+  color: #3C5AF0;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color: #3C5AF0;
+  line-height: 57px;
 }
 
 button{

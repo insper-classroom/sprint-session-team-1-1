@@ -39,21 +39,16 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
       <div class="form-box login">
         <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
-        <h2>Login</h2>
         <div class="input-box">
-          <span class="icon">
-            <ion-icon name="mail"></ion-icon>
-          </span>
+          <span class="icon"><ion-icon name="mail"></ion-icon></span>
           <input type="email" name="login" placeholder="" autocomplete="email" required="" id="id_login">
-          <label for="id_login"></label>
+          <label for="id_login">E-mail</label>
         </div>
         
         <div class="input-box">
-          <span class="icon">
-            <ion-icon name="lock-closed"></ion-icon>
-          </span>
+          <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
           <input type="password" name="password" placeholder="" autocomplete="current-password" required="" id="id_password">
-          <label for="id_password"></label>
+          <label for="id_password">Senha</label>
         </div>
         
         {% if form.non_field_errors %}
@@ -61,6 +56,12 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
           <li>A senha e/ou e-mail inseridos estão incorretos.</li>
         </ul>
         {% endif %}
+        
+        <div class="socialaccount_ballot">
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
+        </div>
         
         <div class="remember-forgot">
           <label for="id_remember">
@@ -72,16 +73,10 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="loginbottom" type="submit">{% trans "Login" %}</button>
+        <button class="loginbuttom" type="submit">{% trans "Login" %}</button>
 
 
     
-    <div class="socialaccount_ballot">
-      <ul class="socialaccount_providers">
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-      </ul>
-      
-    </div>
 </div>
 </div>
 
