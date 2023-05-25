@@ -52,15 +52,13 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
         </div>
         
         {% if form.non_field_errors %}
-        <ul class="mensagem erro">
-          <li>A senha e/ou e-mail inseridos estão incorretos.</li>
-        </ul>
+          <p class="mensagem-erro">A senha e/ou e-mail inseridos estão incorretos.</p>
         {% endif %}
         
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="loginbuttom" type="submit">{% trans "Login" %}</button>
+        <button class="loginbutton" type="submit">{% trans "Login" %}</button>
         
         <div class="socialaccount_ballot">
           <ul class="socialaccount_providers">
