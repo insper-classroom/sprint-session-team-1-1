@@ -13,11 +13,9 @@
 </button>
 {% endfor %}
 {% endif %}
-<a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
+<a title="{{provider.name}}" class="socialaccount_provider {{provider.id}} googlebutton" 
     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
-<button class="googlebutton">
-  <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="" style="height: 18px;">
-  Fazer login com o {{provider.name}}
-</button>
+    <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="" style="height: 18px;">
+    <span>Login com o {{provider.name}}</span> 
 </a>
 {% endfor %}
