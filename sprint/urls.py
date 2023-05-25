@@ -22,9 +22,8 @@ from users.views import custom_logout
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', include('allauth.urls')),
-    path('accounts/signup/', include('users.urls')),
-    path('accounts/profile/', include('users.urls')),
     path('accounts/logout/', custom_logout, name='logout'),
+    path('accounts/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
 ]
