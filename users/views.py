@@ -6,6 +6,8 @@ from . import forms
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -45,5 +47,13 @@ def signup(request):
         form = forms.UserForm()
     return render(request, 'users/signup.html', {'form': form})
 
+@login_required
 def profile(request):
     return render(request, 'profile/profile.html', {'user': request.user})
+
+
+
+def custom_logout(request):
+    logout(request)
+    # Redirecionar para a página desejada após o logout
+    return redirect('home')

@@ -10,8 +10,8 @@
         <div class="nav-links">
             <ul>
                 <li><a href="/">HOME</a></li>
-                <li><a href="" class="perfil-link">PERFIL</a></li>
-                <li><a href="">SAIR</a></li>
+                <li><a href="{% url 'profile' %}" class="perfil-link">PERFIL</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
             </ul>
         </div>
     </nav>

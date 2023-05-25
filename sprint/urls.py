@@ -17,13 +17,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # include is new
+from users.views import custom_logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', include('allauth.urls')),
-    path('accounts/', include('allauth.urls')),
     path('accounts/signup/', include('users.urls')),
-    path('accounts/profile/', include('user_profile.urls')),
-    # path('perfil/', include('users.urls')),
+    path('accounts/profile/', include('users.urls')),
+    path('accounts/logout/', custom_logout, name='logout'),
+    path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
 ]
