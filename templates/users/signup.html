@@ -31,9 +31,15 @@
     </div>
   
     <div class="form-group">
-      <label for="{{ form.nome_completo.id_for_label }}">Nome Completo:</label>
-      {{ form.nome_completo }}
-      {{ form.nome_completo.errors }}
+      <label for="{{ form.nome.id_for_label }}">Nome:</label>
+      {{ form.nome }}
+      {{ form.nome.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
+      {{ form.sobrenome }}
+      {{ form.sobrenome.errors }}
     </div>
   
     <div class="form-group">
@@ -146,13 +152,13 @@
   
     <div class="form-group">
       <label for="{{ form.ano_ingresso.id_for_label }}">Ano de Ingresso:</label>
-      {{ form.ano_ingresso }}
+      <input type="number" name="{{ form.ano_ingresso.name }}" id="id_ingresso">
       {{ form.ano_ingresso.errors }}
     </div>
-  
+    
     <div class="form-group">
       <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
-      {{ form.ano_formatura }}
+      <input type="number" name="{{ form.ano_formatura.name }}" id="id_formatura">
       {{ form.ano_formatura.errors }}
     </div>
   

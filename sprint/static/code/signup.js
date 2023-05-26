@@ -46,10 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
 const telefone = document.querySelector('#id_telefone');
 const cpf = document.querySelector('#id_cpf');
 const rg = document.querySelector('#id_rg');
+const ingresso = document.querySelector('#id_ingresso');
+const formatura = document.querySelector('#id_formatura');
 
 telefone.addEventListener('input', formataTelefone);
 cpf.addEventListener('input', formataCPF);
 rg.addEventListener('input', formataRG);
+ingresso.addEventListener('input', function() { formataAnos('id_ingresso'); });
+formatura.addEventListener('input', function() { formataAnos('id_formatura'); });
 
 function formataTelefone() {
   let digito = telefone.value.replace(/\D/g, '');
@@ -71,4 +75,11 @@ function formataRG() {
   digito = digito.replace(/(\d{3})(\d)/, '$1.$2');
   digito = digito.replace(/(\d{3})(\d{1})$/, '$1-$2');
   rg.value = digito;
+}
+
+function formataAnos(fieldId) {
+  const caixa_ano = document.querySelector(`#${fieldId}`);
+  if (caixa_ano.value.length > 4) {
+    caixa_ano.value = caixa_ano.value.slice(0, 4);
+  }
 }

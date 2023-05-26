@@ -48,7 +48,8 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
         ('India', 'India'),
     }
 
-    nome_completo = models.CharField(max_length=150, null=True, verbose_name='Nome Completo') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
+    nome = models.CharField(max_length=150, null=True, verbose_name='Nome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
+    sobrenome = models.CharField(max_length=150, null=True, verbose_name='Sobrenome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
     email = models.EmailField(max_length=254, null=True, verbose_name='E-mail') # EmailField é um campo de email, que não pode ser maior que 254 caracteres
     nome_exibicao = models.CharField(max_length=50, null=True, verbose_name='Nome de exibição') # Nome que será exibido no site, se não for preenchido, será o nome completo
     # foto_de_perfil = ...
@@ -70,7 +71,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     tipo_usuario = models.CharField(max_length=100, choices=User_type, blank=True, null=True, verbose_name='Tipo de Usuário')
     faculdade = models.CharField(max_length=100, choices=University, blank=True, null=True, verbose_name='Faculdade')
     curso = models.CharField(max_length=100, blank=True, null=True, verbose_name='Curso')
-    ano_ingresso = models.DateField(null=True, verbose_name='Ano de Ingresso')
-    ano_formatura = models.DateField(null=True, verbose_name='Ano de Formatura')
+    ano_ingresso = models.CharField(max_length=4, null=True, verbose_name='Ano de Ingresso')
+    ano_formatura = models.CharField(max_length=4, null=True, verbose_name='Ano de Formatura')
     renda_familiar = models.CharField(max_length=100, choices=Income, blank=True, null=True, verbose_name='Renda Familiar')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE) # Um usuário tem UM perfil, e quando o usuário é deletado, o perfil também é (CASCADE).
