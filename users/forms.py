@@ -15,11 +15,25 @@ class UserForm(UserCreationForm):
     data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
     rg = forms.CharField(max_length=12, required=True) # O campo rg é obrigatório
-    telefone = forms.CharField(max_length=15, required=True) # O campo telefone é obrigatório
+    telefone = forms.CharField(max_length=18, required=True) # O campo telefone é obrigatório
     genero = forms.ChoiceField(choices=Profile.Genders, required=True) # O campo genero é obrigatório
     outro_genero = forms.CharField(max_length=100, required=False) # O campo outro_genero não é obrigatório
     cor_ou_raca = forms.ChoiceField(choices=Profile.Race, required=True) # O campo cor_ou_raca é obrigatório
     outra_cor_ou_raca = forms.CharField(max_length=100, required=False) # O campo outra_cor_ou_raca não é obrigatório
+    estado_nascimento= forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
+    cidade_nascimento = forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
+    pais_atual = forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
+    estado_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
+    cidade_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
+    cidade_fora_atual = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
+    linkedin = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
+    tipo_usuario = forms.ChoiceField(choices=Profile.User_type, required=True) # O campo cor_ou_raca é obrigatório
+    faculdade = forms.ChoiceField(choices=Profile.University, required=True) # O campo cor_ou_raca é obrigatório
+    curso = forms.CharField(max_length=100, required=True) # O campo cor_ou_raca é obrigatório
+    ano_ingresso = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
+    ano_formatura = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
+    renda_familiar = forms.ChoiceField(choices=Profile.Income, required=True) # O campo cor_ou_raca é obrigatório
+
 
     class Meta:
         model = User # O modelo é o User
@@ -37,6 +51,19 @@ class UserForm(UserCreationForm):
         'outro_genero',
         'cor_ou_raca',
         'outra_cor_ou_raca',
+        'estado_nascimento',
+        'cidade_nascimento',
+        'pais_atual',
+        'estado_atual',
+        'cidade_atual',
+        'cidade_fora_atual',
+        'linkedin',
+        'tipo_usuario',
+        'faculdade',
+        'curso',
+        'ano_ingresso',
+        'ano_formatura',
+        'renda_familiar',
         ] # Campos que serão exibidos no formulário de registro
 
     def save(self, commit=True): # Sobrescrevemos o método save para adicionar o email ao usuário
@@ -57,6 +84,19 @@ class UserForm(UserCreationForm):
                 outro_genero=self.cleaned_data['outro_genero'],
                 cor_ou_raca=self.cleaned_data['cor_ou_raca'],
                 outra_cor_ou_raca=self.cleaned_data['outra_cor_ou_raca'],
+                estado_nascimento=self.cleaned_data['estado_nascimento'],
+                cidade_nascimento=self.cleaned_data['cidade_nascimento'],
+                pais_atual=self.cleaned_data['pais_atual'],
+                estado_atual=self.cleaned_data['estado_atual'],
+                cidade_atual=self.cleaned_data['cidade_atual'],
+                cidade_fora_atual=self.cleaned_data['cidade_fora_atual'],
+                linkedin=self.cleaned_data['linkedin'],
+                tipo_usuario=self.cleaned_data['tipo_usuario'],
+                faculdade=self.cleaned_data['faculdade'],
+                curso=self.cleaned_data['curso'],
+                ano_ingresso=self.cleaned_data['ano_ingresso'],
+                ano_formatura=self.cleaned_data['ano_formatura'],
+                renda_familiar=self.cleaned_data['renda_familiar'],
             ) # Criamos um objeto do tipo Profile ligado ao usuário
             
         return user # Retornamos o usuário
