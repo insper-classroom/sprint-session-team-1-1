@@ -15,7 +15,7 @@ class UserForm(UserCreationForm):
     data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
     rg = forms.CharField(max_length=12, required=True) # O campo rg é obrigatório
-    telefone = forms.CharField(max_length=18, required=True) # O campo telefone é obrigatório
+    telefone = forms.CharField(max_length=19, required=True) # O campo telefone é obrigatório
     genero = forms.ChoiceField(choices=Profile.Genders, required=True) # O campo genero é obrigatório
     outro_genero = forms.CharField(max_length=100, required=False) # O campo outro_genero não é obrigatório
     cor_ou_raca = forms.ChoiceField(choices=Profile.Race, required=True) # O campo cor_ou_raca é obrigatório
@@ -27,7 +27,7 @@ class UserForm(UserCreationForm):
     cidade_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
     cidade_fora_atual = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
     linkedin = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
-    tipo_usuario = forms.ChoiceField(choices=Profile.User_type, required=True) # O campo cor_ou_raca é obrigatório
+    tipo_usuario = forms.ChoiceField(choices=Profile.User_type, initial='Bolsista', required=True) # O campo cor_ou_raca é obrigatório
     faculdade = forms.ChoiceField(choices=Profile.University, required=True) # O campo cor_ou_raca é obrigatório
     curso = forms.CharField(max_length=100, required=True) # O campo cor_ou_raca é obrigatório
     ano_ingresso = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
@@ -58,7 +58,6 @@ class UserForm(UserCreationForm):
         'cidade_atual',
         'cidade_fora_atual',
         'linkedin',
-        'tipo_usuario',
         'faculdade',
         'curso',
         'ano_ingresso',
@@ -104,6 +103,7 @@ class UserForm(UserCreationForm):
     #Código feito pelo chatGPT para em conjunto do código em JS tornar os campos outra raça e outro genero visiveis apenas caso selecione-se a opção outro.
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
+            self.fields['tipo_usuario'].widget = forms.HiddenInput()  #Esconde o campo "Tipo_usuario", por padrao sempre sera bolsista.
             if 'genero' in self.data and self.data['genero'] == 'Outro':
                 self.fields['outro_genero'].required = True
                 self.fields['outro_genero'].widget.attrs['style'] = '' #Torna visivel

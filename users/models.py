@@ -55,7 +55,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     data_nascimento = models.DateField(null=True, verbose_name='Data de nascimento') # dd/mm/aaaa (vamos usar uma máscara, para as /)
     cpf = models.CharField(max_length=14, null=True, verbose_name='CPF') # xxx.xxx.xxx-xx (vamos usar uma máscara, para os . e -)
     rg = models.CharField(max_length=12, null=True, verbose_name='RG') # xx.xxx.xxx-x (vamos usar uma máscara, para os . e -)
-    telefone = models.CharField(max_length=18, null=True, verbose_name='Numero de Telefone') # (xx) xxxxx-xxxx (vamos usar uma máscara, para os () e -)
+    telefone = models.CharField(max_length=19, null=True, verbose_name='Numero de Telefone') # (xx) xxxxx-xxxx (vamos usar uma máscara, para os () e -)
     genero = models.CharField(max_length=20, choices=Genders, null=True, verbose_name='Gênero') # choices é uma tupla de tuplas, onde o primeiro elemento de cada tupla é o valor que será salvo no banco de dados e o segundo é o valor que será exibido no site (verbose_name é o nome que será exibido no site
     outro_genero = models.CharField(max_length=100, blank=True, null=True, verbose_name='Outro') # Se o usuário escolher "Outro", ele pode escrever o que quiser aqui
     cor_ou_raca = models.CharField(max_length=20, choices=Race, null=True, verbose_name='Cor ou Raça')

@@ -53,8 +53,7 @@ rg.addEventListener('input', formataRG);
 
 function formataTelefone() {
   let digito = telefone.value.replace(/\D/g, '');
-  digito = digito.replace(/^(\d{2})(\d)/g, '+$1 ($2');
-  digito = digito.replace(/(\d{2})(\d{4})(\d{4})$/, '$1) $2-$3');
+  digito = digito.replace(/^(\d{2})(\d{2})(\d{5})(\d{4})$/, '+$1 ($2) $3.$4');
   telefone.value = digito;
 }
 
