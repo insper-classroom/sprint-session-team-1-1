@@ -10,7 +10,8 @@ class UserForm(UserCreationForm):
     email = forms.EmailField(max_length=100, required=True) # O campo email é obrigatório
     password1 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password1 é obrigatório
     password2 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password2 é obrigatório
-    nome_completo = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
+    nome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
+    sobrenome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
     #Cria o campo data de nascimento. Ocupa muito espaço pois deixo o formato dd/mm/yyyy por padrao, au invez do mm/dd/yyyy default.
     data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
@@ -30,8 +31,8 @@ class UserForm(UserCreationForm):
     tipo_usuario = forms.ChoiceField(choices=Profile.User_type, initial='Bolsista', required=True) # O campo cor_ou_raca é obrigatório
     faculdade = forms.ChoiceField(choices=Profile.University, required=True) # O campo cor_ou_raca é obrigatório
     curso = forms.CharField(max_length=100, required=True) # O campo cor_ou_raca é obrigatório
-    ano_ingresso = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
-    ano_formatura = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
+    ano_ingresso = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
+    ano_formatura = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     renda_familiar = forms.ChoiceField(choices=Profile.Income, required=True) # O campo cor_ou_raca é obrigatório
 
 
@@ -42,7 +43,8 @@ class UserForm(UserCreationForm):
         'email',
         'password1',
         'password2',
-        'nome_completo',
+        'nome',
+        'sobrenome',
         'data_nascimento',
         'cpf',
         'rg',
@@ -74,7 +76,8 @@ class UserForm(UserCreationForm):
                 usuario=user, 
                 email=user.email,
                 nome_exibicao=user.username,
-                nome_completo=self.cleaned_data['nome_completo'],
+                nome=self.cleaned_data['nome'],
+                sobrenome=self.cleaned_data['sobrenome'],
                 data_nascimento=self.cleaned_data['data_nascimento'],
                 cpf=self.cleaned_data['cpf'],
                 rg=self.cleaned_data['rg'],

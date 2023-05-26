@@ -22,7 +22,8 @@ class UserCreate(CreateView):
         context = super().get_context_data(*args, **kwargs)
 
         # Aqui, adicionamos os campos do Profile ao contexto para que possam ser preenchidos pelo usuário
-        context['nome_completo'] = self.request.POST.get('nome_completo')
+        context['nome'] = self.request.POST.get('nome')
+        context['sobrenome'] = self.request.POST.get('sobrenome')
         context['email'] = self.request.POST.get('email')
         context['nome_exibicao'] = self.request.POST.get('nome_exibicao')
         context['data_nascimento'] = self.request.POST.get('data_nascimento')
