@@ -42,19 +42,19 @@
       {{ form.data_nascimento.errors }}
     </div>
   
-    <div class="form-group">
+    <div class="form-group" id="cpf">
       <label for="{{ form.cpf.id_for_label }}">CPF:</label>
       {{ form.cpf }}
       {{ form.cpf.errors }}
     </div>
   
-    <div class="form-group">
+    <div class="form-group" id="rg">
       <label for="{{ form.rg.id_for_label }}">RG:</label>
       {{ form.rg }}
       {{ form.rg.errors }}
     </div>
   
-    <div class="form-group">
+    <div class="form-group" id="telefone">
       <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
       {{ form.telefone }}
       {{ form.telefone.errors }}
@@ -82,6 +82,84 @@
       <label for="{{ form.outra_cor_ou_raca.id_for_label }}">Outra Cor ou Raça:</label>
       {{ form.outra_cor_ou_raca }}
       {{ form.outra_cor_ou_raca.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.estado_nascimento.id_for_label }}">Estado de Nascimento:</label>
+      {{ form.estado_nascimento }}
+      {{ form.estado_nascimento.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.cidade_nascimento.id_for_label }}">Cidade de Nascimento:</label>
+      {{ form.cidade_nascimento }}
+      {{ form.cidade_nascimento.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
+      {{ form.pais_atual }}
+      {{ form.pais_atual.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
+      {{ form.estado_atual }}
+      {{ form.estado_atual.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
+      {{ form.cidade_atual }}
+      {{ form.cidade_atual.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora do País Atual:</label>
+      {{ form.cidade_fora_atual }}
+      {{ form.cidade_fora_atual.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
+      {{ form.linkedin }}
+      {{ form.linkedin.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.tipo_usuario.id_for_label }}"></label>
+      {{ form.tipo_usuario }}
+      {{ form.tipo_usuario.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.faculdade.id_for_label }}">Faculdade:</label>
+      {{ form.faculdade }}
+      {{ form.faculdade.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.curso.id_for_label }}">Curso:</label>
+      {{ form.curso }}
+      {{ form.curso.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.ano_ingresso.id_for_label }}">Ano de Ingresso:</label>
+      {{ form.ano_ingresso }}
+      {{ form.ano_ingresso.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
+      {{ form.ano_formatura }}
+      {{ form.ano_formatura.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
+      {{ form.renda_familiar }}
+      {{ form.renda_familiar.errors }}
     </div>
   
     <button type="submit">Submit</button>

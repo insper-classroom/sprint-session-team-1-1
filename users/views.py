@@ -33,6 +33,19 @@ class UserCreate(CreateView):
         context['outro_genero'] = self.request.POST.get('outro_genero')
         context['cor_ou_raca'] = self.request.POST.get('cor_ou_raca')
         context['outra_cor_ou_raca'] = self.request.POST.get('outra_cor_ou_raca')
+        context['estado_nascimento'] = self.request.POST.get('estado_nascimento')
+        context['cidade_nascimento'] = self.request.POST.get('cidade_nascimento')
+        context['pais_atual'] = self.request.POST.get('pais_atual')
+        context['estado_atual'] = self.request.POST.get('estado_atual')
+        context['cidade_atual'] = self.request.POST.get('cidade_atual')
+        context['cidade_fora_atual'] = self.request.POST.get('cidade_fora_atual')
+        context['linkedin'] = self.request.POST.get('linkedin')
+        context['tipo_usuario'] = self.request.POST.get('tipo_usuario')
+        context['faculdade'] = self.request.POST.get('faculdade')
+        context['curso'] = self.request.POST.get('curso')
+        context['ano_ingresso'] = self.request.POST.get('ano_ingresso')
+        context['ano_formatura'] = self.request.POST.get('ano_formatura')
+        context['renda_familiar'] = self.request.POST.get('renda_familiar')
         
         return context
     
