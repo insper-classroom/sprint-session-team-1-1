@@ -70,6 +70,8 @@ class UserForm(UserCreationForm):
     def save(self, commit=True): # Sobrescrevemos o método save para adicionar o email ao usuário
         user = super(UserForm, self).save(commit=False) # Chamamos o método save da classe UserCreationForm
         user.email = self.cleaned_data['email'] # Adicionamos o email ao usuário
+        user.first_name = self.cleaned_data['nome'] # Adicionamos o nome ao usuário
+        user.last_name = self.cleaned_data['sobrenome'] # Adicionamos o sobrenome ao usuário
         if commit:
             user.save() # Salvamos o usuário
             Profile.objects.create(
