@@ -39,6 +39,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
       <div class="form-box login">
         <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
+        
         <div class="input-box">
           <span class="icon"><ion-icon name="mail"></ion-icon></span>
           <input type="email" name="login" placeholder="" autocomplete="email" required="" id="id_login">

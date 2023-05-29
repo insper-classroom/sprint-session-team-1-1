@@ -106,7 +106,7 @@ h2{
 .redbutton{
   display: block;  
   margin-top: 3%;
-  margin-left: 15px;
+  margin-left: 87px;
   margin-bottom: 3%;
   background-color: rgb(60, 90, 240);
   color:white;
@@ -160,12 +160,12 @@ h2{
 }
 
 .input-box input{
-  width: 100%;
-  height: 100%;
+  width: 86%;
+  height: 95%;
   background: transparent;
   border: none;
   outline: none;
-  font-size: 0.8em;
+  font-size: 1.02em;
   color: #3C5AF0;
   font-weight: 600;
   padding: 0 35px 0 5px;
