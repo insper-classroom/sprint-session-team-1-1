@@ -8,6 +8,11 @@
   padding-top: 20%;
 }
 
+.bloco_verify{
+  padding-left : 58%;
+  padding-top: 22%;
+}
+
 .bloco_login_reset2{
   padding-left : 58%;
   padding-top: 20%;
@@ -50,6 +55,7 @@ p{
   font-family: 'Urbanist', sans-serif;
   margin-left: 30px;
   margin-top: 5%;
+  font-size: 1.13em;
 }
 
 a{
@@ -60,19 +66,28 @@ a{
   text-decoration: none;
 }
 
-h2{
+h1{
   color: #3C5AF0;
-  margin-left: 10px;
-  margin-top: 5%;
+  margin-left: 55px;
   margin-bottom: 0%;
   font-family: 'Urbanist', sans-serif;
-  font-weight: normal;
+  font-weight: bold;
+  /* border-bottom: 2px solid #3C5AF0; */
+}
+
+h2{
+  color: #3C5AF0;
+  margin-left: 77px;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+  font-size: 2em;
 }
 
 .return_login{
   display: block;
   margin-top: 7%;
-  margin-left: 130px;
+  margin-left: 180px;
   margin-right: auto;
   background-color: rgb(60, 90, 240);
   color:white;
@@ -81,9 +96,26 @@ h2{
   font-size: 20px;
   font-family: 'Urbanist', sans-serif;
   font-weight: 500;
-  padding: 8px 50px;
+  padding: 8px 30px;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.confirm_button{
+  display: block;  
+  margin-top: 3%;
+  margin-left: 140px;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .loginbutton{
