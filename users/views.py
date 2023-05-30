@@ -46,7 +46,7 @@ class UserCreate(CreateView):
         return context
     
 def signup(request):
-    
+
     if request.method == 'POST':
         form = forms.UserForm(request.POST)
         if form.is_valid():

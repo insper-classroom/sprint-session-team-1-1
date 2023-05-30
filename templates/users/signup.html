@@ -1,35 +1,52 @@
 {% extends "users/base-signup.html" %}
+{% load static %}
 
 {% block body %}
+<div class="chevron"></div>
+
+<nav>
+  <div class="logo">
+    <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
+  </div>
+  <div class="nav-links">
+    <ul>
+      <li>
+        <a href="javascript:dados_cadastro_show()">
+          <img src="{% static 'img/cadastro.png' %}" alt="Cadastro">
+        </a>
+      </li>
+      <li>
+        <a href="javascript:dados_pessoais_show()">
+          <img src="{% static 'img/dados-pessoais-cinza.png' %}" alt="Dados Pessoais">
+        </a>
+      </li>
+      <li>
+        <a href="javascript:dados_profissionais_show()">
+          <img src="{% static 'img/dados-profissionais-cinza.png' %}" alt="Dados Profissionais">
+        </a>
+      </li>
+      <li>
+        <a href="javascript:dados_financeiros_show()">
+          <img src="{% static 'img/dados-financeiros-cinza.png' %}" alt="Dados Financeiros">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="background">
+  <img src="{% static 'img/fundo-dados-pessoais.png' %}" alt="Imagem de fundo">
+</div>
 
 <form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    
-    <div class="form-group">
-      <label for="{{ form.username.id_for_label }}">Username:</label>
-      {{ form.username }}
-      {{ form.username.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.email.id_for_label }}">Email:</label>
-      {{ form.email }}
-      {{ form.email.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.password1.id_for_label }}">Senha:</label>
-      {{ form.password1 }}
-      {{ form.password1.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
-      {{ form.password2 }}
-      {{ form.password2.errors }}
-    </div>
-  
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div id="dadospessoais" class="block">
+    <h1>Dados Pessoais</h1>
+    <p>Para preencher este formulario não precisa se preocupar com os caracteres especiais dos campos RG, CPF e Telefone, formatamos eles para você. <br>Exemplo: Digite 1111111111111 e formataremos para +11 (11) 11111-1111</p>
+    <br>
+      
     <div class="form-group">
       <label for="{{ form.nome.id_for_label }}">Nome:</label>
       {{ form.nome }}
@@ -41,6 +58,30 @@
       {{ form.sobrenome }}
       {{ form.sobrenome.errors }}
     </div>
+
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}">Nome de exibição:</label>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.email.id_for_label }}">Email:</label>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    <div class="form-group" id="rg">
+      <label for="{{ form.rg.id_for_label }}">RG:</label>
+      {{ form.rg }}
+      {{ form.rg.errors }}
+    </div>
+
+    <div class="form-group" id="cpf">
+      <label for="{{ form.cpf.id_for_label }}">CPF:</label>
+      {{ form.cpf }}
+      {{ form.cpf.errors }}
+    </div>
   
     <div class="form-group">
       <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
@@ -48,22 +89,22 @@
       {{ form.data_nascimento.errors }}
     </div>
   
-    <div class="form-group" id="cpf">
-      <label for="{{ form.cpf.id_for_label }}">CPF:</label>
-      {{ form.cpf }}
-      {{ form.cpf.errors }}
-    </div>
-  
-    <div class="form-group" id="rg">
-      <label for="{{ form.rg.id_for_label }}">RG:</label>
-      {{ form.rg }}
-      {{ form.rg.errors }}
-    </div>
-  
     <div class="form-group" id="telefone">
       <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
       {{ form.telefone }}
       {{ form.telefone.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}">Senha:</label>
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
+      {{ form.password2 }}
+      {{ form.password2.errors }}
     </div>
   
     <div class="form-group">
@@ -125,7 +166,13 @@
       {{ form.cidade_fora_atual }}
       {{ form.cidade_fora_atual.errors }}
     </div>
-  
+
+    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="proximo">Próximo</button>
+  </div>
+
+    <div id="dadosprofissionais" class="hidden">
+      <h1>Dados Profissionais</h1>
+
     <div class="form-group">
       <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
       {{ form.linkedin }}
@@ -161,14 +208,23 @@
       <input type="number" name="{{ form.ano_formatura.name }}" id="id_formatura">
       {{ form.ano_formatura.errors }}
     </div>
+
+    <button id="show_dados_pessoais" onclick="dados_pessoais_show()" class="voltar">Voltar</button>
+    <button id="show_dados_financeiros" onclick="dados_financeiros_show()" class="proximo">Próximo</button>
+  </div> <!-- Fim do bloco de dados profissionais -->
   
+    <div id="dadosfinanceiros" class="hidden">
+      <h1>Dados Financeiros</h1>
     <div class="form-group">
       <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
       {{ form.renda_familiar }}
       {{ form.renda_familiar.errors }}
     </div>
-  
-    <button type="submit">Submit</button>
+
+    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="voltar">Voltar</button>
+    <button type="submit" class="proximo">Finalizar</button>
+  </div> <!-- Fim do bloco de dados financeiros -->
+
 </form>
 
 {% endblock %}

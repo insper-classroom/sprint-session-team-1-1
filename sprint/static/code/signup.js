@@ -83,3 +83,38 @@ function formataAnos(fieldId) {
     caixa_ano.value = caixa_ano.value.slice(0, 4);
   }
 }
+
+// Obtém as referências para as divs
+const dadospessoais = document.getElementById('dadospessoais');
+const dadosprofissionais = document.getElementById('dadosprofissionais');
+const dadosfinanceiros = document.getElementById('dadosfinanceiros');
+const show_dados_pessoais = document.getElementById('show_dados_pessoais');
+const show_dados_profissionais = document.getElementById('show_dados_profissionais');
+const show_dados_financeiros = document.getElementById('show_dados_financeiros');
+
+// Define o estilo da div dadospessoais para 'block' (aparecendo)
+dadospessoais.style.display = 'block';
+
+// Define o estilo da div dadosprofissionais para 'none' (escondida)
+dadosprofissionais.style.display = 'none';
+
+// Define o estilo da div dadosfinanceiros para 'none' (escondida)
+dadosfinanceiros.style.display = 'none';
+
+function dados_pessoais_show() {
+  dadospessoais.style.display = 'block';
+  dadosprofissionais.style.display = 'none';
+  dadosfinanceiros.style.display = 'none';
+}
+
+function dados_profissionais_show() {
+  dadospessoais.style.display = 'none';
+  dadosprofissionais.style.display = 'block';
+  dadosfinanceiros.style.display = 'none';
+}
+
+function dados_financeiros_show() {
+  dadospessoais.style.display = 'none';
+  dadosprofissionais.style.display = 'none';
+  dadosfinanceiros.style.display = 'block';
+}
