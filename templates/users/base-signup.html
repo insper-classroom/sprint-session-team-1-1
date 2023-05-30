@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+  
 <head>
   <meta charset="UTF-8" />
-  <title>Formulario criação de conta</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}" />
-  <link rel="icon" href="favicon.png">
+
+  <title>Formulario criação de conta</title>
+  <link rel="shortcut icon" type="image/png" href="{% static 'users/img/favicon-telles.png' %}">
 </head>
+
 <body>
-  <p>
-    Para preencher este formulario não precisa se preocupar com os caracteres especiais dos campos RG, CPF e Telefone, formatamos eles para você. <br>
-    Exemplo: Digite 1111111111111 e formataremos para +11 (11) 11111-1111
-  </p><br>
     {% block body %}
     {% endblock %}
     <script src="{% static 'code/signup.js' %}"></script>
