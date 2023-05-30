@@ -7,9 +7,12 @@
 </head>
 <body>
     <h1>Editar Perfil</h1>
-    <form method="post">
+    <form method="post" action = '{{ user.id }}'>
         {% csrf_token %}
-        {{ user_form.as_p }}
+        <label for="first_name">Nome:</label>
+        <input type="text" name="first_name" value="{{ user.first_name }}">
+        <label for="last_name">Sobrenome:</label>
+        <input type="text" name="last_name" value="{{ user.last_name }}">
         <button type="submit">Salvar</button>
     </form>
 </body>
