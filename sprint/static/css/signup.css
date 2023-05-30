@@ -25,26 +25,27 @@
     width: 100%;
 }
 
-nav {
+nav{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
-  }
+    padding: 0px;
+}
   
-  .logo {
+.logo{
     margin-right: 10px;
-  }
+}
   
-  .logo img {
+.logo img{
     width: 200px;
-  }
+}
   
-  .nav-links ul {
+  .nav-links ul{
     display: flex;
     align-items: center;
+    margin-left: 260px;
     list-style: none;
-  }
+}
   
   .nav-links ul li {
     margin-right: -10px;
@@ -61,7 +62,6 @@ nav {
 
 #dadospessoais {
     align-items: center;
-    margin-top: 2.25%;
  }
  
 .proximo{
