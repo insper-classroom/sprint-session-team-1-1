@@ -110,6 +110,14 @@ h1{
   /* border-bottom: 2px solid #3C5AF0; */
 }
 
+.title_red{
+  color: #3C5AF0;
+  margin-left: 11%;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+}
+
 .change_pass2{
   color: #3C5AF0;
   margin-left: 180px;
@@ -120,7 +128,7 @@ h1{
 
 .change_pass1{
   color: #3C5AF0;
-  margin-left: 130px;
+  margin-left: 85px;
   margin-bottom: 0%;
   font-family: 'Urbanist', sans-serif;
   font-weight: bold;
@@ -215,7 +223,7 @@ h2{
 .redbutton{
   display: block;  
   margin-top: 3%;
-  margin-left: 87px;
+  margin-left: 25%;
   margin-bottom: 3%;
   background-color: rgb(60, 90, 240);
   color:white;
