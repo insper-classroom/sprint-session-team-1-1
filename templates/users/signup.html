@@ -7,7 +7,7 @@
   <img src="{% static 'img/fundo-cadastro.jpeg' %}" alt="Imagem de fundo">
 </div>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.non_field_errors }}
 
@@ -57,6 +57,12 @@
       <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
       {{ form.sobrenome }}
       {{ form.sobrenome.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil</label>
+      {{ form.foto_perfil }}
+      {{ form.foto_perfil.errors }}
     </div>
 
     <div class="form-group">

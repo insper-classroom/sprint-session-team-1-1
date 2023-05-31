@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User # User é a classe de usuário padrão do Django que já vem com um pacote de autenticação.
 
+
 # Create your models here.
 class Profile(models.Model): # Profile é uma classe que adiciona mais campos/dados ao User do Django, para os usuários bolsistas
     
@@ -46,7 +47,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     sobrenome = models.CharField(max_length=150, null=True, verbose_name='Sobrenome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
     email = models.EmailField(max_length=254, null=True, verbose_name='E-mail') # EmailField é um campo de email, que não pode ser maior que 254 caracteres
     nome_exibicao = models.CharField(max_length=50, null=True, verbose_name='Nome de exibição') # Nome que será exibido no site, se não for preenchido, será o nome completo
-    foto_de_perfil = models.ImageField(upload_to='sprint/static/img', blank=True, null=True, verbose_name='Foto de Perfil') # upload_to é o diretório onde a imagem será salva
+    foto_perfil = models.ImageField(upload_to='sprint/static/profile_img', blank=True, null=True, verbose_name='Foto de Perfil') # upload_to é o diretório onde a imagem será salva
     data_nascimento = models.DateField(null=True, verbose_name='Data de nascimento') # dd/mm/aaaa (vamos usar uma máscara, para as /)
     cpf = models.CharField(max_length=14, null=True, verbose_name='CPF') # xxx.xxx.xxx-xx (vamos usar uma máscara, para os . e -)
     rg = models.CharField(max_length=12, null=True, verbose_name='RG') # xx.xxx.xxx-x (vamos usar uma máscara, para os . e -)
@@ -69,4 +70,3 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     ano_formatura = models.CharField(max_length=4, null=True, verbose_name='Ano de Formatura')
     renda_familiar = models.CharField(max_length=100, choices=Income, blank=True, null=True, verbose_name='Renda Familiar')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE) # Um usuário tem UM perfil, e quando o usuário é deletado, o perfil também é (CASCADE).
-
