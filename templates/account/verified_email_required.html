@@ -1,10 +1,19 @@
-{% extends "account/base.html" %}
+{% extends "account/base-login.html" %}
+{% load static %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
 {% block content %}
+<div class="background">
+    <img src="{% static 'img/fundo_login.jpg' %}">
+  </div>
+  
+  
+  <div class="logo">
+    <img src="{% static 'img/telles_foundation.png' %}">
+  </div>
 <h1>{% trans "Verify Your E-mail Address" %}</h1>
 
 {% url 'account_email' as email_url %}

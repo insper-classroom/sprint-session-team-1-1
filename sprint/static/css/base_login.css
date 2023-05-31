@@ -1,0 +1,354 @@
+.bloco_login{
+  padding-left : 62%;
+  padding-top: 13%;
+}
+
+.bloco_login_reset1{
+  padding-left : 58%;
+  padding-top: 20%;
+}
+
+.bloco_verify{
+  padding-left : 58%;
+  padding-top: 22%;
+}
+
+.bloco_login_reset2{
+  padding-left : 58%;
+  padding-top: 20%;
+  font-size: 120%;
+}
+
+.bloco_mudar_senha{
+  padding-left : 53%;
+  padding-top: 18%;
+  font-size: 120%;
+}
+
+.bloco_mudar_senha2{
+  padding-left : 53%;
+  padding-top: 16%;
+  font-size: 120%;
+}
+
+.bloco_token_invalido{
+  padding-left : 53%;
+  padding-top: 20%;
+  font-size: 120%;
+}
+.logo{
+  display: block;
+  position: absolute;
+  padding-left: 14%;
+  padding-top: 19%;
+}
+
+.logo img{
+  display: block;
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+}
+
+.background{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.background img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p{
+  color: #3C5AF0;
+  font-family: 'Urbanist', sans-serif;
+  margin-left: 30px;
+  margin-top: 5%;
+  font-size: 1.13em;
+}
+
+.senha_alterada{
+  color: #3C5AF0;
+  font-family: 'Urbanist', sans-serif;
+  margin-left: 100px;
+  margin-top: 5%;
+  font-size: 1.13em;
+}
+
+a{
+  color: #000000;
+  margin-top: 10%;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.02em;
+  text-decoration: none;
+}
+
+.link_red{
+  color: #000000;
+  margin-top: 10%;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 1.02em;
+  border-bottom: 0.8px solid black;
+  text-decoration: none;
+}
+
+
+h1{
+  color: #3C5AF0;
+  margin-left: 55px;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+  /* border-bottom: 2px solid #3C5AF0; */
+}
+
+.title_red{
+  color: #3C5AF0;
+  margin-left: 11%;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+}
+
+.change_pass2{
+  color: #3C5AF0;
+  margin-left: 180px;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+}
+
+.change_pass1{
+  color: #3C5AF0;
+  margin-left: 85px;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+}
+
+
+.change_pass_ok{
+  color: #3C5AF0;
+  margin-left: 163px;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+}
+
+h2{
+  color: #3C5AF0;
+  margin-left: 77px;
+  margin-bottom: 0%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.return_login{
+  display: block;
+  margin-top: 7%;
+  margin-left: 180px;
+  margin-right: auto;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.confirm_button{
+  display: block;  
+  margin-top: 3%;
+  margin-left: 140px;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.change_password{
+  display: block;  
+  margin-top: 5%;
+  margin-left: 23%;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.loginbutton{
+  display: block;  
+  margin-top: 3%;
+  margin-left: 8px;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 20px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.redbutton{
+  display: block;  
+  margin-top: 3%;
+  margin-left: 25%;
+  margin-bottom: 3%;
+  background-color: rgb(60, 90, 240);
+  color:white;
+  border: none;
+  border-radius: 100px;
+  font-size: 18px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 30px;
+  cursor: pointer;
+  transition: 0.2s; 
+}
+
+.login{
+  position: relative;
+  width: 400px;
+  height: 440px;
+  background: transparent;
+  border-radius: 20px;
+  /* box-shadow: 0 0 5px rgba(90, 87, 87, 0.5); */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-box{
+  position: relative;
+  width: 70%;
+  height: 50px;
+  border-bottom: 2px solid #3C5AF0;
+  margin: 30px 0 5px 0;
+}
+
+.input-box label{
+  position: relative;
+  top: -70%;
+  left: 5px;
+  transform: translateY(-100%);
+  color: #3C5AF0;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s;
+  font-size: 20px;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label{
+  top: -70px;
+}
+
+.input-box input{
+  width: 86%;
+  height: 95%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.02em;
+  color: #3C5AF0;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color: #3C5AF0;
+  line-height: 57px;
+}
+
+.googlebutton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3%;
+  margin-left: 5px;
+  margin-bottom: 3%;
+  margin-right: 50px;
+  background-color: rgb(255, 255, 255);
+  color:rgb(0, 0, 0, 0.54);
+  border: solid 2px #bbbcc0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.googlebutton img {
+  padding-right: 5px;
+}
+
+label{
+  color: #3C5AF0;
+  margin-left: 13px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+  font-size: 150%;
+}
+
+.socialaccount_providers{
+  margin-left: 55px;
+  margin-bottom: 2%;
+}
+
+.remember-forgot a{
+  color: #3C5AF0;
+  margin-top: 10%;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+.mensagem-erro{
+  color: red;
+  margin-left: 13px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+}
+
+.password_error{
+  display: none;
+  color: #000000;
+}

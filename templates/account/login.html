@@ -1,45 +1,85 @@
-{% extends "account/base.html" %}
+{% extends "account/base-login.html" %}
 
+{% load static %}
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+<!-- {% block head_title %}{% trans "Sign In" %}{% endblock %} -->
 
 {% block content %}
-<h1>{% trans "Sign In" %} vem me</h1>
+
+<div class="background">
+  <img src="{% static 'img/fundo_login.jpg' %}">
+</div>
+
+
+<div class="logo">
+  <img src="{% static 'img/telles_foundation.png' %}">
+</div>
+
+<div class="bloco_login">
+<!-- <h1>{% trans "Sign In" %}</h1> -->
 
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
+<!-- <p>{% blocktrans with site.name as site_name %}Please sign in with one
 of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
 
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
-</div>
 
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
 <p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
   {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
+  
+  <div class="login">
+      <div class="form-box login">
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        
+        <div class="input-box">
+          <span class="icon"><ion-icon name="mail"></ion-icon></span>
+          <input type="email" name="login" placeholder="" autocomplete="email" required="" id="id_login">
+          <label for="id_login">E-mail</label>
+        </div>
+        
+        <div class="input-box">
+          <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+          <input type="password" name="password" placeholder="" autocomplete="current-password" required="" id="id_password">
+          <label for="id_password">Senha</label>
+        </div>
+        
+        {% if form.non_field_errors %}
+          <p class="mensagem-erro">A senha e/ou e-mail inseridos estão incorretos.</p>
+        {% endif %}
+        
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="loginbutton" type="submit">{% trans "Login" %}</button>
+        
+        <div class="socialaccount_ballot">
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
+        </div>
+        
+        <!-- <label for="id_remember">
+          <input type="checkbox" name="remember" id="id_remember"> Lembre-me <br>
+        </label> -->
+        
+        
+        <div class="remember-forgot">
+          <a href="{% url 'account_reset_password' %}">{% trans "Esqueceu a senha?" %}</a>
+        </div>
 
+    
+</div>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 {% endblock %}
