@@ -81,13 +81,4 @@ def custom_logout(request):
 
 @login_required
 def edit(request):
-    profile = request.user.profile
-    if request.method == 'POST':
-        form = UserForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts/profile')
-    else:
-        form = UserForm(instance=profile)
-    context = {'form': form}
-    return render(request, 'users/signup.html', context)
+    pass
