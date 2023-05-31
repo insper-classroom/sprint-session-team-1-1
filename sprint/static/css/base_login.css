@@ -75,6 +75,14 @@ p{
   font-size: 1.13em;
 }
 
+.error{
+  color: red;
+  margin-left: 80px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+}
+
 .senha_alterada{
   color: #3C5AF0;
   font-family: 'Urbanist', sans-serif;
@@ -128,7 +136,7 @@ h1{
 
 .change_pass1{
   color: #3C5AF0;
-  margin-left: 85px;
+  margin-left: 69px;
   margin-bottom: 0%;
   font-family: 'Urbanist', sans-serif;
   font-weight: bold;
@@ -137,7 +145,7 @@ h1{
 
 .change_pass_ok{
   color: #3C5AF0;
-  margin-left: 163px;
+  margin-left: 108px;
   margin-bottom: 0%;
   font-family: 'Urbanist', sans-serif;
   font-weight: bold;
