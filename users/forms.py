@@ -12,6 +12,8 @@ class UserForm(UserCreationForm):
     password2 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password2 é obrigatório
     nome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
     sobrenome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
+    #Foto de perfil
+    foto_perfil = forms.FileField(required=True)
     #Cria o campo data de nascimento. Ocupa muito espaço pois deixo o formato dd/mm/yyyy por padrao, au invez do mm/dd/yyyy default.
     data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
@@ -46,6 +48,7 @@ class UserForm(UserCreationForm):
         'password2',
         'nome',
         'sobrenome',
+        'foto_perfil',
         'data_nascimento',
         'cpf',
         'rg',
@@ -66,7 +69,6 @@ class UserForm(UserCreationForm):
         'ano_ingresso',
         'ano_formatura',
         'renda_familiar',
-        'foto_de_perfil',
         ] # Campos que serão exibidos no formulário de registro
 
     def save(self, commit=True): # Sobrescrevemos o método save para adicionar o email ao usuário
@@ -82,6 +84,7 @@ class UserForm(UserCreationForm):
                 nome_exibicao=user.username,
                 nome=self.cleaned_data['nome'],
                 sobrenome=self.cleaned_data['sobrenome'],
+                foto_perfil=self.cleaned_data['foto_perfil'],
                 data_nascimento=self.cleaned_data['data_nascimento'],
                 cpf=self.cleaned_data['cpf'],
                 rg=self.cleaned_data['rg'],
@@ -103,7 +106,6 @@ class UserForm(UserCreationForm):
                 ano_ingresso=self.cleaned_data['ano_ingresso'],
                 ano_formatura=self.cleaned_data['ano_formatura'],
                 renda_familiar=self.cleaned_data['renda_familiar'],
-                foto_de_perfil=self.cleaned_data['foto_de_perfil'],
             ) # Criamos um objeto do tipo Profile ligado ao usuário
             
         return user # Retornamos o usuário
