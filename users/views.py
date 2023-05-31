@@ -4,6 +4,7 @@ from . import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import UserForm
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -12,7 +13,7 @@ from .forms import UserForm
 class UserCreate(CreateView):
     # template_name = ""
     form_class = forms.UserForm # Aqui, definimos o formulário que será usado para o cadastro de usuários
-    # success_url = reverse_lazy('login') # Aqui, definimos a URL para onde o usuário será redirecionado após o cadastro
+    success_url = reverse_lazy('home') # Aqui, definimos a URL para onde o usuário será redirecionado após o cadastro
 
     def get_context_data(self, *args, **kwargs): # Sobrescrevemos o método get_context_data para adicionar mais campos ao contexto
         context = super().get_context_data(*args, **kwargs)
@@ -22,6 +23,7 @@ class UserCreate(CreateView):
         context['sobrenome'] = self.request.POST.get('sobrenome')
         context['email'] = self.request.POST.get('email')
         context['nome_exibicao'] = self.request.POST.get('nome_exibicao')
+        context['foto_de_perfil'] = self.request.POST.get('foto_de_perfil')
         context['data_nascimento'] = self.request.POST.get('data_nascimento')
         context['cpf'] = self.request.POST.get('cpf')
         context['rg'] = self.request.POST.get('rg')
@@ -47,7 +49,6 @@ class UserCreate(CreateView):
         return context
     
 def signup(request):
-
     if request.method == 'POST':
         form = forms.UserForm(request.POST)
         if form.is_valid():

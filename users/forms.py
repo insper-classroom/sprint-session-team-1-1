@@ -34,6 +34,7 @@ class UserForm(UserCreationForm):
     ano_ingresso = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     ano_formatura = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     renda_familiar = forms.ChoiceField(choices=Profile.Income, required=True) # O campo cor_ou_raca é obrigatório
+    foto_de_perfil = forms.ImageField(required=False)
 
 
     class Meta:
@@ -65,6 +66,7 @@ class UserForm(UserCreationForm):
         'ano_ingresso',
         'ano_formatura',
         'renda_familiar',
+        'foto_de_perfil',
         ] # Campos que serão exibidos no formulário de registro
 
     def save(self, commit=True): # Sobrescrevemos o método save para adicionar o email ao usuário
@@ -101,6 +103,7 @@ class UserForm(UserCreationForm):
                 ano_ingresso=self.cleaned_data['ano_ingresso'],
                 ano_formatura=self.cleaned_data['ano_formatura'],
                 renda_familiar=self.cleaned_data['renda_familiar'],
+                foto_de_perfil=self.cleaned_data['foto_de_perfil'],
             ) # Criamos um objeto do tipo Profile ligado ao usuário
             
         return user # Retornamos o usuário
