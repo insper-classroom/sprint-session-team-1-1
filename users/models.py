@@ -42,11 +42,11 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
         ('Alumni', 'Alumni'),
     )
 
-    cities_test = {
+    cities_test = (
         ('china','china'),
         ('hong kong', 'hong kong'),
         ('India', 'India'),
-    }
+    )
 
     nome = models.CharField(max_length=150, null=True, verbose_name='Nome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
     sobrenome = models.CharField(max_length=150, null=True, verbose_name='Sobrenome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
