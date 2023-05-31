@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView
 from . import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from .forms import UserForm
 
 
 # Create your views here.
@@ -64,3 +65,17 @@ def custom_logout(request):
     logout(request)
     # Redirecionar para a página desejada após o logout
     return redirect('home')
+
+
+@login_required
+def edit(request):
+    profile = request.user.profile # Ajuste isso para acessar o perfil do usuário corretamente
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts/profile') 
+    else:
+        form = UserForm(instance=profile)
+    context = {'form': form}
+    return render(request, 'users/signup.html', context)
