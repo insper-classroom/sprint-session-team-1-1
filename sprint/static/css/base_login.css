@@ -80,7 +80,15 @@ p{
 
 .error-redefinicao{
   color: red;
-  margin-left: 80px;
+  margin-left: 112px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+}
+
+.error-redefinicao-8c{
+  color: red;
+  margin-left: 50px;
   margin-top: 5%;
   font-family: 'Urbanist', sans-serif;
   font-weight: normal;
@@ -305,9 +313,10 @@ h2{
   margin: 30px 0 5px 0;
 }
 
-.input-box label{
+.input-box label,
+.input-box input:focus ~ label {
   position: relative;
-  top: -70%;
+  top: -70px;
   left: 5px;
   transform: translateY(-100%);
   color: #3C5AF0;
@@ -317,9 +326,8 @@ h2{
   font-size: 20px;
 }
 
-.input-box input:focus ~ label,
-.input-box input:valid ~ label{
-  top: -70px;
+.input-box input[value=""] ~ label {
+  top: -70%;
 }
 
 .input-box input{
