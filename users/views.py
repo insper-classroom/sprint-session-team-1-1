@@ -23,8 +23,8 @@ class UserCreate(CreateView):
         context['nome'] = self.request.POST.get('nome')
         context['sobrenome'] = self.request.POST.get('sobrenome')
         context['email'] = self.request.POST.get('email')
+        context['foto_perfil'] = self.request.POST.get('foto_perfil')
         context['nome_exibicao'] = self.request.POST.get('nome_exibicao')
-        context['foto_de_perfil'] = self.request.POST.get('foto_de_perfil')
         context['data_nascimento'] = self.request.POST.get('data_nascimento')
         context['cpf'] = self.request.POST.get('cpf')
         context['rg'] = self.request.POST.get('rg')
@@ -59,7 +59,7 @@ class UserCreate(CreateView):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/accounts/login/')
