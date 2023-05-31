@@ -76,7 +76,6 @@ nav{
     font-weight: 600;
     padding: 12px 20px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .voltar{
@@ -91,5 +90,18 @@ nav{
     font-weight: 600;
     padding: 12px 20px;
     cursor: pointer;
-    transition: 0.3s;
+}
+
+.finalizar{
+  display: flex;
+  margin-left: 91.25%;
+  background-color: #3C5AF0;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  font-size: 21px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  padding: 12px 20px;
+  cursor: pointer;
 }

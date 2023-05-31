@@ -7,7 +7,7 @@
   <img src="{% static 'img/fundo-dados-pessoais.png' %}" alt="Imagem de fundo">
 </div>
 
-<form method="post">
+<form method="post" action="{% url 'account/profile' %}">
   {% csrf_token %}
   {{ form.non_field_errors }}
 
@@ -15,7 +15,7 @@
 
     <nav>
       <div class="logo">
-        <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
+        <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
       </div>
       <div class="nav-links">
         <ul>
@@ -167,14 +167,14 @@
       {{ form.cidade_fora_atual.errors }}
     </div>
 
-    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="proximo" type="button">Próximo</button>
+    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="proximo">Próximo</button>
   </div>
 
     <div id="dadosprofissionais" class="hidden">
 
       <nav>
         <div class="logo">
-          <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
+          <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
         </div>
         <div class="nav-links">
           <ul>
@@ -185,7 +185,7 @@
             </li>
             <li>
               <a href="javascript:dados_pessoais_show()">
-                <img src="{% static 'img/dados-pessoais-azul.png' %}" alt="Dados Pessoais">
+                <img src="{% static 'img/dados-pessoais-cinza.png' %}" alt="Dados Pessoais">
               </a>
             </li>
             <li>
@@ -240,15 +240,15 @@
       {{ form.ano_formatura.errors }}
     </div>
 
-    <button id="show_dados_pessoais" onclick="dados_pessoais_show()" class="voltar" type="button">Voltar</button>
-    <button id="show_dados_financeiros" onclick="dados_financeiros_show()" class="proximo" type="button">Próximo</button>
+    <button id="show_dados_pessoais" onclick="dados_pessoais_show()" class="voltar">Voltar</button>
+    <button id="show_dados_financeiros" onclick="dados_financeiros_show()" class="proximo">Próximo</button>
   </div> <!-- Fim do bloco de dados profissionais -->
   
     <div id="dadosfinanceiros" class="hidden">
 
       <nav>
         <div class="logo">
-          <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
+          <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
         </div>
         <div class="nav-links">
           <ul>
@@ -259,12 +259,12 @@
             </li>
             <li>
               <a href="javascript:dados_pessoais_show()">
-                <img src="{% static 'img/dados-pessoais-azul.png' %}" alt="Dados Pessoais">
+                <img src="{% static 'img/dados-pessoais-cinza.png' %}" alt="Dados Pessoais">
               </a>
             </li>
             <li>
               <a href="javascript:dados_profissionais_show()">
-                <img src="{% static 'img/dados-profissionais-azul.png' %}" alt="Dados Profissionais">
+                <img src="{% static 'img/dados-profissionais-cinza.png' %}" alt="Dados Profissionais">
               </a>
             </li>
             <li>
@@ -284,8 +284,10 @@
       {{ form.renda_familiar.errors }}
     </div>
 
-    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="voltar" type="button">Voltar</button>
-    <button type="submit" class="finalizar">Finalizar</button>
+    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="voltar">Voltar</button>
+
+    <button type="submit" class="proximo">Finalizar</button>
+    
   </div> <!-- Fim do bloco de dados financeiros -->
 
 </form>
