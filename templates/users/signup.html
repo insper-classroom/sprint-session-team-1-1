@@ -15,7 +15,7 @@
 
     <nav>
       <div class="logo">
-        <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
+        <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
       </div>
       <div class="nav-links">
         <ul>
@@ -174,7 +174,7 @@
 
       <nav>
         <div class="logo">
-          <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
+          <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
         </div>
         <div class="nav-links">
           <ul>
@@ -248,7 +248,7 @@
 
       <nav>
         <div class="logo">
-          <img src="{% static 'users/img/logo-telles.png' %}" alt="Logo da Fundação">
+          <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
         </div>
         <div class="nav-links">
           <ul>
@@ -285,7 +285,11 @@
     </div>
 
     <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="voltar">Voltar</button>
-    <button type="submit" class="proximo">Finalizar</button>
+    
+    <form action="{% url 'account_login' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="proximo">Finalizar</button>
+    </form>
   </div> <!-- Fim do bloco de dados financeiros -->
 
 </form>

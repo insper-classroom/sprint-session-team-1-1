@@ -36,6 +36,8 @@
   padding-top: 20%;
   font-size: 120%;
 }
+
+/* Imagens */
 .logo{
   display: block;
   position: absolute;
@@ -67,6 +69,7 @@
   margin-right: auto;
 }
 
+/* Textos */
 p{
   color: #3C5AF0;
   font-family: 'Urbanist', sans-serif;
@@ -75,7 +78,7 @@ p{
   font-size: 1.13em;
 }
 
-.error{
+.error-redefinicao{
   color: red;
   margin-left: 80px;
   margin-top: 5%;
@@ -91,6 +94,16 @@ p{
   font-size: 1.13em;
 }
 
+label{
+  color: #3C5AF0;
+  margin-left: 13px;
+  margin-top: 5%;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: normal;
+  font-size: 150%;
+}
+
+/* Anexos */
 a{
   color: #000000;
   margin-top: 10%;
@@ -108,14 +121,13 @@ a{
   text-decoration: none;
 }
 
-
+/* Títulos */
 h1{
   color: #3C5AF0;
   margin-left: 55px;
   margin-bottom: 0%;
   font-family: 'Urbanist', sans-serif;
   font-weight: bold;
-  /* border-bottom: 2px solid #3C5AF0; */
 }
 
 .title_red{
@@ -160,6 +172,7 @@ h2{
   font-size: 2em;
 }
 
+/* Botões */
 .return_login{
   display: block;
   margin-top: 7%;
@@ -245,13 +258,36 @@ h2{
   transition: 0.2s; 
 }
 
+.googlebutton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3%;
+  margin-left: 5px;
+  margin-bottom: 3%;
+  margin-right: 50px;
+  background-color: rgb(255, 255, 255);
+  color:rgb(0, 0, 0, 0.54);
+  border: solid 2px #bbbcc0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.googlebutton img {
+  padding-right: 5px;
+}
+
+/* Bloco do login */
 .login{
   position: relative;
   width: 400px;
   height: 440px;
   background: transparent;
   border-radius: 20px;
-  /* box-shadow: 0 0 5px rgba(90, 87, 87, 0.5); */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -259,6 +295,8 @@ h2{
   align-items: center;
 }
 
+
+/* Caixas de texto */
 .input-box{
   position: relative;
   width: 70%;
@@ -304,37 +342,6 @@ h2{
   line-height: 57px;
 }
 
-.googlebutton{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 3%;
-  margin-left: 5px;
-  margin-bottom: 3%;
-  margin-right: 50px;
-  background-color: rgb(255, 255, 255);
-  color:rgb(0, 0, 0, 0.54);
-  border: solid 2px #bbbcc0;
-  border-radius: 4px;
-  font-size: 14px;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 500;
-  padding: 8px 20px;
-  cursor: pointer;
-}
-
-.googlebutton img {
-  padding-right: 5px;
-}
-
-label{
-  color: #3C5AF0;
-  margin-left: 13px;
-  margin-top: 5%;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: normal;
-  font-size: 150%;
-}
 
 .socialaccount_providers{
   margin-left: 55px;
