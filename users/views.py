@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import UserForm
 from django.urls import reverse_lazy
+from datetime import datetime
 
 
 # Create your views here.
@@ -39,7 +40,6 @@ class UserCreate(CreateView):
         context['cidade_atual'] = self.request.POST.get('cidade_atual')
         context['cidade_fora_atual'] = self.request.POST.get('cidade_fora_atual')
         context['linkedin'] = self.request.POST.get('linkedin')
-        context['tipo_usuario'] = self.request.POST.get('tipo_usuario')
         context['faculdade'] = self.request.POST.get('faculdade')
         context['curso'] = self.request.POST.get('curso')
         context['ano_ingresso'] = self.request.POST.get('ano_ingresso')
@@ -48,19 +48,30 @@ class UserCreate(CreateView):
         
         return context
     
+    def form_valid(self, form):
+        # Determinar o tipo de usuário com base na data de formatura
+        ano_formatura = form.instance.ano_formatura
+        ano_atual = datetime.datetime.now().year
+        tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
+        form.instance.tipo_usuario = tipo_usuario
+        return super().form_valid(form)
+
+
 def signup(request):
     if request.method == 'POST':
-        form = forms.UserForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/accounts/login/')
     else:
-        form = forms.UserForm()
+        form = UserForm()
     return render(request, 'users/signup.html', {'form': form})
+
 
 @login_required
 def profile(request):
     return render(request, 'profile/profile.html', {'user': request.user})
+
 
 def custom_logout(request):
     logout(request)
@@ -70,12 +81,12 @@ def custom_logout(request):
 
 @login_required
 def edit(request):
-    profile = request.user.profile # Ajuste isso para acessar o perfil do usuário corretamente
+    profile = request.user.profile
     if request.method == 'POST':
         form = UserForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('accounts/profile') 
+            return redirect('accounts/profile')
     else:
         form = UserForm(instance=profile)
     context = {'form': form}

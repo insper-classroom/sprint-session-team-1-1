@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm # Classe que já vem com o Django para criar um formulário de registro de usuários
 from .models import Profile
+from datetime import datetime
+
 
 class UserForm(UserCreationForm):
 
@@ -28,7 +30,7 @@ class UserForm(UserCreationForm):
     cidade_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
     cidade_fora_atual = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
     linkedin = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
-    tipo_usuario = forms.ChoiceField(choices=Profile.User_type, initial='Bolsista', required=True) # O campo cor_ou_raca é obrigatório
+    tipo_usuario = forms.CharField(max_length=100, initial='', required=False)
     faculdade = forms.ChoiceField(choices=Profile.University, required=True) # O campo cor_ou_raca é obrigatório
     curso = forms.CharField(max_length=100, required=True) # O campo cor_ou_raca é obrigatório
     ano_ingresso = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
@@ -76,6 +78,12 @@ class UserForm(UserCreationForm):
         user.last_name = self.cleaned_data['sobrenome'] # Adicionamos o sobrenome ao usuário
         if commit:
             user.save() # Salvamos o usuário
+
+            # Determinar o tipo de usuário com base na data de formatura
+            ano_formatura = int(self.cleaned_data['ano_formatura'])
+            ano_atual = datetime.now().year
+            tipo_usuario = 'Aluno' if ano_formatura > ano_atual else 'Alumni'
+            
             Profile.objects.create(
                 usuario=user, 
                 email=user.email,
@@ -97,16 +105,16 @@ class UserForm(UserCreationForm):
                 cidade_atual=self.cleaned_data['cidade_atual'],
                 cidade_fora_atual=self.cleaned_data['cidade_fora_atual'],
                 linkedin=self.cleaned_data['linkedin'],
-                tipo_usuario=self.cleaned_data['tipo_usuario'],
+                tipo_usuario=tipo_usuario,
                 faculdade=self.cleaned_data['faculdade'],
                 curso=self.cleaned_data['curso'],
                 ano_ingresso=self.cleaned_data['ano_ingresso'],
                 ano_formatura=self.cleaned_data['ano_formatura'],
                 renda_familiar=self.cleaned_data['renda_familiar'],
                 foto_de_perfil=self.cleaned_data['foto_de_perfil'],
-            ) # Criamos um objeto do tipo Profile ligado ao usuário
+            )
             
-        return user # Retornamos o usuário
+        return user
     
     #Código feito pelo chatGPT para em conjunto do código em JS tornar os campos outra raça e outro genero visiveis apenas caso selecione-se a opção outro.
     def __init__(self, *args, **kwargs):
