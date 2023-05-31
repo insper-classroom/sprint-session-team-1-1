@@ -7,7 +7,7 @@
   <img src="{% static 'img/fundo-dados-pessoais.png' %}" alt="Imagem de fundo">
 </div>
 
-<form action="/upload" method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.non_field_errors }}
 

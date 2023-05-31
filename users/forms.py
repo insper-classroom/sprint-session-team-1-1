@@ -15,7 +15,7 @@ class UserForm(UserCreationForm):
     nome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
     sobrenome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
     #Foto de perfil
-    foto_perfil = forms.FileField(required=True)
+    foto_perfil = forms.ImageField(required=True)
     #Cria o campo data de nascimento. Ocupa muito espaço pois deixo o formato dd/mm/yyyy por padrao, au invez do mm/dd/yyyy default.
     data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True) # O campo data_nascimento é obrigatório
     cpf = forms.CharField(max_length=14, required=True) # O campo cpf é obrigatório
@@ -115,9 +115,8 @@ class UserForm(UserCreationForm):
                 ano_formatura=self.cleaned_data['ano_formatura'],
                 renda_familiar=self.cleaned_data['renda_familiar'],
             ) # Criamos um objeto do tipo Profile ligado ao usuário
-
             
-        return user
+        return user # Retornamos o usuário
     
     #Código feito pelo chatGPT para em conjunto do código em JS tornar os campos outra raça e outro genero visiveis apenas caso selecione-se a opção outro.
     def __init__(self, *args, **kwargs):

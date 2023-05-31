@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User # User é a classe de usuário padrão do Django que já vem com um pacote de autenticação.
 
+
 # Create your models here.
 class Profile(models.Model): # Profile é uma classe que adiciona mais campos/dados ao User do Django, para os usuários bolsistas
     
@@ -69,4 +70,3 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     ano_formatura = models.CharField(max_length=4, null=True, verbose_name='Ano de Formatura')
     renda_familiar = models.CharField(max_length=100, choices=Income, blank=True, null=True, verbose_name='Renda Familiar')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE) # Um usuário tem UM perfil, e quando o usuário é deletado, o perfil também é (CASCADE).
-
