@@ -4,7 +4,7 @@
 {% block body %}
 
 <div class="background">
-  <img src="{% static 'img/fundo-dados-pessoais.png' %}" alt="Imagem de fundo">
+  <img src="{% static 'img/fundo-cadastro.jpeg' %}" alt="Imagem de fundo">
 </div>
 
 <form method="post">
@@ -44,7 +44,7 @@
     </nav>
 
     <h1>Dados Pessoais</h1>
-    <p>Para preencher este formulario não precisa se preocupar com os caracteres especiais dos campos RG, CPF e Telefone, formatamos eles para você. <br>Exemplo: Digite 1111111111111 e formataremos para +11 (11) 11111-1111</p>
+    <!-- <p>Para preencher este formulario não precisa se preocupar com os caracteres especiais dos campos RG, CPF e Telefone, formatamos eles para você. <br>Exemplo: Digite 1111111111111 e formataremos para +11 (11) 11111-1111</p> -->
     <br>
       
     <div class="form-group">
@@ -70,6 +70,18 @@
       {{ form.email }}
       {{ form.email.errors }}
     </div>
+    
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}">Senha:</label>
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+    </div>
+  
+    <div class="form-group">
+      <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </div>
 
     <div class="form-group" id="rg">
       <label for="{{ form.rg.id_for_label }}">RG:</label>
@@ -82,13 +94,7 @@
       {{ form.cpf }}
       {{ form.cpf.errors }}
     </div>
-  
-    <div class="form-group">
-      <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
-      {{ form.data_nascimento }}
-      {{ form.data_nascimento.errors }}
-    </div>
-  
+    
     <div class="form-group" id="telefone">
       <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
       {{ form.telefone }}
@@ -96,15 +102,9 @@
     </div>
 
     <div class="form-group">
-      <label for="{{ form.password1.id_for_label }}">Senha:</label>
-      {{ form.password1 }}
-      {{ form.password1.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
-      {{ form.password2 }}
-      {{ form.password2.errors }}
+      <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
+      {{ form.data_nascimento }}
+      {{ form.data_nascimento.errors }}
     </div>
   
     <div class="form-group">

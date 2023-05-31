@@ -105,3 +105,29 @@ nav{
   padding: 12px 20px;
   cursor: pointer;
 }
+
+h1{
+  text-align: center;
+  margin-top: 2%;
+  color: #3C5AF0;
+
+}
+
+p{
+  text-align: center;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  color: #3C5AF0;
+}
+
+label{
+  margin-left: 30px;
+  margin-top: 5%;
+  font-size: 1.13em;
+  color: #3C5AF0;
+}
+
+.form-group{
+  text-align: center;
+}
+
