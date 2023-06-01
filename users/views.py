@@ -98,7 +98,7 @@ def edit(request):
                 existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
                 if not existing_user:
                     user.username = new_username
-                    profile.exibicao = new_username
+                    profile.nome_exibicao = new_username
                 else:
                     form.add_error('username', 'A user with that username already exists.')
             #
