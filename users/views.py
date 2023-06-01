@@ -98,7 +98,7 @@ def edit(request):
                 existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
                 if not existing_user:
                     user.username = new_username
-                    profile.nome_exibicao = new_username
+                    profile.exibicao = new_username
                 else:
                     form.add_error('username', 'A user with that username already exists.')
             #
@@ -151,7 +151,7 @@ def edit(request):
             'renda_familiar': user.profile.renda_familiar,
         })
 
-        #Validador personalizado feito com auxilio do CHatGPT
+        #Validador personalizado feito com auxilio do ChatGPT
         form.fields['username'].validators.append(UnicodeUsernameValidator())
 
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user})
