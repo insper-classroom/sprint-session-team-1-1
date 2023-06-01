@@ -75,6 +75,14 @@ def signup(request):
 @login_required
 def profile(request):
     user = request.user
+    profile = user.profile  # Certifique-se de ter um relacionamento correto entre os modelos User e Profile
+
+    # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
+    ano_formatura = profile.ano_formatura
+    ano_atual = datetime.now().year
+    profile.tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
+    profile.save()
+
     return render(request, 'profile/profile.html', {'user': user})
 
 
