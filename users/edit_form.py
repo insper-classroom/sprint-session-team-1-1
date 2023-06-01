@@ -9,7 +9,7 @@ class EditForm(UserChangeForm):
     username = forms.CharField(max_length=100, required=True) # O campo username não é obrigatório
     email = forms.EmailField(max_length=100, required=True) # O campo email é obrigatório
     #Foto de perfil
-    foto_perfil = forms.ImageField(required=True)
+    foto_perfil = forms.ImageField(required=False)
     #Cria o campo data de nascimento. Ocupa muito espaço pois deixo o formato dd/mm/yyyy por padrao, au invez do mm/dd/yyyy default.
     rg = forms.CharField(max_length=12, required=True) # O campo rg é obrigatório
     telefone = forms.CharField(max_length=19, required=True) # O campo telefone é obrigatório

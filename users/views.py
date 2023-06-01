@@ -7,6 +7,8 @@ from .forms import UserForm
 from . import edit_form
 from django.urls import reverse_lazy
 from datetime import datetime
+from django.contrib.auth.models import User
+
 
 
 # Create your views here.
@@ -80,42 +82,56 @@ def custom_logout(request):
     return redirect('home')
 
 
+from django.contrib.auth.validators import UnicodeUsernameValidator
+
 @login_required
 def edit(request):
     user = request.user
     profile = user.profile
     if request.method == 'POST':
-        form = edit_form.EditForm(request.POST, request.FILES)
+        form = edit_form.EditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
-            if request.POST.get('username') != user.username:
-                user.username = request.POST.get('username')
-                profile.nome_exibicao = request.POST.get('username')
-            user.first_name = request.POST.get('nome')
-            user.last_name = request.POST.get('sobrenome')
-            user.email = request.POST.get('email')
-            profile.nome = request.POST.get('nome')
-            profile.sobrenome = request.POST.get('sobrenome')
-            profile.email = request.POST.get('email')
-            profile.foto_perfil = request.FILES.get('foto_perfil')
-            profile.rg = request.POST.get('rg')
-            profile.telefone = request.POST.get('telefone')
-            profile.genero = request.POST.get('genero')
-            profile.outro_genero = request.POST.get('outro_genero')
-            profile.pais_atual = request.POST.get('pais_atual')
-            profile.estado_atual = request.POST.get('estado_atual')
-            profile.cidade_atual = request.POST.get('cidade_atual')
-            profile.cidade_fora_atual = request.POST.get('cidade_fora_atual')
-            profile.linkedin = request.POST.get('linkedin')
-            profile.curso = request.POST.get('curso')
-            profile.ano_formatura = request.POST.get('ano_formatura')
-            profile.renda_familiar = request.POST.get('renda_familiar')
+            #Este pedaço dividido foi feito com a ajuda do chatGPT, pois estavamos com dificuldade de fazer a validação de username
+            #Mas entendemos o conceito de utilizar a personal key para liberar a 'edição' para um username ja existente caso seja do msm usuario
+            if form.cleaned_data['username'] != user.username:
+                new_username = form.cleaned_data['username']
+                existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
+                if not existing_user:
+                    user.username = new_username
+                    profile.nome_exibicao = new_username
+                else:
+                    form.add_error('username', 'A user with that username already exists.')
+            #
+            user.first_name = form.cleaned_data['nome']
+            user.last_name = form.cleaned_data['sobrenome']
+            user.email = form.cleaned_data['email']
+            profile.nome = form.cleaned_data['nome']
+            profile.sobrenome = form.cleaned_data['sobrenome']
+            profile.email = form.cleaned_data['email']
+            #Código para só atualizar a foto se uma nova for enviada
+            if request.FILES.get('foto_perfil') != None:
+                profile.foto_perfil = request.FILES.get('foto_perfil')
+
+            profile.rg = form.cleaned_data['rg']
+            profile.telefone = form.cleaned_data['telefone']
+            profile.genero = form.cleaned_data['genero']
+            profile.outro_genero = form.cleaned_data['outro_genero']
+            profile.pais_atual = form.cleaned_data['pais_atual']
+            profile.estado_atual = form.cleaned_data['estado_atual']
+            profile.cidade_atual = form.cleaned_data['cidade_atual']
+            profile.cidade_fora_atual = form.cleaned_data['cidade_fora_atual']
+            profile.linkedin = form.cleaned_data['linkedin']
+            profile.curso = form.cleaned_data['curso']
+            profile.ano_formatura = form.cleaned_data['ano_formatura']
+            profile.renda_familiar = form.cleaned_data['renda_familiar']
 
             profile.save()
             user.save()
             return redirect('/accounts/profile/')
         
     else:
-        form = UserForm(initial={
+        #Listamos todos os fields e auto preenchemos com os valores ja existentes do usuario
+        form = edit_form.EditForm(initial={
             'nome': user.first_name,
             'sobrenome': user.last_name,
             'username': user.username,
@@ -133,6 +149,9 @@ def edit(request):
             'curso': user.profile.curso,
             'ano_formatura': user.profile.ano_formatura,
             'renda_familiar': user.profile.renda_familiar,
-            })
-    
+        })
+
+        #Validador personalizado feito com auxilio do CHatGPT
+        form.fields['username'].validators.append(UnicodeUsernameValidator())
+
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user})
