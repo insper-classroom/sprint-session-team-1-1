@@ -63,12 +63,7 @@ def signup(request):
         form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            
-            if 'bolsista' not in Group.objects.all():
-                Group(name='bolsista').save()
 
-            bolsistas = Group.objects.get(name='bolsista')
-            user.groups.add(bolsistas)
             return redirect('/accounts/login/')
         
     else:
