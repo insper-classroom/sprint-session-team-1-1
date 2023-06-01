@@ -38,7 +38,6 @@ class UserForm(UserCreationForm):
     ano_ingresso = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     ano_formatura = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     renda_familiar = forms.ChoiceField(choices=Profile.Income, required=True) # O campo cor_ou_raca é obrigatório
-    foto_de_perfil = forms.ImageField(required=False)
 
 
     class Meta:
