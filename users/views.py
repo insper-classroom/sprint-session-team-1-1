@@ -4,6 +4,7 @@ from . import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import UserForm
+from . import edit_form
 from django.urls import reverse_lazy
 from datetime import datetime
 
@@ -81,4 +82,57 @@ def custom_logout(request):
 
 @login_required
 def edit(request):
-    pass
+    user = request.user
+    profile = user.profile
+    if request.method == 'POST':
+        form = edit_form.EditForm(request.POST, request.FILES)
+        if form.is_valid():
+            if request.POST.get('username') != user.username:
+                user.username = request.POST.get('username')
+                profile.nome_exibicao = request.POST.get('username')
+            user.first_name = request.POST.get('nome')
+            user.last_name = request.POST.get('sobrenome')
+            user.email = request.POST.get('email')
+            profile.nome = request.POST.get('nome')
+            profile.sobrenome = request.POST.get('sobrenome')
+            profile.email = request.POST.get('email')
+            profile.foto_perfil = request.FILES.get('foto_perfil')
+            profile.rg = request.POST.get('rg')
+            profile.telefone = request.POST.get('telefone')
+            profile.genero = request.POST.get('genero')
+            profile.outro_genero = request.POST.get('outro_genero')
+            profile.pais_atual = request.POST.get('pais_atual')
+            profile.estado_atual = request.POST.get('estado_atual')
+            profile.cidade_atual = request.POST.get('cidade_atual')
+            profile.cidade_fora_atual = request.POST.get('cidade_fora_atual')
+            profile.linkedin = request.POST.get('linkedin')
+            profile.curso = request.POST.get('curso')
+            profile.ano_formatura = request.POST.get('ano_formatura')
+            profile.renda_familiar = request.POST.get('renda_familiar')
+
+            profile.save()
+            user.save()
+            return redirect('/accounts/profile/')
+        
+    else:
+        form = UserForm(initial={
+            'nome': user.first_name,
+            'sobrenome': user.last_name,
+            'username': user.username,
+            'email': user.email,
+            'foto_perfil': user.profile.foto_perfil,
+            'rg': user.profile.rg,
+            'telefone': user.profile.telefone,
+            'genero': user.profile.genero,
+            'outro_genero': user.profile.outro_genero,
+            'pais_atual': user.profile.pais_atual,
+            'estado_atual': user.profile.estado_atual,
+            'cidade_atual': user.profile.cidade_atual,
+            'cidade_fora_atual': user.profile.cidade_fora_atual,
+            'linkedin': user.profile.linkedin,
+            'curso': user.profile.curso,
+            'ano_formatura': user.profile.ano_formatura,
+            'renda_familiar': user.profile.renda_familiar,
+            })
+    
+    return render(request, 'profile/edit/edit.html', {'form': form, 'user': user})
