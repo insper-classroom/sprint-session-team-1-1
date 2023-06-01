@@ -6,7 +6,7 @@
         <img src="{% static 'users/img/background-profile.png' %}"/>
     </div>
     <nav>
-        <a><img src="{% static 'img/telles_foundation.png' %}"></a>
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}"></a>
         <div class="nav-links">
             <ul>
                 <li><a href="/">HOME</a></li>
@@ -21,9 +21,18 @@
             <div class="profile-info">
                 <img src="{% static 'users/img/foto-de-perfil-padrao.png' %}">
                 <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
+                <span class="faculdade">{{ form.faculdade.value }}</span>
+                <span class="status">{{ user.profile.tipo_usuario }}</span>
                 <button class="button-editar" onclick="window.location.href='edit/'"><a href="edit/" class="link-botao">EDITAR</a></button>
                 <span class="id">ID: {{ user.id }}</span>
             </div>
         </div>
     </div>
+
+    {% if form.faculdade.value %}
+    O valor selecionado para faculdade é: {{ form.faculdade.value }}
+    {% else %}
+    O campo faculdade não foi selecionado.      
+    {% endif %}
+
 {% endblock %}

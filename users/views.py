@@ -70,7 +70,13 @@ def signup(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile/profile.html', {'user': request.user})
+    user = request.user
+    form = forms.UserForm(instance=user)
+    context = {
+        'user': user,
+        'form': form,
+    }
+    return render(request, 'profile/profile.html', context)
 
 
 def custom_logout(request):
