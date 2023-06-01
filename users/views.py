@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView
 from . import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.models import Group
 from .forms import UserForm
 from django.urls import reverse_lazy
 from datetime import datetime
@@ -61,10 +62,18 @@ def signup(request):
     if request.method == 'POST':
         form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            
+            if 'bolsista' not in Group.objects.all():
+                Group(name='bolsista').save()
+
+            bolsistas = Group.objects.get(name='bolsista')
+            user.groups.add(bolsistas)
             return redirect('/accounts/login/')
+        
     else:
         form = UserForm()
+
     return render(request, 'users/signup.html', {'form': form})
 
 
