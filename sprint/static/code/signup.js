@@ -86,14 +86,19 @@ function formataAnos(fieldId) {
 
 // Obtém as referências para as divs
 const dadospessoais = document.getElementById('dadospessoais');
+const dadosgeograficos = document.getElementById('dadosgeograficos');
 const dadosprofissionais = document.getElementById('dadosprofissionais');
 const dadosfinanceiros = document.getElementById('dadosfinanceiros');
 const show_dados_pessoais = document.getElementById('show_dados_pessoais');
+const show_dados_geograficos = document.getElementById('show_dados_geograficos');
 const show_dados_profissionais = document.getElementById('show_dados_profissionais');
 const show_dados_financeiros = document.getElementById('show_dados_financeiros');
 
 // Define o estilo da div dadospessoais para 'block' (aparecendo)
 dadospessoais.style.display = 'block';
+
+// Define o estilo da div dadosgeograficos para 'none' (escondida)
+dadosgeograficos.style.display = 'none';
 
 // Define o estilo da div dadosprofissionais para 'none' (escondida)
 dadosprofissionais.style.display = 'none';
@@ -103,18 +108,75 @@ dadosfinanceiros.style.display = 'none';
 
 function dados_pessoais_show() {
   dadospessoais.style.display = 'block';
+  dadosgeograficos.style.display = 'none';
+  dadosprofissionais.style.display = 'none';
+  dadosfinanceiros.style.display = 'none';
+}
+
+function dados_geograficos_show() {
+  dadospessoais.style.display = 'none';
+  dadosgeograficos.style.display = 'block';
   dadosprofissionais.style.display = 'none';
   dadosfinanceiros.style.display = 'none';
 }
 
 function dados_profissionais_show() {
   dadospessoais.style.display = 'none';
+  dadosgeograficos.style.display = 'none';
   dadosprofissionais.style.display = 'block';
   dadosfinanceiros.style.display = 'none';
 }
 
 function dados_financeiros_show() {
   dadospessoais.style.display = 'none';
+  dadosgeograficos.style.display = 'none';
   dadosprofissionais.style.display = 'none';
   dadosfinanceiros.style.display = 'block';
 }
+
+var input = document.getElementById("id_nome");
+input.setAttribute('placeholder', 'Insira seu primeiro nome');
+
+var input = document.getElementById("id_sobrenome");
+input.setAttribute('placeholder', 'Insira seu sobrenome');
+
+var input = document.getElementById("id_username");
+input.setAttribute('placeholder', 'Insira seu nome de exibição');
+
+var input = document.getElementById("id_password1");
+input.setAttribute('placeholder', 'Insira sua senha');
+
+var input = document.getElementById("id_password2");
+input.setAttribute('placeholder', 'Confirme sua senha');
+
+var input = document.getElementById("id_email");
+input.setAttribute('placeholder', 'Insira seu e-mail');
+
+var input = document.getElementById("id_telefone");
+input.setAttribute('placeholder', 'Insira seu telefone');
+
+var input = document.getElementById("id_cpf");
+input.setAttribute('placeholder', 'Insira seu CPF');
+
+var input = document.getElementById("id_rg");
+input.setAttribute('placeholder', 'Insira seu RG');
+
+var input = document.getElementById("id_linkedin");
+input.setAttribute('placeholder', 'Insira seu LinkedIn');
+
+var input = document.getElementById("id_curso");
+input.setAttribute('placeholder', 'Insira seu curso');
+
+var input = document.getElementById("id_formatura");
+input.setAttribute('placeholder', 'Insira seu ano de formatura');
+
+var input = document.getElementById("id_ingresso");
+input.setAttribute('placeholder', 'Insira seu ano de ingresso');
+
+
+
+
+
+
+
+
