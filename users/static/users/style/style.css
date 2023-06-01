@@ -101,7 +101,7 @@ nav img{
     font-size: 17px;
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
-    padding: 12px 13px;
+    padding: 15px 14px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -117,7 +117,15 @@ button:hover{
     transition: 0.5s;
 }
 
-.status{
-    font-size: 100px;
-    color: #3C5AF0;
+.extra{
+    display: flex;
+    align-items: center;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.text{
+    flex-direction: column;
 }
