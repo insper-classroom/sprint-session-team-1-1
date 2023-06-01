@@ -12,288 +12,259 @@
   {{ form.non_field_errors }}
 
   <div id="dadospessoais" class="block">
-
-    <nav>
-      <div class="logo">
-        <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
-      </div>
-      <div class="nav-links">
-        <ul>
-          <li>
-            <a href="javascript:dados_cadastro_show()">
-              <img src="{% static 'img/cadastro.png' %}" alt="Cadastro">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:dados_pessoais_show()">
-              <img src="{% static 'img/dados-pessoais-azul.png' %}" alt="Dados Pessoais">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:dados_profissionais_show()">
-              <img src="{% static 'img/dados-profissionais-cinza.png' %}" alt="Dados Profissionais">
-            </a>
-          </li>
-          <li>
-            <a href="javascript:dados_financeiros_show()">
-              <img src="{% static 'img/dados-financeiros-cinza.png' %}" alt="Dados Financeiros">
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    
+    <div class="imagens">
+      <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo">
+    
+    
+      <img src="{% static 'img/Parte1.png' %}" alt="" class="img-progresso">
+    </div>
 
     <h1>Dados Pessoais</h1>
-    <!-- <p>Para preencher este formulario não precisa se preocupar com os caracteres especiais dos campos RG, CPF e Telefone, formatamos eles para você. <br>Exemplo: Digite 1111111111111 e formataremos para +11 (11) 11111-1111</p> -->
     <br>
-      
-    <div class="form-group">
-      <label for="{{ form.nome.id_for_label }}">Nome:</label>
-      {{ form.nome }}
-      {{ form.nome.errors }}
+    <div class="dados-pessoais">
+    <div class="bloco1">
+        <div class="form-group">
+          <label for="{{ form.nome.id_for_label }}">Nome:</label>
+          <div class="input">{{ form.nome }}</div>
+          {{ form.nome.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}">E-mail:</label>
+          <div class="input">{{ form.email }}</div>
+          {{ form.email.errors }}
+          </div>
+
+          <div class="form-group" id="rg">
+            <label for="{{ form.rg.id_for_label }}">RG:</label>
+            <div class="input">{{ form.rg }}</div>
+            {{ form.rg.errors }}
+          </div>
+          
+          <div class="form-group">
+            <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
+            <div class="input">{{ form.data_nascimento }}</div>
+            {{ form.data_nascimento.errors }}
+          </div>
     </div>
 
-    <div class="form-group">
-      <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
-      {{ form.sobrenome }}
-      {{ form.sobrenome.errors }}
-    </div>
+    <div class="bloco2">
+        <div class="form-group">
+          <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
+          <div class="input">{{form.sobrenome }}</div>
+          {{ form.sobrenome.errors }}
+        </div>
 
-    <div class="form-group">
-      <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil</label>
-      {{ form.foto_perfil }}
-      {{ form.foto_perfil.errors }}
-    </div>
+        <div class="form-group">
+          <label for="{{ form.password1.id_for_label }}">Senha:</label>
+          <div class="input">{{ form.password1 }}</div>
+          {{ form.password1.errors }}
+        </div>
 
-    <div class="form-group">
-      <label for="{{ form.username.id_for_label }}">Nome de exibição:</label>
-      {{ form.username }}
-      {{ form.username.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.email.id_for_label }}">Email:</label>
-      {{ form.email }}
-      {{ form.email.errors }}
-    </div>
+        <div class="form-group" id="cpf">
+          <label for="{{ form.cpf.id_for_label }}">CPF:</label>
+          <div class="input">{{ form.cpf }}</div>
+          {{ form.cpf.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="{{ form.cor_ou_raca.id_for_label }}">Cor ou Raça:</label>
+          <div class="input">{{ form.cor_ou_raca }}</div>
+          {{ form.cor_ou_raca.errors }}
+        </div>
     
-    <div class="form-group">
-      <label for="{{ form.password1.id_for_label }}">Senha:</label>
-      {{ form.password1 }}
-      {{ form.password1.errors }}
+        <div id="outra-cor-ou-raca-group" class="form-group">
+          <label for="{{ form.outra_cor_ou_raca.id_for_label }}">Outra Cor ou Raça:</label>
+          <div class="input">{{ form.outra_cor_ou_raca }}</div>
+          {{ form.outra_cor_ou_raca.errors }}
+        </div>
     </div>
-  
-    <div class="form-group">
-      <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
-      {{ form.password2 }}
-      {{ form.password2.errors }}
-    </div>
+    <div class="bloco3">
+      <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Nome de exibição:</label>
+        <div class="input">{{ form.username }}</div>
+        {{ form.username.errors }}
+      </div>
 
-    <div class="form-group" id="rg">
-      <label for="{{ form.rg.id_for_label }}">RG:</label>
-      {{ form.rg }}
-      {{ form.rg.errors }}
-    </div>
+      <div class="form-group">
+        <label for="{{ form.password2.id_for_label }}">Confirme a Senha:</label>
+        <div class="input">{{ form.password2 }}</div>
+        {{ form.password2.errors }}
+      </div>
 
-    <div class="form-group" id="cpf">
-      <label for="{{ form.cpf.id_for_label }}">CPF:</label>
-      {{ form.cpf }}
-      {{ form.cpf.errors }}
-    </div>
+      <div class="form-group" id="telefone">
+        <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+        <div class="input">{{ form.telefone }}</div>
+        {{ form.telefone.errors }}
+      </div>
     
-    <div class="form-group" id="telefone">
-      <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
-      {{ form.telefone }}
-      {{ form.telefone.errors }}
-    </div>
+      <div class="form-group">
+        <label for="{{ form.genero.id_for_label }}">Gênero:</label>
+        <div class="input">{{ form.genero }}</div>
+        {{ form.genero.errors }}
+      </div>
 
-    <div class="form-group">
-      <label for="{{ form.data_nascimento.id_for_label }}">Data de Nascimento:</label>
-      {{ form.data_nascimento }}
-      {{ form.data_nascimento.errors }}
+      <div id="outro-genero-group" class="form-group">
+        <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
+        <div class="input">{{ form.outro_genero }}</div>
+        {{ form.outro_genero.errors }}
+      </div>
     </div>
-  
-    <div class="form-group">
-      <label for="{{ form.genero.id_for_label }}">Gênero:</label>
-      {{ form.genero }}
-      {{ form.genero.errors }}
-    </div>
-  
-    <div id="outro-genero-group" class="form-group">
-      <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
-      {{ form.outro_genero }}
-      {{ form.outro_genero.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.cor_ou_raca.id_for_label }}">Cor ou Raça:</label>
-      {{ form.cor_ou_raca }}
-      {{ form.cor_ou_raca.errors }}
-    </div>
-  
-    <div id="outra-cor-ou-raca-group" class="form-group">
-      <label for="{{ form.outra_cor_ou_raca.id_for_label }}">Outra Cor ou Raça:</label>
-      {{ form.outra_cor_ou_raca }}
-      {{ form.outra_cor_ou_raca.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.estado_nascimento.id_for_label }}">Estado de Nascimento:</label>
-      {{ form.estado_nascimento }}
-      {{ form.estado_nascimento.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.cidade_nascimento.id_for_label }}">Cidade de Nascimento:</label>
-      {{ form.cidade_nascimento }}
-      {{ form.cidade_nascimento.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
-      {{ form.pais_atual }}
-      {{ form.pais_atual.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
-      {{ form.estado_atual }}
-      {{ form.estado_atual.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
-      {{ form.cidade_atual }}
-      {{ form.cidade_atual.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora do País Atual:</label>
-      {{ form.cidade_fora_atual }}
-      {{ form.cidade_fora_atual.errors }}
-    </div>
-
-    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="proximo" type="button">Próximo</button>
   </div>
+  
+  <div class="botoes"></div>
+  <button id="show_dados_geograficos" onclick="dados_geograficos_show()" class="proximo" type="button">Próximo</button>
+
+</div>
+
+<div id="dadosgeograficos" class="hidden">
+<div class="imagens">
+  <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo">
+  
+  
+  <img src="{% static 'img/Parte2.png' %}" alt="" class="img-progresso">
+</div>
+
+    <h1>Dados Geográficos</h1>
+    
+    
+    <div class="dados-geograficos">
+      <div class="bloco1">
+        <div class="form-group">
+          <label for="{{ form.estado_nascimento.id_for_label }}">Estado de Nascimento:</label>
+          <div class="input">{{ form.estado_nascimento }}</div>
+          {{ form.estado_nascimento.errors }}
+        </div>
+        
+        <div class="form-group">
+          <label for="{{ form.cidade_nascimento.id_for_label }}">Cidade de Nascimento:</label>
+          <div class="input">{{ form.cidade_nascimento }}</div>
+          {{ form.cidade_nascimento.errors }}
+        </div>
+        
+        <div class="form-group">
+          <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
+          <div class="input">{{ form.pais_atual }}</div>
+          {{ form.pais_atual.errors }}
+        </div>
+      </div>
+      
+      <div class="bloco2">
+        <div class="form-group">
+          <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
+          <div class="input">{{ form.estado_atual }}</div>
+          {{ form.estado_atual.errors }}
+        </div>
+        
+        <div class="form-group">
+          <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
+          <div class="input">{{ form.cidade_atual }}</div>
+          {{ form.cidade_atual.errors }}
+        </div>
+        
+        <div class="form-group">
+          <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora do País Atual:</label>
+          <div class="input">{{ form.cidade_fora_atual }}</div>
+          {{ form.cidade_fora_atual.errors }}
+        </div>
+      </div>
+    </div>
+
+    <div class="botoes">
+      <button id="show_dados_pessoais" onclick="dados_pessoais_show()" class="voltar" type="button">Voltar</button>
+      <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="proximo" type="button">Próximo</button>
+    </div>
+  </div> <!-- Fim do bloco de dados geográficos -->
+    
 
     <div id="dadosprofissionais" class="hidden">
-
-      <nav>
-        <div class="logo">
-          <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
+      <div class="imagens">
+        <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo">
+        
+        
+        <img src="{% static 'img/Parte3.png' %}" alt="" class="img-progresso">
+      </div>
+      
+      <h1>Dados Profissionais</h1>
+      <div class="dados-profissionais"> 
+        <div class="bloco1">
+          <div class="form-group">
+            <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
+            <div class="input">{{ form.linkedin }}</div>
+            {{ form.linkedin.errors }}
+          </div>
+          
+          <div class="form-group">
+            <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil</label>
+            <div class="input">
+              <input type="file" name="foto_perfil" accept="image/*" required="" id="id_foto_perfil">
+            </div>
+            {{ form.foto_perfil.errors }}
+          </div>
+          
+          <div class="form-group">
+            <label for="{{ form.faculdade.id_for_label }}">Faculdade:</label>
+            <div class="input">{{ form.faculdade }}</div>
+            {{ form.faculdade.errors }}
+          </div>
         </div>
-        <div class="nav-links">
-          <ul>
-            <li>
-              <a href="javascript:dados_cadastro_show()">
-                <img src="{% static 'img/cadastro.png' %}" alt="Cadastro">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:dados_pessoais_show()">
-                <img src="{% static 'img/dados-pessoais-azul.png' %}" alt="Dados Pessoais">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:dados_profissionais_show()">
-                <img src="{% static 'img/dados-profissionais-azul.png' %}" alt="Dados Profissionais">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:dados_financeiros_show()">
-                <img src="{% static 'img/dados-financeiros-cinza.png' %}" alt="Dados Financeiros">
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-    <h1>Dados Profissionais</h1>
-
-    <div class="form-group">
-      <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
-      {{ form.linkedin }}
-      {{ form.linkedin.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.tipo_usuario.id_for_label }}"></label>
-      {{ form.tipo_usuario }}
-      {{ form.tipo_usuario.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.faculdade.id_for_label }}">Faculdade:</label>
-      {{ form.faculdade }}
-      {{ form.faculdade.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.curso.id_for_label }}">Curso:</label>
-      {{ form.curso }}
-      {{ form.curso.errors }}
-    </div>
-  
-    <div class="form-group">
-      <label for="{{ form.ano_ingresso.id_for_label }}">Ano de Ingresso:</label>
-      <input type="number" name="{{ form.ano_ingresso.name }}" id="id_ingresso">
-      {{ form.ano_ingresso.errors }}
-    </div>
     
-    <div class="form-group">
-      <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
-      <input type="number" name="{{ form.ano_formatura.name }}" id="id_formatura">
-      {{ form.ano_formatura.errors }}
-    </div>
+        <div class="bloco2">  
+          <div class="form-group">
+            <label for="{{ form.curso.id_for_label }}">Curso:</label>
+            <div class="input">{{ form.curso }}</div>
+            {{ form.curso.errors }}
+          </div>
+          
+          <div class="form-group">
+            <label for="{{ form.ano_ingresso.id_for_label }}">Ano de Ingresso:</label>
+            <div class="input"><input type="number" name="{{ form.ano_ingresso.name }}" id="id_ingresso"></div>
+            {{ form.ano_ingresso.errors }}
+          </div>
+          
+          <div class="form-group">
+            <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
+            <div class="input"><input type="number" name="{{ form.ano_formatura.name }}" id="id_formatura"></div>
+            {{ form.ano_formatura.errors }}
+          </div>
+        </div>
+      </div>
 
-    <button id="show_dados_pessoais" onclick="dados_pessoais_show()" class="voltar" type="button">Voltar</button>
-    <button id="show_dados_financeiros" onclick="dados_financeiros_show()" class="proximo" type="button">Próximo</button>
-  </div> <!-- Fim do bloco de dados profissionais -->
-  
+      <div class="botoes">
+        <button id="show_dados_geograficos" onclick="dados_geograficos_show()" class="voltar" type="button">Voltar</button>
+        <button id="show_dados_financeiros" onclick="dados_financeiros_show()" class="proximo" type="button">Próximo</button>
+      </div>
+
+    </div> <!-- Fim do bloco de dados profissionais -->
+    
     <div id="dadosfinanceiros" class="hidden">
+      
+      <div class="imagens">
+        <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo">
+        
+        
+        <img src="{% static 'img/Parte4.png' %}" alt="" class="img-progresso">
+      </div>
+      
+      <h1>Dados Financeiros</h1>
 
-      <nav>
-        <div class="logo">
-          <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação">
-        </div>
-        <div class="nav-links">
-          <ul>
-            <li>
-              <a href="javascript:dados_cadastro_show()">
-                <img src="{% static 'img/cadastro.png' %}" alt="Cadastro">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:dados_pessoais_show()">
-                <img src="{% static 'img/dados-pessoais-azul.png' %}" alt="Dados Pessoais">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:dados_profissionais_show()">
-                <img src="{% static 'img/dados-profissionais-azul.png' %}" alt="Dados Profissionais">
-              </a>
-            </li>
-            <li>
-              <a href="javascript:dados_financeiros_show()">
-                <img src="{% static 'img/dados-financeiros-azul.png' %}" alt="Dados Financeiros">
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div class="dados-financeiros">
+          <div class="bloco1">
+            <div class="form-group">
+              <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
+              <div class="input">{{ form.renda_familiar }}</div>
+              {{ form.renda_familiar.errors }}
+            </div>
+          </div>
+      </div>
+      <div class="botoes">
+        <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="voltar" type="button">Voltar</button>
+        <button type="submit" class="finalizar">Finalizar</button>
+      </div>
 
-    <h1>Dados Financeiros</h1>
-
-    <div class="form-group">
-      <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
-      {{ form.renda_familiar }}
-      {{ form.renda_familiar.errors }}
-    </div>
-
-    <button id="show_dados_profissionais" onclick="dados_profissionais_show()" class="voltar" type="button">Voltar</button>
-    <button type="submit" class="finalizar">Finalizar</button>
-  </div> <!-- Fim do bloco de dados financeiros -->
-
+    </div> <!-- Fim do bloco de dados financeiros -->
+    
 </form>
 
 {% endblock %}
