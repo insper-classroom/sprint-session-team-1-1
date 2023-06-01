@@ -15,10 +15,10 @@ class EditForm(UserChangeForm):
     telefone = forms.CharField(max_length=19, required=True) # O campo telefone é obrigatório
     genero = forms.ChoiceField(choices=Profile.Genders, required=True) # O campo genero é obrigatório
     outro_genero = forms.CharField(max_length=100, required=False) # O campo outro_genero não é obrigatório
-    pais_atual = forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
-    estado_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
-    cidade_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
-    cidade_fora_atual = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
+    pais_atual = forms.ChoiceField(choices=Profile.Countries, required=True) # O campo cor_ou_raca é obrigatório
+    estado_atual = forms.ChoiceField(choices=Profile.States, required=False) # O campo cor_ou_raca é obrigatório
+    cidade_atual = forms.CharField(max_length=50, required=False) # O campo cor_ou_raca é obrigatório
+    cidade_fora_atual = forms.CharField(max_length=50, required=False) # O campo cor_ou_raca é obrigatório
     linkedin = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
     curso = forms.CharField(max_length=100, required=True) # O campo cor_ou_raca é obrigatório
     ano_formatura = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório

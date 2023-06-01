@@ -1,4 +1,4 @@
-{% extends "profile/base.html" %}
+{% extends "profile/edit/base-edit.html" %}
 {% load static %}
 
 {% block content %}
@@ -16,31 +16,31 @@
     {% csrf_token %}
 
     <div class="form-group">
-        <label for="{{ form.nome.id_for_label }}">Nome</label>
+        <label for="{{ form.nome.id_for_label }}">Nome:</label>
         {{ form.nome }}
         {{ form.nome.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.sobrenome.id_for_label }}">Sobrenome</label>
+        <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
         {{ form.sobrenome }}
         {{ form.sobrenome.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.username.id_for_label }}">Nome de Exibição</label>
+        <label for="{{ form.username.id_for_label }}">Nome de Exibição:</label>
         {{ form.username }}
         {{ form.username.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.email.id_for_label }}">Email</label>
+        <label for="{{ form.email.id_for_label }}">Email:</label>
         {{ form.email }}
         {{ form.email.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil</label>
+        <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil:</label>
         {{ form.foto_perfil }}
         {{ form.foto_perfil.errors }}
     </div>
@@ -48,73 +48,73 @@
     <!-- Add the missing form fields below -->
 
     <div class="form-group">
-        <label for="{{ form.rg.id_for_label }}">RG</label>
+        <label for="{{ form.rg.id_for_label }}">RG:</label>
         {{ form.rg }}
         {{ form.rg.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.telefone.id_for_label }}">Telefone</label>
+        <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
         {{ form.telefone }}
         {{ form.telefone.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.genero.id_for_label }}">Gênero</label>
+        <label for="{{ form.genero.id_for_label }}">Gênero:</label>
         {{ form.genero }}
         {{ form.genero.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero</label>
+        <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
         {{ form.outro_genero }}
         {{ form.outro_genero.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.pais_atual.id_for_label }}">País Atual</label>
+        <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
         {{ form.pais_atual }}
         {{ form.pais_atual.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.estado_atual.id_for_label }}">Estado Atual</label>
+        <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
         {{ form.estado_atual }}
         {{ form.estado_atual.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual</label>
+        <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
         {{ form.cidade_atual }}
         {{ form.cidade_atual.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora Atual</label>
+        <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora Atual:</label>
         {{ form.cidade_fora_atual }}
         {{ form.cidade_fora_atual.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.linkedin.id_for_label }}">LinkedIn</label>
+        <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
         {{ form.linkedin }}
         {{ form.linkedin.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.curso.id_for_label }}">Curso</label>
+        <label for="{{ form.curso.id_for_label }}">Curso:</label>
         {{ form.curso }}
         {{ form.curso.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura</label>
+        <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
         {{ form.ano_formatura }}
         {{ form.ano_formatura.errors }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar</label>
+        <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
         {{ form.renda_familiar }}
         {{ form.renda_familiar.errors }}
     </div>
