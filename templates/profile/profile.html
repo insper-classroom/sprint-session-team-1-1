@@ -19,7 +19,7 @@
     <div class="container">
         <div class="profile">
             <div class="profile-info">
-                <img src="{% static 'users/img/foto-de-perfil-padrao.png' %}">
+                <img src="{% static path_image %}">
                 <div class="text">
                     <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
                     <span class="extra">{{ user.profile.faculdade }} - {{ user.profile.tipo_usuario }}</span>
