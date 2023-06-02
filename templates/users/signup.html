@@ -70,13 +70,14 @@
 
         <div class="form-group">
           <label for="{{ form.cor_ou_raca.id_for_label }}">Cor ou Raça:</label>
-          <div class="input">{{ form.cor_ou_raca }}</div>
+          <br>
+          {{ form.cor_ou_raca }}
           {{ form.cor_ou_raca.errors }}
         </div>
     
         <div id="outra-cor-ou-raca-group" class="form-group">
-          <label for="{{ form.outra_cor_ou_raca.id_for_label }}">Outra Cor ou Raça:</label>
-          <div class="input">{{ form.outra_cor_ou_raca }}</div>
+          <br>
+          {{ form.outra_cor_ou_raca }}
           {{ form.outra_cor_ou_raca.errors }}
         </div>
     </div>
@@ -101,13 +102,14 @@
     
       <div class="form-group">
         <label for="{{ form.genero.id_for_label }}">Gênero:</label>
-        <div class="input">{{ form.genero }}</div>
+        <br>
+        {{ form.genero }}
         {{ form.genero.errors }}
       </div>
 
       <div id="outro-genero-group" class="form-group">
-        <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
-        <div class="input">{{ form.outro_genero }}</div>
+        <br>
+        {{ form.outro_genero }}
         {{ form.outro_genero.errors }}
       </div>
     </div>
