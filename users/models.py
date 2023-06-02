@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User # User é a classe de usuário padrão do Django que já vem com um pacote de autenticação.
+from django.db import models
 
 
 # Create your models here.

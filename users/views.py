@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
-from . import forms
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.views.generic.edit import CreateView
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
-from .forms import UserForm
-from . import edit_form
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from datetime import datetime
-from django.contrib.auth.models import User
+from .forms import UserForm
+from . import edit_form
+from . import forms
 
 
 
@@ -104,7 +105,6 @@ def custom_logout(request):
     return redirect('home')
 
 
-from django.contrib.auth.validators import UnicodeUsernameValidator
 
 @login_required
 def edit(request):

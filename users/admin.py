@@ -1,6 +1,6 @@
-from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin # UserAdmin é a classe de administração padrão para o modelo de usuário do Django
 from .models import User, Profile
+from django.contrib import admin
 
 class ProfileInline(admin.StackedInline): # admin.StackedInline é uma classe que permite que o Profile seja editado na mesma página do User e que define como um modelo é exibido como um conjunto empilhado de campos em um formulário.
     model = Profile

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
-from django import forms
 from .models import Profile
+from django import forms
 
 class EditForm(UserChangeForm):
     nome = forms.CharField(max_length=150, required=True) # O campo nome_completo é obrigatório
