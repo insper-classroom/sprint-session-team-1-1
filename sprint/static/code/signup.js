@@ -173,6 +173,12 @@ input.setAttribute('placeholder', 'Insira seu ano de formatura');
 var input = document.getElementById("id_ingresso");
 input.setAttribute('placeholder', 'Insira seu ano de ingresso');
 
+var input = document.getElementById("id_outra_cor_ou_raca");
+input.setAttribute('placeholder', 'Insira sua cor/raça');
+
+var input = document.getElementById("id_outro_genero");
+input.setAttribute('placeholder', 'Insira seu gênero');
+
 
 
 
