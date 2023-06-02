@@ -5,8 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import Group
 from .forms import UserForm
+from . import edit_form
 from django.urls import reverse_lazy
 from datetime import datetime
+from django.contrib.auth.models import User
+
 
 
 # Create your views here.
@@ -101,6 +104,76 @@ def custom_logout(request):
     return redirect('home')
 
 
+from django.contrib.auth.validators import UnicodeUsernameValidator
+
 @login_required
 def edit(request):
-    pass
+    user = request.user
+    profile = user.profile
+    if request.method == 'POST':
+        form = edit_form.EditForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            #Este pedaço dividido foi feito com a ajuda do chatGPT, pois estavamos com dificuldade de fazer a validação de username
+            #Mas entendemos o conceito de utilizar a personal key para liberar a 'edição' para um username ja existente caso seja do msm usuario
+            if form.cleaned_data['username'] != user.username:
+                new_username = form.cleaned_data['username']
+                existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
+                if not existing_user:
+                    user.username = new_username
+                    profile.nome_exibicao = new_username
+                else:
+                    form.add_error('username', 'A user with that username already exists.')
+            #
+            user.first_name = form.cleaned_data['nome']
+            user.last_name = form.cleaned_data['sobrenome']
+            user.email = form.cleaned_data['email']
+            profile.nome = form.cleaned_data['nome']
+            profile.sobrenome = form.cleaned_data['sobrenome']
+            profile.email = form.cleaned_data['email']
+            #Código para só atualizar a foto se uma nova for enviada
+            if request.FILES.get('foto_perfil') != None:
+                profile.foto_perfil = request.FILES.get('foto_perfil')
+
+            profile.rg = form.cleaned_data['rg']
+            profile.telefone = form.cleaned_data['telefone']
+            profile.genero = form.cleaned_data['genero']
+            profile.outro_genero = form.cleaned_data['outro_genero']
+            profile.pais_atual = form.cleaned_data['pais_atual']
+            profile.estado_atual = form.cleaned_data['estado_atual']
+            profile.cidade_atual = form.cleaned_data['cidade_atual']
+            profile.cidade_fora_atual = form.cleaned_data['cidade_fora_atual']
+            profile.linkedin = form.cleaned_data['linkedin']
+            profile.curso = form.cleaned_data['curso']
+            profile.ano_formatura = form.cleaned_data['ano_formatura']
+            profile.renda_familiar = form.cleaned_data['renda_familiar']
+
+            profile.save()
+            user.save()
+            return redirect('/accounts/profile/')
+        
+    else:
+        #Listamos todos os fields e auto preenchemos com os valores ja existentes do usuario
+        form = edit_form.EditForm(initial={
+            'nome': user.first_name,
+            'sobrenome': user.last_name,
+            'username': user.username,
+            'email': user.email,
+            'foto_perfil': user.profile.foto_perfil,
+            'rg': user.profile.rg,
+            'telefone': user.profile.telefone,
+            'genero': user.profile.genero,
+            'outro_genero': user.profile.outro_genero,
+            'pais_atual': user.profile.pais_atual,
+            'estado_atual': user.profile.estado_atual,
+            'cidade_atual': user.profile.cidade_atual,
+            'cidade_fora_atual': user.profile.cidade_fora_atual,
+            'linkedin': user.profile.linkedin,
+            'curso': user.profile.curso,
+            'ano_formatura': user.profile.ano_formatura,
+            'renda_familiar': user.profile.renda_familiar,
+        })
+
+        #Validador personalizado feito com auxilio do ChatGPT
+        form.fields['username'].validators.append(UnicodeUsernameValidator())
+
+    return render(request, 'profile/edit/edit.html', {'form': form, 'user': user})

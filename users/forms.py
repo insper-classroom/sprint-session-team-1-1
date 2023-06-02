@@ -25,12 +25,12 @@ class UserForm(UserCreationForm):
     outro_genero = forms.CharField(max_length=100, required=False) # O campo outro_genero não é obrigatório
     cor_ou_raca = forms.ChoiceField(choices=Profile.Race, required=True) # O campo cor_ou_raca é obrigatório
     outra_cor_ou_raca = forms.CharField(max_length=100, required=False) # O campo outra_cor_ou_raca não é obrigatório
-    estado_nascimento= forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
-    cidade_nascimento = forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
-    pais_atual = forms.ChoiceField(choices=Profile.cities_test, required=True) # O campo cor_ou_raca é obrigatório
-    estado_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
-    cidade_atual = forms.ChoiceField(choices=Profile.cities_test, required=False) # O campo cor_ou_raca é obrigatório
-    cidade_fora_atual = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
+    estado_nascimento= forms.ChoiceField(choices=Profile.States, required=True) # O campo cor_ou_raca é obrigatório
+    cidade_nascimento = forms.CharField(max_length=50, required=True) # O campo cor_ou_raca é obrigatório
+    pais_atual = forms.ChoiceField(choices=Profile.Countries, required=True) # O campo cor_ou_raca é obrigatório
+    estado_atual = forms.ChoiceField(choices=Profile.States, required=False) # O campo cor_ou_raca é obrigatório
+    cidade_atual = forms.CharField(max_length=50, required=False) # O campo cor_ou_raca é obrigatório
+    cidade_fora_atual = forms.CharField(max_length=50, required=False) # O campo cor_ou_raca é obrigatório
     linkedin = forms.CharField(max_length=100, required=False) # O campo cor_ou_raca é obrigatório
     tipo_usuario = forms.CharField(max_length=100, initial='', required=False)
     faculdade = forms.ChoiceField(choices=Profile.University, required=True) # O campo cor_ou_raca é obrigatório
@@ -38,7 +38,6 @@ class UserForm(UserCreationForm):
     ano_ingresso = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     ano_formatura = forms.CharField(max_length=4, required=True) # O campo rg é obrigatório
     renda_familiar = forms.ChoiceField(choices=Profile.Income, required=True) # O campo cor_ou_raca é obrigatório
-    foto_de_perfil = forms.ImageField(required=False)
 
 
     class Meta:

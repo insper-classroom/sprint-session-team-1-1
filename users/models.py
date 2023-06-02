@@ -37,10 +37,47 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
         ('8+ SM', '8+ SM'),
     )
 
-    cities_test = (
-        ('china','china'),
-        ('hong kong', 'hong kong'),
+    Countries = (
+        ('Alemanha', 'Alemanha'),
+        ('Brasil', 'Brasil'),
+        ('China', 'China'),
+        ('Estados Unidos', 'Estados Unidos'),
+        ('Holanda', 'Holanda'),
         ('India', 'India'),
+        ('Reino Unido', 'Reino Unido'),
+        ('Russia', 'Russia'),
+        ('Senegal', 'Senegal'),
+        ('Suiça', 'Suiça')
+    )
+
+    States = (
+        ('Acre', 'Acre'),
+        ('Alagoas', 'Alagoas'),
+        ('Amapá', 'Amapá'),
+        ('Amazonas', 'Amazonas'),
+        ('Bahia', 'Bahia'),
+        ('Ceará', 'Ceará'),
+        ('Distrito Federal', 'Distrito Federal'),
+        ('Espírito Santo', 'Espírito Santo'),
+        ('Goiás', 'Goiás'),
+        ('Maranhão', 'Maranhão'),
+        ('Mato Grosso', 'Mato Grosso'),
+        ('Mato Grosso do Sul', 'Mato Grosso do Sul'),
+        ('Minas Gerais', 'Minas Gerais'),
+        ('Pará', 'Pará'),
+        ('Paraíba', 'Paraíba'),
+        ('Paraná', 'Paraná'),
+        ('Pernambuco', 'Pernambuco'),
+        ('Piauí', 'Piauí'),
+        ('Rio de Janeiro', 'Rio de Janeiro'),
+        ('Rio Grande do Norte', 'Rio Grande do Norte'),
+        ('Rio Grande do Sul', 'Rio Grande do Sul'),
+        ('Rondônia', 'Rondônia'),
+        ('Roraima', 'Roraima'),
+        ('Santa Catarina', 'Santa Catarina'),
+        ('São Paulo', 'São Paulo'),
+        ('Sergipe', 'Sergipe'),
+        ('Tocantins', 'Tocantins')
     )
 
     nome = models.CharField(max_length=150, null=True, verbose_name='Nome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
@@ -56,11 +93,11 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     outro_genero = models.CharField(max_length=100, blank=True, null=True, verbose_name='Outro') # Se o usuário escolher "Outro", ele pode escrever o que quiser aqui
     cor_ou_raca = models.CharField(max_length=20, choices=Race, null=True, verbose_name='Cor ou Raça')
     outra_cor_ou_raca = models.CharField(max_length=100, blank=True, null=True, verbose_name='Outra')
-    estado_nascimento = models.CharField(max_length=100, choices=cities_test, blank=True, null=True, verbose_name='Estado de Nascimento')
-    cidade_nascimento = models.CharField(max_length=100, choices=cities_test, blank=True, null=True, verbose_name='Cidade de Nascimento')
-    pais_atual = models.CharField(max_length=100, choices=cities_test, blank=True, null=True, verbose_name='País Atual')
-    estado_atual = models.CharField(max_length=100, choices=cities_test, blank=True, null=True, verbose_name='Estado Atual')
-    cidade_atual = models.CharField(max_length=100, choices=cities_test, blank=True, null=True, verbose_name='Cidade Atual')
+    estado_nascimento = models.CharField(max_length=100, choices=States, blank=True, null=True, verbose_name='Estado de Nascimento')
+    cidade_nascimento = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cidade de Nascimento')
+    pais_atual = models.CharField(max_length=100, choices=Countries, blank=True, null=True, verbose_name='País Atual')
+    estado_atual = models.CharField(max_length=100, choices=States, blank=True, null=True, verbose_name='Estado Atual')
+    cidade_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cidade Atual')
     cidade_fora_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cidade Fora Atual')
     linkedin = models.CharField(max_length=100, blank=True, null=True, verbose_name='LinkedIn')
     tipo_usuario = models.CharField(max_length=100, blank=True, null=True, verbose_name='Tipo de Usuário')
