@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   toggleOutroGenero();
   toggleOutraCorOuRaca();
-  toggleEstado();
-  toggleCidadeAtual();
-  toggleCidadeFora();
+  // toggleEstado();
+  // toggleCidadeAtual();
+  // toggleCidadeFora();
 
   generoSelect.addEventListener('change', toggleOutroGenero);
   corOuRacaSelect.addEventListener('change', toggleOutraCorOuRaca);
