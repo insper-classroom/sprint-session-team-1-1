@@ -2,124 +2,134 @@
 {% load static %}
 
 {% block content %}
-{% comment %} Mostra as infos do usuario. Pode ser removido mais tarde caso queiram {% endcomment %}
-{{ user.username }} <br>
-{{ user.first_name }} <br>
-{{ user.last_name }} <br> 
-{{ user.email }} <br>
-{{ user.profile.nome_exibicao }} <br><br>
-{{ user.profile.tipo_usuario }} <br><br>
 
+<div class="background">
+  <img src="{% static 'img/fundo-cadastro.jpeg' %}" alt="Imagem de fundo">
+</div>
 
 {% comment %} Gera o formulario de edicao {% endcomment %}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-
-    <div class="form-group">
-        <label for="{{ form.nome.id_for_label }}">Nome:</label>
-        {{ form.nome }}
-        {{ form.nome.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
-        {{ form.sobrenome }}
-        {{ form.sobrenome.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.username.id_for_label }}">Nome de Exibição:</label>
-        {{ form.username }}
-        {{ form.username.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.email.id_for_label }}">Email:</label>
-        {{ form.email }}
-        {{ form.email.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil:</label>
-        {{ form.foto_perfil }}
-        {{ form.foto_perfil.errors }}
-    </div>
-
+    
+    <div id="edicao" class="block">
+        <div class="imagens">
+            <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo">
+        </div>
+        <h1>Edição</h1>
+        <div class="edicao-perfil">
+            <div class="bloco1" style="max-width: 360px;">
+                <div class="form-group">
+                    <label for="{{ form.nome.id_for_label }}">Nome:</label>
+                    <div class="input">{{ form.nome }}</div>
+                    {{ form.nome.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.sobrenome.id_for_label }}">Sobrenome:</label>
+                    <div class="input">{{ form.sobrenome }}</div>
+                    {{ form.sobrenome.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Nome de Exibição:</label>
+                    <div class="input">{{ form.username }}</div>
+                    {{ form.username.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    <div class="input">{{ form.email }}</div>
+                    {{ form.email.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil:</label>
+                    <div class="input">{{ form.foto_perfil }}</div>
+                    {{ form.foto_perfil.errors }}
+                </div>
+                
+            </div>
     <!-- Add the missing form fields below -->
+            <div class="bloco2">
+                <div class="form-group">
+                    <label for="{{ form.rg.id_for_label }}">RG:</label>
+                    <div class="input">{{ form.rg }}</div>
+                    {{ form.rg.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+                    <div class="input">{{ form.telefone }}</div>
+                    {{ form.telefone.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.genero.id_for_label }}">Gênero:</label>
+                    <div class="input">{{ form.genero }}</div>
+                    {{ form.genero.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
+                    <div class="input">{{ form.outro_genero }}</div>
+                    {{ form.outro_genero.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
+                    <div class="input">{{ form.pais_atual }}</div>
+                    {{ form.pais_atual.errors }}
+                </div>
+                
+            </div>
 
-    <div class="form-group">
-        <label for="{{ form.rg.id_for_label }}">RG:</label>
-        {{ form.rg }}
-        {{ form.rg.errors }}
+            <div class="bloco3">
+                <div class="form-group">
+                    <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
+                    <div class="input">{{ form.estado_atual }}</div>
+                    {{ form.estado_atual.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
+                    <div class="input">{{ form.cidade_atual }}</div>
+                    {{ form.cidade_atual.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora Atual:</label>
+                    <div class="input">{{ form.cidade_fora_atual }}</div>
+                    {{ form.cidade_fora_atual.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
+                    <div class="input">{{ form.linkedin }}</div>
+                    {{ form.linkedin.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.curso.id_for_label }}">Curso:</label>
+                    <div class="input">{{ form.curso }}</div>
+                    {{ form.curso.errors }}
+                </div>
+    
+                <div class="form-group">
+                    <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
+                    <div class="input">{{ form.ano_formatura }}</div>
+                    {{ form.ano_formatura.errors }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
+                    <div class="input">{{ form.renda_familiar }}</div>
+                    {{ form.renda_familiar.errors }}
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
-        {{ form.telefone }}
-        {{ form.telefone.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.genero.id_for_label }}">Gênero:</label>
-        {{ form.genero }}
-        {{ form.genero.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.outro_genero.id_for_label }}">Outro Gênero:</label>
-        {{ form.outro_genero }}
-        {{ form.outro_genero.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
-        {{ form.pais_atual }}
-        {{ form.pais_atual.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
-        {{ form.estado_atual }}
-        {{ form.estado_atual.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
-        {{ form.cidade_atual }}
-        {{ form.cidade_atual.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.cidade_fora_atual.id_for_label }}">Cidade Fora Atual:</label>
-        {{ form.cidade_fora_atual }}
-        {{ form.cidade_fora_atual.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.linkedin.id_for_label }}">LinkedIn:</label>
-        {{ form.linkedin }}
-        {{ form.linkedin.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.curso.id_for_label }}">Curso:</label>
-        {{ form.curso }}
-        {{ form.curso.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
-        {{ form.ano_formatura }}
-        {{ form.ano_formatura.errors }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
-        {{ form.renda_familiar }}
-        {{ form.renda_familiar.errors }}
-    </div>
-
-    <button type="submit">Salvar</button>
+    <button type="submit" class="finalizar">Salvar</button>
 </form>
 
 {% endblock %}

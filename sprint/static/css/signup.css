@@ -148,7 +148,6 @@ h1{
   text-align: center;
   margin-top: 1%;
   color: #3C5AF0;
-
 }
 
 p{
@@ -226,6 +225,13 @@ select:hover{
   justify-content: center;
   gap: 20px;
 } 
+
+.edicao-perfil{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
 .bloco1{
   display: block;
