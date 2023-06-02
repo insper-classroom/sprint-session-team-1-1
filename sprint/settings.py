@@ -183,4 +183,6 @@ JAZZMIN_SETTINGS = {
     # Relative paths to custom CSS/JS scripts (must be present in static files)
     "custom_css": "css/admin.css",
 
+    "use_google_fonts_cdn": True,
+
 }       
