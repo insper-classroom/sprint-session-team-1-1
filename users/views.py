@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView
 from . import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.models import Group
 from .forms import UserForm
 from . import edit_form
 from django.urls import reverse_lazy
@@ -64,16 +65,37 @@ def signup(request):
     if request.method == 'POST':
         form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            
+            group_names = list(Group.objects.values_list('name', flat=True))
+            if 'bolsista' not in group_names:
+                bolsista = Group(name='bolsista')
+                bolsista.save()
+            else:   
+                bolsista = Group.objects.get(name='bolsista')
+                
+            user.groups.add(bolsista)
+
             return redirect('/accounts/login/')
+        
     else:
         form = UserForm()
+
     return render(request, 'users/signup.html', {'form': form})
 
 
 @login_required
 def profile(request):
-    return render(request, 'profile/profile.html', {'user': request.user})
+    user = request.user
+    profile = user.profile  # Certifique-se de ter um relacionamento correto entre os modelos User e Profile
+
+    # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
+    ano_formatura = profile.ano_formatura
+    ano_atual = datetime.now().year
+    profile.tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
+    profile.save()
+
+    return render(request, 'profile/profile.html', {'user': user})
 
 
 def custom_logout(request):
