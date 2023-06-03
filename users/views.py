@@ -95,7 +95,7 @@ def profile(request):
     # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
     ano_formatura = profile.ano_formatura
     ano_atual = datetime.now().year
-    profile.tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
+    profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
     profile.save()
 
     return render(request, 'profile/profile.html', {'user': user, 'path_image': path_image})
@@ -126,6 +126,12 @@ def edit(request):
                 else:
                     form.add_error('username', 'A user with that username already exists.')
             #
+
+            # Determinar o tipo de usuário com base na data de formatura
+            ano_formatura = int(form.cleaned_data['ano_formatura'])
+            ano_atual = datetime.now().year
+            tipo_usuario = 'Bolsista' if ano_formatura > ano_atual else 'Alumni'
+
             user.first_name = form.cleaned_data['nome']
             user.last_name = form.cleaned_data['sobrenome']
             user.email = form.cleaned_data['email']
@@ -148,6 +154,7 @@ def edit(request):
             profile.curso = form.cleaned_data['curso']
             profile.ano_formatura = form.cleaned_data['ano_formatura']
             profile.renda_familiar = form.cleaned_data['renda_familiar']
+            profile.tipo_usuario = tipo_usuario
 
             profile.save()
             user.save()
