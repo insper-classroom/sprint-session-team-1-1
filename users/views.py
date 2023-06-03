@@ -130,9 +130,9 @@ def edit(request):
 
             # Determinar o tipo de usuário com base na data de formatura
             if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
-                ano_formatura = profile.ano_formatura
+                ano_formatura = int(form.cleaned_data['ano_formatura'])
                 ano_atual = datetime.now().year
-                profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
+                tipo_usuario = 'Bolsista' if ano_formatura > ano_atual else 'Alumni'
 
             user.first_name = form.cleaned_data['nome']
             user.last_name = form.cleaned_data['sobrenome']
