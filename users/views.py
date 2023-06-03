@@ -93,10 +93,11 @@ def profile(request):
     path_image = "/".join(str(img).split('/')[2:])
 
     # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
-    ano_formatura = profile.ano_formatura
-    ano_atual = datetime.now().year
-    profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
-    profile.save()
+    if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
+        ano_formatura = profile.ano_formatura
+        ano_atual = datetime.now().year
+        profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
+        profile.save()
 
     return render(request, 'profile/profile.html', {'user': user, 'path_image': path_image})
 
@@ -128,9 +129,10 @@ def edit(request):
             #
 
             # Determinar o tipo de usuário com base na data de formatura
-            ano_formatura = int(form.cleaned_data['ano_formatura'])
-            ano_atual = datetime.now().year
-            tipo_usuario = 'Bolsista' if ano_formatura > ano_atual else 'Alumni'
+            if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
+                ano_formatura = profile.ano_formatura
+                ano_atual = datetime.now().year
+                profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
 
             user.first_name = form.cleaned_data['nome']
             user.last_name = form.cleaned_data['sobrenome']
