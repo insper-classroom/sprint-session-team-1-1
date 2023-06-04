@@ -1,0 +1,49 @@
+.navbar {
+    border: 5px solid red;
+    /* Pra quem não sabe, VH é View Height e VW é View WIdth. É a msm coisa q %, mas adaptavel pela tela */
+    /* Aqui eu to removendo 10px só pq é o tamanho da boarda, tirando ela tem q tirar isso tbm */
+    width: 100vw - 10px;
+    height: 15vh;
+}
+
+.usuario {
+    display: flex;
+    border: 5px solid black;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+
+.nome-imagem {
+    display: flex;
+    border: 2px solid yellow;
+}
+
+.nome-id {
+    width: 100%;
+    border: 2px solid pink;
+}
+
+.divisor {
+    width: 5px;
+}
+
+.metade-esquerda {
+    border: 5px solid blue;
+    width: 50%;
+}
+
+.metade-direita {
+    border: 5px solid green;
+    width: 50%;
+}
+
+img {
+    width: 100px;
+    height: 120px;
+}
+
+h4 {
+    font-weight: 500;
+}

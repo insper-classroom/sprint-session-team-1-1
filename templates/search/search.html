@@ -1,0 +1,46 @@
+{% extends "search/base-search.html" %}
+{% load static %}
+{% load tag %}
+
+
+{% block content %}
+
+{% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
+    <div class="navbar">
+    </div>
+
+  {% for user in users %}
+  {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
+  {% comment %} Pessoal do CSS e HTML, aqui basta colocar o código 1 vez que aplica pra todos os user {% endcomment %}
+  {% comment %} Deve ser apenas um breve resume por usuario. Vou deixar ja uma base {% endcomment %}
+  <div>
+    <div class='usuario'>
+        <div class="metade-esquerda">
+            <div class='nome-imagem'>
+                {% image_path user.profile.foto_perfil as path_image %}
+                <img src="{% static path_image %}" />
+                <div class='divisor'></div>
+                <div class="nome-id">
+                    <h4> ID: {{ user.id }} </h4>
+                    <h1> {{ user.profile.nome }} {{user.profile.sobrenome}} </h1>
+                    <h3>Contatos:<h3>
+                    <h4>Numero: {{ user.profile.telefone }} </h4>
+                    <h4>Email: {{ user.profile.email }} </h4>
+                </div>
+            </div>
+            <h3> Faculdade: {{ user.profile.faculdade }} | Curso: {{ user.profile.curso }} | Usuario: {{ user.profile.tipo_usuario }}</h3>
+        </div>
+        
+        {% comment %} Separei em duas metades, metade esquerda infos do usuario e direita infos geograficas para relatorios etc {% endcomment %}
+
+        <div class='metade-direita'>
+        </div>
+    </div>
+    {% endif %}
+    {% comment %} Aqui avisa se nao tiver nenhum usuario na DB. É mais para debug, podemos tirar na versao final {% endcomment %}
+  {% empty %}
+  <li>Nenhum usuario por enquanto.</li>
+  {% endfor %}
+  </div>
+
+{% endblock %}
