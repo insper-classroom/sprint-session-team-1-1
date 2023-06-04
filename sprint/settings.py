@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #providers
     'allauth.socialaccount.providers.google',
+    'emails',
+    'django_celery_results'
 ]
 SITE_ID = 1
 
@@ -183,3 +185,12 @@ JAZZMIN_SETTINGS = {
     # Relative paths to custom CSS/JS scripts (must be present in static files)
     "custom_css": "css/admin.css",
 }       
+
+# CELERY
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Sao_Paulo'
+CELERY_RESULT_BACKEND = 'django-db'
