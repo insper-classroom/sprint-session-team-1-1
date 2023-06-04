@@ -1,0 +1,32 @@
+{% extends "profile/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="background">
+        <img src="{% static 'users/img/background-profile.png' %}"/>
+    </div>
+    <nav>
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="{% url 'profile' %}" class="perfil-link">PERFIL</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile">
+            <div class="profile-info">
+                <img src="{% static path_image %}">
+                <div class="text">
+                    <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
+                    <span class="extra">{{ user.profile.faculdade }} - {{ user.profile.tipo_usuario }}</span>
+                </div>
+                <span class="id">ID: {{ user.id }}</span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -38,4 +38,4 @@ def profile_id(request, user_id):
             profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
             profile.save()
 
-        return render(request, 'profile/profile.html', {'user': user, 'path_image': path_image})
+        return render(request, 'search/profile-visitor.html', {'user': user, 'path_image': path_image,})
