@@ -42,6 +42,8 @@ def apply_filters(users, request):
     busca_ano_nascimento = request.GET.get('filtro-ano-nascimento')
     busca_ano_matricula = request.GET.get('filtro-ano-matricula')
     busca_ano_formatura = request.GET.get('filtro-ano-formatura')
+    busca_ano_inicial = request.GET.get('filtro-ano-inicial')
+    busca_ano_final = request.GET.get('filtro-ano-final')
 
     filters = Q()
 
@@ -98,6 +100,12 @@ def apply_filters(users, request):
     if busca_ano_formatura:
         year_formatura = int(busca_ano_formatura)
         filters &= Q(profile__ano_formatura=year_formatura)
+
+    if busca_ano_inicial and busca_ano_final:
+        initial_year = int(busca_ano_inicial)
+        final_year = int(busca_ano_final)
+        filters &= Q(profile__data_nascimento__year__range=(initial_year, final_year))
+
 
 
     if cor_amarela or cor_branca or cor_indigena or cor_parda or cor_preta or cor_nao or cor_outra:

@@ -23,7 +23,9 @@ var filtrosIds = [
     "filtro-pais-atual",
     "filtro-ano-nascimento",
     "filtro-ano-matricula",
-    "filtro-ano-formatura"
+    "filtro-ano-formatura",
+    "filtro-ano-inicial",
+    "filtro-ano-final",
   ];
   
   filtrosIds.forEach(function(id) {
@@ -77,4 +79,16 @@ yearInputs.forEach((input) => {
   input.addEventListener("input", () => {
     input.value = input.value.replace(/\D/g, "").slice(0, 4);
   });
+});
+
+// Auto-format for ano_inicial (4 numbers, limited to 4 characters)
+const anoInicialInput = document.getElementById("filtro-ano-inicial");
+anoInicialInput.addEventListener("input", () => {
+  anoInicialInput.value = anoInicialInput.value.replace(/\D/g, "").slice(0, 4);
+});
+
+// Auto-format for ano_final (4 numbers, limited to 4 characters)
+const anoFinalInput = document.getElementById("filtro-ano-final");
+anoFinalInput.addEventListener("input", () => {
+  anoFinalInput.value = anoFinalInput.value.replace(/\D/g, "").slice(0, 4);
 });
