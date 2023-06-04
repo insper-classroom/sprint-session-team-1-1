@@ -1,0 +1,218 @@
+{% extends "search/base-search.html" %}
+{% load static %}
+{% load tag %}
+
+
+{% block content %}
+
+{% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
+    <div class="navbar">
+    </div>
+
+
+    {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}
+    <form method="get" action="{% url 'individual_table' %}">
+        <div class="filtros">
+            <div class="filtros-basicos">
+                <div class="filtros-nomes">
+                    <h3>Filtros por nome:</h3>
+                    <input type="search" class="busca-nome" id="busca-nome" name="busca-nome" />
+                    <input type="search" class="busca-sobrenome" id="busca-sobrenome" name="busca-sobrenome" />
+                    <input type="search" class="busca-exibicao" id="busca-exibicao" name="busca-exibicao" />
+                </div>
+    
+                {% comment %} Cor ou raça {% endcomment %}
+                <div class="filtros-cor">
+                    <h3>Filtro por Cor ou Raça:</h3>
+                    <input type="checkbox" class="cor-amarela" id="cor-amarela" name="cor-amarela" />
+                    <label for="genero-amarela"> Amarela</label><br>
+                    <input type="checkbox" class="cor-branca" id="cor-branca" name="cor-branca" />
+                    <label for="genero-branca"> Branca</label><br>
+                    <input type="checkbox" class="cor-indigena" id="cor-indigena" name="cor-indigena" />
+                    <label for="genero-indigena"> Indigena</label><br>
+                    <input type="checkbox" class="cor-parda" id="cor-parda" name="cor-parda" />
+                    <label for="genero-parda"> Parda</label><br>
+                    <input type="checkbox" class="cor-preta" id="cor-preta" name="cor-preta" />
+                    <label for="genero-preta"> Preta</label><br>
+                    <input type="checkbox" class="cor-nao" id="cor-nao" name="cor-nao" />
+                    <label for="genero-nao"> Prefiro Nâo Informar</label><br>
+                    <input type="checkbox" class="cor-outra" id="cor-outra" name="cor-outra" />
+                    <label for="genero-outra"> Outra</label><br>
+                </div>
+    
+                {% comment %} Gênero {% endcomment %}
+                <div class="filtros-genero">
+                    <h3>Filtros por Gênero:</h3>
+                    <input type="checkbox" class="genero-masculino" id="genero-masculino" name="genero-masculino" />
+                    <label for="genero-masculino"> Masculino</label><br>
+                    <input type="checkbox" class="genero-feminino" id="genero-feminino" name="genero-feminino" />
+                    <label for="genero-feminino"> Feminino</label><br>
+                    <input type="checkbox" class="genero-nao" id="genero-nao" name="genero-nao" />
+                    <label for="genero-nao"> Prefiro Não Informar</label><br>
+                    <input type="checkbox" class="genero-outro" id="genero-outro" name="genero-outro" />
+                    <label for="genero-outro"> Outro</label><br>
+                </div>
+    
+                <div class='filtros-user-facul'>
+                    <h3>Filtros por Usuario e Faculdade:</h3>
+                    <h4>Tipo de Usuario:</h4>
+                    <input type="checkbox" class="usuario-bolsista" id="usuario-bolsista" name="usuario-bolsista" />
+                    <label for="usuario-bolsista"> Bolsista</label><br>
+                    <input type="checkbox" class="usuario-alumni" id="usuario-alumni" name="usuario-alumni" />
+                    <label for="usuario-alumni"> Alumni</label><br>
+    
+                    <h4>Faculdade:</h4>
+                    <input type="checkbox" class="faculdade-insper" id="faculdade-insper" name="faculdade-insper" />
+                    <label for="faculdade-insper"> Insper</label><br>
+                    <input type="checkbox" class="faculdade-inteli" id="faculdade-inteli" name="faculdade-inteli" />
+                    <label for="faculdade-inteli"> Inteli</label><br>
+                    <input type="checkbox" class="faculdade-facul3" id="faculdade-facul3" name="faculdade-facul3" />
+                    <label for="faculdade-facul3"> Faculdade 3</label><br>
+                </div>
+    
+                {% comment %} Rendas {% endcomment %}
+                <div class="filtros-renda">
+                    <h3>Filtros por Renda:</h3>
+                    <input type="checkbox" class="renda-01" id="renda-01" name="renda-01" />
+                    <label for="renda-01"> 0-1 Salarios Minimos</label><br>
+                    <input type="checkbox" class="renda-12" id="renda-12" name="renda-12" />
+                    <label for="renda-12"> 1-2 Salarios Minimos</label><br>
+                    <input type="checkbox" class="renda-23" id="renda-23" name="renda-23" />
+                    <label for="renda-23"> 2-3 Salarios Minimos</label><br>
+                    <input type="checkbox" class="renda-35" id="renda-35" name="renda-35" />
+                    <label for="renda-35"> 3-5 Salarios Minimos</label><br>
+                    <input type="checkbox" class="renda-58" id="renda-58" name="renda-58" />
+                    <label for="renda-58"> 5-8 Salarios Minimos</label><br>
+                    <input type="checkbox" class="renda-8" id="renda-8" name="renda-8" />
+                    <label for="renda-8"> 8+ Salarios Minimos</label><br>
+                </div>
+            </div>
+            {% comment %} Divisão entre filtros basicos (sempre amostra) e avançados (precisa clicar para ver) {% endcomment %}
+            {% comment %} Pelo menos essa era a ideia, mas vendo como ficou talvez seja inutil. {% endcomment %}
+            <h3>Filtros Avançados:</h3>
+            <div class="filtros-avancados">
+                <div class="filtros-avancados-parte1">
+                    <div class="filtros-id">
+                        <input type="search" class="filtro-id" id="filtro-id" name="filtro-id" />
+                    </div>
+                    <div class="filtros-cpf">
+                        <input type="search" class="filtro-cpf" id="filtro-cpf" name="filtro-cpf" />
+                    </div>
+                    <div class="filtros-rg">
+                        <input type="search" class="filtro-rg" id="filtro-rg" name="filtro-rg" />
+                    </div>
+                    <div class="filtros-email">
+                        <input type="search" class="filtro-email" id="filtro-email" name="filtro-email" />
+                    </div>
+                    <div class="filtros-numero">
+                        <input type="search" class="filtro-numero" id="filtro-numero" name="filtro-numero" />
+                    </div>
+                    <div class="filtros-curso">
+                        <input type="search" class="filtro-curso" id="filtro-curso" name="filtro-curso" />
+                    </div>
+                    <div class="filtros-estado-nascimento">
+                        <input type="search" class="filtro-estado-nascimento" id="filtro-estado-nascimento" name="filtro-estado-nascimento" />
+                    </div>
+                    <div class="filtros-estado-atual">
+                        <input type="search" class="filtro-estado-atual" id="filtro-estado-atual" name="filtro-estado-atual" />
+                    </div>
+                </div>
+                <div class="filtros-avancados-parte2">
+                    <div class="filtros-cidade-nascimento">
+                        <input type="search" class="filtro-cidade-nascimento" id="filtro-cidade-nascimento" name="filtro-cidade-nascimento" />
+                    </div>
+                    <div class="filtros-cidade-atual">
+                        <input type="search" class="filtro-cidade-atual" id="filtro-cidade-atual" name="filtro-cidade-atual" />
+                    </div>
+                    <div class="filtros-pais-atual">
+                        <input type="search" class="filtro-pais-atual" id="filtro-pais-atual" name="filtro-pais-atual" />
+                    </div>
+                    <div class="filtros-ano-nascimento">
+                        <input type="search" class="filtro-ano-nascimento" id="filtro-ano-nascimento" name="filtro-ano-nascimento" />
+                    </div>
+                    <div class="filtros-ano-matricula">
+                        <input type="search" class="filtro-ano-matricula" id="filtro-ano-matricula" name="filtro-ano-matricula" />
+                    </div>
+                    <div class="filtros-ano-formatura">
+                        <input type="search" class="filtro-ano-formatura" id="filtro-ano-formatura" name="filtro-ano-formatura" />
+                    </div>
+                    <div class="filtros-ano-inicial">
+                        <input type="search" class="filtro-ano-inicial" id="filtro-ano-inicial" name="filtro-ano-inicial" />
+                    </div>
+                    <div class="filtros-ano-final">
+                        <input type="search" class="filtro-ano-final" id="filtro-ano-final" name="filtro-ano-final" />
+                    </div>
+                </div>
+                <button type="submit"> Filtrar </button>
+            </div>
+        </div>
+    </form>
+    
+
+  {% for user in users %}
+  {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
+  {% comment %} Pessoal do CSS e HTML, aqui basta colocar o código 1 vez que aplica pra todos os user {% endcomment %}
+  {% comment %} Deve ser apenas um breve resume por usuario. Vou deixar ja uma base {% endcomment %}
+  <div>
+    <div class='usuario'>
+        <div class="metade-esquerda">
+            <div class='nome-imagem'>
+                {% image_path user.profile.foto_perfil as path_image %}
+                <img src="{% static path_image %}" />
+                <div class='divisor'></div>
+                <div class="nome-id">
+                    <h4> ID: {{ user.id }} | CPF: {{ user.profile.cpf }} | RG: {{ user.profile.rg }}</h4>
+                    <a href="/search/{{ user.id }}" class="user-name"> {{ user.profile.nome }} {{user.profile.sobrenome}} | Nick: {{ user.profile.nome_exibicao }}</a>
+                    <h3>Contatos:<h3>
+                    <h4>Numero: {{ user.profile.telefone }} </h4>
+                    <h4>Email: {{ user.profile.email }} </h4>
+                </div>
+            </div>
+            <h3> Faculdade: {{ user.profile.faculdade }} | Curso: {{ user.profile.curso }} | Usuario: {{ user.profile.tipo_usuario }}</h3>
+        </div>
+        
+        {% comment %} Separei em duas metades, metade esquerda infos do usuario e direita infos geograficas para relatorios etc {% endcomment %}
+
+        <div class='metade-direita'>
+            <h4>Local de Nascimento: {{ user.profile.cidade_nascimento }}/{{ user.profile.estado_nascimento }}</h4>
+
+            {% comment %} Aqui embaixo é o código pra fazer mostrar searcho diferente dependendo do pais atual {% endcomment %}
+            {% if user.profile.pais_atual == 'Brasil' %}
+            <h4>Local Atual: {{ user.profile.cidade_atual }}/{{ user.profile.estado_atual }}</h4>
+            {% else %}
+            <h4>Local Atual: {{ user.profile.cidade_atual }}/{{ user.profile.pais_atual }}</h4>
+            {% endif %}
+
+            {% comment %} Aqui é a mesma coisa, mas para o genero {% endcomment %}
+            {% if user.profile.genero == 'Outro' %}
+            <h4>Genero: {{ user.profile.outro_genero }}</h4>
+            {% else %}
+            <h4>Genero: {{ user.profile.genero }}</h4>
+            {% endif %}
+
+
+            {% comment %} Aqui é a mesma coisa, mas para a cor/raça {% endcomment %}
+            {% if user.profile.cor_ou_raca == 'Outra' %}
+            <h4>Cor ou Raça: {{ user.profile.outra_cor_ou_raca }}</h4>
+            {% else %}
+            <h4>Cor ou Raça: {{ user.profile.cor_ou_raca }}</h4>
+            {% endif %}
+
+            <h4>Renda familiar: {{ user.profile.renda_familiar }}</h4>
+
+            <h4>Data de Nascimento: {{ user.profile.data_nascimento }}</h4>
+
+            {% age user.profile.data_nascimento.year as idade %}
+            <h4>Idade: {{ idade }} anos</h4>
+
+
+        </div>
+    </div>
+    {% endif %}
+    {% comment %} Aqui avisa se nao tiver nenhum usuario na DB. Util por conta dos filtros {% endcomment %}
+  {% empty %}
+  <li>Nenhum usuario por enquanto.</li>
+  {% endfor %}
+  </div>
+
+{% endblock %}

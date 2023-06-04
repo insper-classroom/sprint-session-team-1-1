@@ -1,0 +1,116 @@
+/* CSS da navbar */
+.navbar {
+    border: 5px solid red;
+    /* Pra quem não sabe, VH é View Height e VW é View WIdth. É a msm coisa q %, mas adaptavel pela tela */
+    /* Aqui eu to removendo 10px só pq é o tamanho da boarda, tirando ela tem q tirar isso tbm */
+    width: 100vw - 10px;
+    height: 10vh;
+}
+
+/* CSS dos filtros */
+.filtros {
+    border: 5px solid magenta;
+    width: 95vw - 10px;
+    margin-top: 15px;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+}
+
+.filtros-basicos {
+    display: flex;
+}
+.filtros-nomes {
+    border: 2px solid gray;
+    width: 35%;
+    margin-right: 15px;
+}
+
+.busca-nome {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.busca-sobrenome {
+    margin-right: 10px;
+}
+
+.busca-exibicao {
+    margin-right: 5px;
+}
+
+.filtros-cor {
+    border: 2px solid beige;
+    margin-right: 15px;
+}
+
+.filtros-genero {
+    border: 2px solid darkorange;
+    margin-right: 15px;
+}
+
+.filtros-user-facul {
+    border: 2px solid lightcoral;
+    margin-right: 15px;
+}
+
+.filtros-renda {
+    border: 2px solid pink;
+    margin-right: 15px;
+}
+
+.filtros-avancados-parte1 {
+    display: flex;
+}
+
+.filtros-avancados-parte2 {
+    display: flex;
+}
+
+/* CSS dos usuarios */
+.usuario {
+    display: flex;
+    border: 5px solid black;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+
+.nome-imagem {
+    display: flex;
+    border: 2px solid yellow;
+}
+
+.nome-id {
+    width: 100%;
+    border: 2px solid pink;
+}
+
+.divisor {
+    width: 5px;
+}
+
+.metade-esquerda {
+    border: 5px solid blue;
+    width: 50%;
+}
+
+.metade-direita {
+    border: 5px solid green;
+    width: 50%;
+}
+
+.user-name {
+    color: black;
+    font-weight: 900;
+    font-size: x-large;
+}
+
+img {
+    width: 100px;
+    height: 120px;
+}
+
+h4 {
+    font-weight: 500;
+}
