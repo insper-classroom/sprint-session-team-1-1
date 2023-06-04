@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime
+from .filters import apply_filters
 
 
 
@@ -15,7 +16,8 @@ def individual_table(request):
         return redirect('/')
     else:
         all_users = User.objects.all().order_by('-date_joined')
-        return render(request, 'search/search.html', {'users': all_users})
+        filtered_users = apply_filters(all_users, request)
+        return render(request, 'search/search.html', {'users': filtered_users})
     
 
 @login_required
