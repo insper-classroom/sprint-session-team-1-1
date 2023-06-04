@@ -194,6 +194,12 @@
 
             <h4>Renda familiar: {{ user.profile.renda_familiar }}</h4>
 
+            <h4>Data de Nascimento: {{ user.profile.data_nascimento }}</h4>
+
+            {% age user.profile.data_nascimento.year as idade %}
+            <h4>Idade: {{ idade }} anos</h4>
+
+
         </div>
     </div>
     {% endif %}

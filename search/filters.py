@@ -1,4 +1,6 @@
 from django.db.models import Q
+from datetime import datetime
+
 
 def apply_filters(users, request):
     busca_nome = request.GET.get('busca-nome')
@@ -17,7 +19,7 @@ def apply_filters(users, request):
     genero_outro = request.GET.get('genero-outro')
     usuario_bolsista = request.GET.get('usuario-bolsista')
     usuario_alumni = request.GET.get('usuario-alumni')
-    faculdade_inspers = request.GET.get('faculdade-inspers')
+    faculdade_insper = request.GET.get('faculdade-insper')
     faculdade_inteli = request.GET.get('faculdade-inteli')
     faculdade_facul3 = request.GET.get('faculdade-facul3')
     renda_01 = request.GET.get('renda-01')
@@ -86,13 +88,16 @@ def apply_filters(users, request):
         filters &= Q(profile__pais_atual__icontains=busca_pais_atual)
 
     if busca_ano_nascimento:
-        filters &= Q(profile__ano_nascimento__icontains=busca_ano_nascimento)
+        year = int(busca_ano_nascimento)
+        filters &= Q(profile__data_nascimento__year=year)
 
     if busca_ano_matricula:
-        filters &= Q(profile__ano_matricula__icontains=busca_ano_matricula)
+        year_matricula = int(busca_ano_matricula)
+        filters &= Q(profile__ano_ingresso=year_matricula)
 
     if busca_ano_formatura:
-        filters &= Q(profile__ano_formatura__icontains=busca_ano_formatura)
+        year_formatura = int(busca_ano_formatura)
+        filters &= Q(profile__ano_formatura=year_formatura)
 
 
     if cor_amarela or cor_branca or cor_indigena or cor_parda or cor_preta or cor_nao or cor_outra:
@@ -128,35 +133,35 @@ def apply_filters(users, request):
     if usuario_bolsista or usuario_alumni:
         usuario_filters = Q()
         if usuario_bolsista:
-            usuario_filters |= Q(profile__usuario_bolsista=True)
+            usuario_filters |= Q(profile__tipo_usuario='Bolsista')
         if usuario_alumni:
-            usuario_filters |= Q(profile__usuario_alumni=True)
+            usuario_filters |= Q(profile__tipo_usuario='Alumni')
         filters &= usuario_filters
 
-    if faculdade_inspers or faculdade_inteli or faculdade_facul3:
+    if faculdade_insper or faculdade_inteli or faculdade_facul3:
         faculdade_filters = Q()
-        if faculdade_inspers:
-            faculdade_filters |= Q(profile__faculdade='INSPER')
+        if faculdade_insper:
+            faculdade_filters |= Q(profile__faculdade='Insper')
         if faculdade_inteli:
-            faculdade_filters |= Q(profile__faculdade='INTELI')
+            faculdade_filters |= Q(profile__faculdade='Inteli')
         if faculdade_facul3:
-            faculdade_filters |= Q(profile__faculdade='FACUL3')
+            faculdade_filters |= Q(profile__faculdade='Facul3')
         filters &= faculdade_filters
 
     if renda_01 or renda_12 or renda_23 or renda_35 or renda_58 or renda_8:
         renda_filters = Q()
         if renda_01:
-            renda_filters |= Q(profile__renda__lte=1)
+            renda_filters |= Q(profile__renda_familiar__lte=1)
         if renda_12:
-            renda_filters |= Q(profile__renda__range=(1, 2))
+            renda_filters |= Q(profile__renda_familiar__range=(1, 2))
         if renda_23:
-            renda_filters |= Q(profile__renda__range=(2, 3))
+            renda_filters |= Q(profile__renda_familiar__range=(2, 3))
         if renda_35:
-            renda_filters |= Q(profile__renda__range=(3, 5))
+            renda_filters |= Q(profile__renda_familiar__range=(3, 5))
         if renda_58:
-            renda_filters |= Q(profile__renda__range=(5, 8))
+            renda_filters |= Q(profile__renda_familiar__range=(5, 8))
         if renda_8:
-            renda_filters |= Q(profile__renda__gte=8)
+            renda_filters |= Q(profile__renda_familiar__gte=8)
         filters &= renda_filters
 
     return users.filter(filters)
