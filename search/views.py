@@ -50,17 +50,17 @@ def charts(request):
     
     # Crie os dados para o gráfico
     # Exemplo: Contagem de bolsistas por área de estudo
-    areas_estudo = [b.profile.area_estudo for b in bolsistas]
-    contagem_areas = {}
-    for area in areas_estudo:
-        if area in contagem_areas:
-            contagem_areas[area] += 1
+    faculdades = [b.profile.faculdade for b in bolsistas]
+    contagem_faculs = {}
+    for area in faculdades:
+        if area in contagem_faculs:
+            contagem_faculs[area] += 1
         else:
-            contagem_areas[area] = 1
+            contagem_faculs[area] = 1
     
     
-    plt.bar(contagem_areas.keys(), contagem_areas.values())
-    plt.xlabel('Área de Estudo')
+    plt.bar(contagem_faculs.keys(), contagem_faculs.values())
+    plt.xlabel('Faculdade')
     plt.ylabel('Número de Bolsistas')
     plt.title('Contagem de Bolsistas por Área de Estudo')
     
