@@ -7,13 +7,15 @@
 
 {% block content %}
 <div class="background">
-    <img src="{% static 'img/fundo_login.jpg' %}">
-  </div>
+  <img src="{% static 'img/fundo_login.jpg' %}">
+</div>
   
   
-  <div class="logo">
-    <img src="{% static 'img/telles_foundation.png' %}">
-  </div>
+<div class="logo">
+  <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
+</div>
+
+
 <h1>{% trans "Verify Your E-mail Address" %}</h1>
 
 {% url 'account_email' as email_url %}
