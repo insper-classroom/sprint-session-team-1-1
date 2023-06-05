@@ -90,7 +90,7 @@ def profile(request):
     user = request.user
     profile = user.profile  # Certifique-se de ter um relacionamento correto entre os modelos User e Profile
     img = profile.foto_perfil
-    path_image = "/".join(str(img).split('/')[2:])
+    img_user = "/".join(str(img).split('/')[2:])
 
     # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
     ano_formatura = profile.ano_formatura
@@ -98,7 +98,7 @@ def profile(request):
     profile.tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
     profile.save()
 
-    return render(request, 'profile/profile.html', {'user': user, 'path_image': path_image})
+    return render(request, 'profile/profile.html', {'user': user, 'img_user': img_user})
 
 
 def custom_logout(request):
@@ -112,6 +112,8 @@ def custom_logout(request):
 def edit(request):
     user = request.user
     profile = user.profile
+    img = profile.foto_perfil
+    img_user = "/".join(str(img).split('/')[2:])
     if request.method == 'POST':
         form = edit_form.EditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
@@ -178,4 +180,4 @@ def edit(request):
         #Validador personalizado feito com auxilio do ChatGPT
         form.fields['username'].validators.append(UnicodeUsernameValidator())
 
-    return render(request, 'profile/edit/edit.html', {'form': form, 'user': user})
+    return render(request, 'profile/edit/edit.html', {'form': form, 'user': user, 'img_user': img_user})
