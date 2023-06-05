@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm # Classe que já vem com o Django para criar um formulário de registro de usuários
 from django.contrib.auth.models import User
 from datetime import datetime
-from .models import Profile
+from .models import Profile, HistoricoEscolar
 from django import forms
 
 
@@ -127,3 +127,14 @@ class UserForm(UserCreationForm):
             if 'cor_ou_raca' in self.data and self.data['cor_ou_raca'] == 'Outra':
                 self.fields['outra_cor_ou_raca'].required = True
                 self.fields['outra_cor_ou_raca'].widget.attrs['style'] = '' #Torna visivel
+
+
+class HistoricoEscolarForm(forms.ModelForm):
+    class Meta:
+        model = HistoricoEscolar
+        fields = [
+            'semestre_atual',
+            'media',
+            'pdf', 
+            'campo_extra'
+        ]

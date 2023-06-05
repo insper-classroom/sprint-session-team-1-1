@@ -115,3 +115,12 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     ano_formatura = models.CharField(max_length=4, null=True, verbose_name='Ano de Formatura')
     renda_familiar = models.CharField(max_length=100, choices=Income, blank=True, null=True, verbose_name='Renda Familiar')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE) # Um usuário tem UM perfil, e quando o usuário é deletado, o perfil também é (CASCADE).
+
+
+
+class HistoricoEscolar(models.Model):
+    id_proprietario = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    media = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    campo_extra = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    semestre_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    pdf = models.FileField(upload_to="sprint/static/pdfs" )

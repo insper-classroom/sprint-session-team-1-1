@@ -192,3 +192,5 @@ def edit(request):
         form.fields['username'].validators.append(UnicodeUsernameValidator())
 
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user, 'img_user': img_user})
+
+
