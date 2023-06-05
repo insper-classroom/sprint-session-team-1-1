@@ -13,7 +13,7 @@
     
     <div id="edicao" class="block">
         <div class="imagens">
-            <img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo">
+            <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo"></a>
         </div>
         <h1>Edição</h1>
         <div class="edicao-perfil">
@@ -41,13 +41,16 @@
                     <div class="input">{{ form.email }}</div>
                     {{ form.email.errors }}
                 </div>
-                
                 <div class="form-group">
-                    <label for="{{ form.foto_perfil.id_for_label }}">Foto de Perfil:</label>
-                    <div class="input">{{ form.foto_perfil }}</div>
-                    {{ form.foto_perfil.errors }}
+                    <div class="input">
+                        <label for="foto_perfil-clear_id">Foto de perfil</label><br>
+                        <img src="{% static img_user %}" class="img_perfil">
+                        <!-- <input type="checkbox" name="foto_perfil-clear" id="foto_perfil-clear_id"> -->
+                        <input type="file" name="foto_perfil" accept="image/*" id="id_foto_perfil">
+                    </div>
                 </div>
                 
+
             </div>
     <!-- Add the missing form fields below -->
             <div class="bloco2">
@@ -79,6 +82,11 @@
                     <label for="{{ form.pais_atual.id_for_label }}">País Atual:</label>
                     <div class="input">{{ form.pais_atual }}</div>
                     {{ form.pais_atual.errors }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
+                    <div class="input">{{ form.ano_formatura }}</div>
+                    {{ form.ano_formatura.errors }}
                 </div>
                 
             </div>
@@ -113,13 +121,7 @@
                     <div class="input">{{ form.curso }}</div>
                     {{ form.curso.errors }}
                 </div>
-    
-                <div class="form-group">
-                    <label for="{{ form.ano_formatura.id_for_label }}">Ano de Formatura:</label>
-                    <div class="input">{{ form.ano_formatura }}</div>
-                    {{ form.ano_formatura.errors }}
-                </div>
-                
+
                 <div class="form-group">
                     <label for="{{ form.renda_familiar.id_for_label }}">Renda Familiar:</label>
                     <div class="input">{{ form.renda_familiar }}</div>

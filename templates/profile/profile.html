@@ -6,7 +6,7 @@
         <img src="{% static 'users/img/background-profile.png' %}"/>
     </div>
     <nav>
-        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}"></a>
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
                 <li><a href="/">HOME</a></li>
@@ -19,7 +19,7 @@
     <div class="container">
         <div class="profile">
             <div class="profile-info">
-                <img src="{% static path_image %}">
+                <img src="{% static img_user %}" class="img_perfil">
                 <div class="text">
                     <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
                     <span class="extra">{{ user.profile.faculdade }} - {{ user.profile.tipo_usuario }}</span>

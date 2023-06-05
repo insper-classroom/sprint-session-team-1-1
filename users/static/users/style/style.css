@@ -89,8 +89,9 @@ nav img{
 }
 
 .profile-info img{
-    border-radius: 50%;
     width: 105px;
+    border: 2px solid;
+    border-color: rgb(29, 29, 27);
 }
 
 .button-editar{
