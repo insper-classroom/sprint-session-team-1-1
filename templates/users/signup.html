@@ -145,13 +145,13 @@
       </div>
       
       <div class="bloco2">
-        <div class="form-group">
+        <div class="form-group"> <!--- Form deve ser display none, não o label --->
           <label for="{{ form.estado_atual.id_for_label }}">Estado Atual:</label>
           <div class="input">{{ form.estado_atual }}</div>
           {{ form.estado_atual.errors }}
         </div>
         
-        <div class="form-group">
+        <div class="form-group"> 
           <label for="{{ form.cidade_atual.id_for_label }}">Cidade Atual:</label>
           <div class="input">{{ form.cidade_atual }}</div>
           {{ form.cidade_atual.errors }}
