@@ -1,5 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.http import HttpResponse
 
 def unauthenticated_user(view_func):  # define se um usuario está autenticado
     def wrapper_func(request, *arg, **kwargs):

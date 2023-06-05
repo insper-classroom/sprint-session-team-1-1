@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
-from . import forms
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.views.generic.edit import CreateView
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
-from .forms import UserForm
-from . import edit_form
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from datetime import datetime
-from django.contrib.auth.models import User
+from .forms import UserForm
+from . import edit_form
+from . import forms
 
 
 
@@ -66,6 +67,15 @@ def signup(request):
         form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
+            
+            group_names = list(Group.objects.values_list('name', flat=True))
+            if 'bolsista' not in group_names:
+                bolsista = Group(name='bolsista')
+                bolsista.save()
+            else:   
+                bolsista = Group.objects.get(name='bolsista')
+                
+            user.groups.add(bolsista)
 
             return redirect('/accounts/login/')
         
@@ -79,14 +89,17 @@ def signup(request):
 def profile(request):
     user = request.user
     profile = user.profile  # Certifique-se de ter um relacionamento correto entre os modelos User e Profile
+    img = profile.foto_perfil
+    path_image = "/".join(str(img).split('/')[2:])
 
     # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
-    ano_formatura = profile.ano_formatura
-    ano_atual = datetime.now().year
-    profile.tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
-    profile.save()
+    if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
+        ano_formatura = profile.ano_formatura
+        ano_atual = datetime.now().year
+        profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
+        profile.save()
 
-    return render(request, 'profile/profile.html', {'user': user})
+    return render(request, 'profile/profile.html', {'user': user, 'path_image': path_image})
 
 
 def custom_logout(request):
@@ -95,18 +108,19 @@ def custom_logout(request):
     return redirect('home')
 
 
-from django.contrib.auth.validators import UnicodeUsernameValidator
 
 @login_required
 def edit(request):
+
     user = request.user
     profile = user.profile
     if request.method == 'POST':
+        username_old = user.username
         form = edit_form.EditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             #Este pedaço dividido foi feito com a ajuda do chatGPT, pois estavamos com dificuldade de fazer a validação de username
             #Mas entendemos o conceito de utilizar a personal key para liberar a 'edição' para um username ja existente caso seja do msm usuario
-            if form.cleaned_data['username'] != user.username:
+            if form.cleaned_data['username'] != username_old:
                 new_username = form.cleaned_data['username']
                 existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
                 if not existing_user:
@@ -115,6 +129,14 @@ def edit(request):
                 else:
                     form.add_error('username', 'A user with that username already exists.')
             #
+
+            # Determinar o tipo de usuário com base na data de formatura
+            if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
+                ano_formatura = int(form.cleaned_data['ano_formatura'])
+                ano_atual = datetime.now().year
+                tipo_usuario = 'Bolsista' if ano_formatura > ano_atual else 'Alumni'
+                profile.tipo_usuario = tipo_usuario
+
             user.first_name = form.cleaned_data['nome']
             user.last_name = form.cleaned_data['sobrenome']
             user.email = form.cleaned_data['email']
@@ -164,7 +186,7 @@ def edit(request):
             'renda_familiar': user.profile.renda_familiar,
         })
 
-        #Validador personalizado feito com auxilio do CHatGPT
+        #Validador personalizado feito com auxilio do ChatGPT
         form.fields['username'].validators.append(UnicodeUsernameValidator())
 
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user})

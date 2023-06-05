@@ -148,7 +148,6 @@ h1{
   text-align: center;
   margin-top: 1%;
   color: #3C5AF0;
-
 }
 
 p{
@@ -227,6 +226,13 @@ select:hover{
   gap: 20px;
 } 
 
+.edicao-perfil{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 .bloco1{
   display: block;
   flex-direction: column;
@@ -253,10 +259,8 @@ input #id_nome{
 
 } */
 
-
-
-
-
-
-
-
+.errorlist{
+  color: red;
+  font-size: 0.9em;
+  margin-left: 25px;
+}

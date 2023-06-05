@@ -1,0 +1,254 @@
+* {
+    font-family: 'Urbanist', sans-serif;
+}
+
+/* 
+input{
+    width: 165px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid #3C5AF0;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-left: 8px;
+    font-size: 1em;
+  } */
+  
+  input:hover{
+    cursor: text;
+  }
+  
+  /* select{
+    width: 10px;
+    height: 35px;
+    border-radius: 20px;
+    border: 1px solid #3C5AF0;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-left: 8px;
+    font-size: 1em;
+  } */
+
+.dados_usuario{
+    font-size: 18px;
+}
+
+.contact{
+    font-size: 23px;
+}
+
+.dados_contato{
+    font-size: 18px;
+}
+
+.logo{
+    display: block;
+    position: absolute;
+    padding-left: 1%;
+    padding-top: 1%;
+  }
+  
+.logo img{
+    display: block;
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+  }
+  
+.background{
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+  }
+
+.background img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+/* CSS da navbar */
+.navbar {
+    /* border: 5px solid red; */
+    /* Pra quem não sabe, VH é View Height e VW é View WIdth. É a msm coisa q %, mas adaptavel pela tela */
+    /* Aqui eu to removendo 10px só pq é o tamanho da boarda, tirando ela tem q tirar isso tbm */
+    width: 100vw - 10px;
+    height: 10vh;
+}
+
+/* CSS dos filtros */
+.filtros {
+    /* border: 5px solid magenta; */
+    width: 95vw - 10px;
+    margin-top: 50px;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+
+}
+
+.filtros-basicos {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    border: 2px solid rgb(60, 90, 240);
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgb(247, 249, 255);
+}
+
+.filtros-nomes {
+    /* border: 2px solid gray;
+    width: 35%; */
+    margin-right: 2px;
+}
+
+.filtros-id{
+    margin-left: -3.2px;
+}
+
+.busca {
+    margin-right: 10px;
+    width: 165px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid #3C5AF0;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-left: 8px;
+    font-size: 1em;
+    /* margin-left: 3px; */
+}
+
+
+.filtros-cor {
+    /* border: 2px solid beige; */
+    margin-right: 15px;
+}
+
+.filtros-genero {
+    /* border: 2px solid darkorange; */
+    margin-right: 15px;
+}
+
+.filtros-user-facul {
+    /* border: 2px solid lightcoral; */
+    margin-right: 15px;
+}
+
+.filtros-renda {
+    /* border: 2px solid pink; */
+    margin-right: 15px;
+}
+
+.filtros-avancados-parte1 {
+    display: flex;
+}
+
+.filtros-avancados-parte2 {
+    display: flex;
+}
+
+/* CSS dos usuarios */
+/* .foto_perfil{
+    margin-right: 15px;
+} */
+
+.usuario {
+    display: flex;
+    border: 5px solid rgb(29, 29, 27);;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+
+.nome-imagem {
+    display: flex;
+    /* border: 2px solid yellow; */
+}
+
+.nome-id {
+    width: 100%;
+    /* border: 2px solid pink; */
+}
+
+.divisor {
+    width: 5px;
+}
+
+.metade-esquerda {
+    /* border: 5px solid blue; */
+    width: 70%;
+    margin-left: 40px;
+}
+
+.metade-direita {
+    /* border: 5px solid green; */
+    width: 50%;
+}
+
+.user-name {
+    color: rgb(29, 29, 27);
+    font-weight: 900;
+    font-size: x-large;
+}
+
+img {
+    width: 100px;
+    height: 120px;
+}
+
+h4 {
+    font-weight: 500;
+}
+
+.id{
+    font-size: 20px;
+}
+
+.filterbutton{
+    display: block;
+    margin-top: 1%;
+    margin-left: 46%;
+    margin-right: auto;
+    background-color: rgb(60, 90, 240);
+    color:white;
+    border: none;
+    border-radius: 100px;
+    font-size: 25px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    padding: 8px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+label{
+    margin-left: 0px;
+}
+
+.usuario{
+    display: flex;
+    align-items: center;
+    border: 10px solid #3C5AF0;
+    border-radius: 3rem;
+    padding: 1rem 4rem 1rem 2rem;
+    gap: 3rem;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    margin-top: 25px;
+}
+
+.nenhum_usuario{
+    margin-top: 30px;
+    font-size: 30px;
+    color: red;
+    text-align: center;
+}

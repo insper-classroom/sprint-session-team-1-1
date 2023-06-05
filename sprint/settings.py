@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig', # app users
     'home.apps.HomeConfig', # app home
+    'search.apps.SearchConfig', # app search
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' # linguagem português do Brasil é 'pt-br'
+LANGUAGE_CODE = 'pt-br' # linguagem português do Brasil é 'pt-br'
 
 TIME_ZONE = 'UTC' # fuso horário do Brasil é 'America/Sao_Paulo'
 
@@ -160,3 +161,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Telles Foundation",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "Administration",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Administration",
+
+    # Welcome text on the login screen
+    "welcome_sign": "Bem-vindo à página de Administração da Fundação Telles!",  
+
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "users/img/simbolo-telles.png",
+
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": "users/img/favicon-telles.png",
+
+    # Relative paths to custom CSS/JS scripts (must be present in static files)
+    "custom_css": "css/admin.css",
+}       

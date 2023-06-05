@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const outroGeneroField = document.querySelector('#id_outro_genero');
   const corOuRacaSelect = document.querySelector('#id_cor_ou_raca');
   const outraCorOuRacaField = document.querySelector('#id_outra_cor_ou_raca');
+  const pais = document.querySelector('#id_pais_atual');
+  const estados = document.querySelector('#id_estado_atual');
+  const cidade = document.querySelector('#id_cidade_atual');
+  const cidade_fora = document.querySelector('#id_cidade_fora_atual');
 
   function toggleOutroGenero() {
     if (generoSelect.value === 'Outro') {
@@ -32,12 +36,59 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+
+  // Faz as mesmas coisas das funções acimas, porem para campos diferentes. Dessa vez feitas sozinas com base no que ja tinha sido feito
+  function toggleEstado() {
+    if (pais.value === 'Brasil') {
+      estados.required = true;
+      estados.style.display = '';
+      estados.parentElement.previousElementSibling.style.display = '';
+    } else {
+      estados.required = false;
+      estadoParaDebug = estados;
+      estados.style.display = 'none';
+      estados.parentElement.previousElementSibling.style.display = 'none';
+      estados.value = '';
+    }
+  }
+
+  function toggleCidadeAtual() {
+    if (estados.value !== '') {
+      cidade.style.display = '';
+      cidade.parentElement.previousElementSibling.style.display  = '';
+    } else {
+      cidade.style.display = 'none';
+      cidade.parentElement.previousElementSibling.style.display  = 'none';
+    }
+  }
+
+  function toggleCidadeFora() {
+    if (pais.value !== 'Brasil') {
+      cidade_fora.style.display = '';
+      cidade_fora.parentElement.previousElementSibling.style.display  = '';
+      cidade.style.display = 'none';
+      cidade.parentElement.previousElementSibling.style.display  = 'none';
+    } else {
+      cidade_fora.style.display = 'none';
+      cidade_fora.parentElement.previousElementSibling.style.display  = 'none';
+      cidade.style.display = '';
+      cidade.parentElement.previousElementSibling.style.display  = '';
+    }
+  }
+
   toggleOutroGenero();
   toggleOutraCorOuRaca();
+  toggleEstado();
+  toggleCidadeAtual();
+  toggleCidadeFora();
 
-  //Adiciona os event listenes para monitorar interações no HTML
   generoSelect.addEventListener('change', toggleOutroGenero);
   corOuRacaSelect.addEventListener('change', toggleOutraCorOuRaca);
+  pais.addEventListener('change', function() {
+    toggleEstado();
+    toggleCidadeFora();
+  });
+  estados.addEventListener('change', toggleCidadeAtual);
 });
 
 
@@ -172,6 +223,12 @@ input.setAttribute('placeholder', 'Insira seu ano de formatura');
 
 var input = document.getElementById("id_ingresso");
 input.setAttribute('placeholder', 'Insira seu ano de ingresso');
+
+var input = document.getElementById("id_outra_cor_ou_raca");
+input.setAttribute('placeholder', 'Insira sua cor/raça');
+
+var input = document.getElementById("id_outro_genero");
+input.setAttribute('placeholder', 'Insira seu gênero');
 
 
 
