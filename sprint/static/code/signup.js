@@ -42,11 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pais.value === 'Brasil') {
       estados.required = true;
       estados.style.display = '';
-      estados.previousElementSibling.style.display = '';
+      estados.parentElement.previousElementSibling.style.display = '';
     } else {
       estados.required = false;
+      estadoParaDebug = estados;
       estados.style.display = 'none';
-      estados.previousElementSibling.style.display = 'none';
+      estados.parentElement.previousElementSibling.style.display = 'none';
       estados.value = '';
     }
   }
@@ -54,32 +55,32 @@ document.addEventListener('DOMContentLoaded', function() {
   function toggleCidadeAtual() {
     if (estados.value !== '') {
       cidade.style.display = '';
-      cidade.previousElementSibling.style.display = '';
+      cidade.parentElement.previousElementSibling.style.display  = '';
     } else {
       cidade.style.display = 'none';
-      cidade.previousElementSibling.style.display = 'none';
+      cidade.parentElement.previousElementSibling.style.display  = 'none';
     }
   }
 
   function toggleCidadeFora() {
     if (pais.value !== 'Brasil') {
       cidade_fora.style.display = '';
-      cidade_fora.previousElementSibling.style.display = '';
+      cidade_fora.parentElement.previousElementSibling.style.display  = '';
       cidade.style.display = 'none';
-      cidade.previousElementSibling.style.display = 'none';
+      cidade.parentElement.previousElementSibling.style.display  = 'none';
     } else {
       cidade_fora.style.display = 'none';
-      cidade_fora.previousElementSibling.style.display = 'none';
+      cidade_fora.parentElement.previousElementSibling.style.display  = 'none';
       cidade.style.display = '';
-      cidade.previousElementSibling.style.display = '';
+      cidade.parentElement.previousElementSibling.style.display  = '';
     }
   }
 
   toggleOutroGenero();
   toggleOutraCorOuRaca();
-  // toggleEstado();
-  // toggleCidadeAtual();
-  // toggleCidadeFora();
+  toggleEstado();
+  toggleCidadeAtual();
+  toggleCidadeFora();
 
   generoSelect.addEventListener('change', toggleOutroGenero);
   corOuRacaSelect.addEventListener('change', toggleOutraCorOuRaca);

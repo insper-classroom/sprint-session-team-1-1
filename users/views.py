@@ -93,10 +93,11 @@ def profile(request):
     img_user = "/".join(str(img).split('/')[2:])
 
     # Verificar o tipo de usuário com base na data de formatura e no ano atual (SEMPRE QUANDO O USUÁRIO ENTRAR NO PRÓPRIO PERFIL)
-    ano_formatura = profile.ano_formatura
-    ano_atual = datetime.now().year
-    profile.tipo_usuario = 'Aluno' if int(ano_formatura) > ano_atual else 'Alumni'
-    profile.save()
+    if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
+        ano_formatura = profile.ano_formatura
+        ano_atual = datetime.now().year
+        profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
+        profile.save()
 
     return render(request, 'profile/profile.html', {'user': user, 'img_user': img_user})
 
@@ -110,16 +111,18 @@ def custom_logout(request):
 
 @login_required
 def edit(request):
+
     user = request.user
     profile = user.profile
     img = profile.foto_perfil
     img_user = "/".join(str(img).split('/')[2:])
     if request.method == 'POST':
+        username_old = user.username
         form = edit_form.EditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             #Este pedaço dividido foi feito com a ajuda do chatGPT, pois estavamos com dificuldade de fazer a validação de username
             #Mas entendemos o conceito de utilizar a personal key para liberar a 'edição' para um username ja existente caso seja do msm usuario
-            if form.cleaned_data['username'] != user.username:
+            if form.cleaned_data['username'] != username_old:
                 new_username = form.cleaned_data['username']
                 existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
                 if not existing_user:
@@ -128,6 +131,14 @@ def edit(request):
                 else:
                     form.add_error('username', 'A user with that username already exists.')
             #
+
+            # Determinar o tipo de usuário com base na data de formatura
+            if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
+                ano_formatura = int(form.cleaned_data['ano_formatura'])
+                ano_atual = datetime.now().year
+                tipo_usuario = 'Bolsista' if ano_formatura > ano_atual else 'Alumni'
+                profile.tipo_usuario = tipo_usuario
+
             user.first_name = form.cleaned_data['nome']
             user.last_name = form.cleaned_data['sobrenome']
             user.email = form.cleaned_data['email']

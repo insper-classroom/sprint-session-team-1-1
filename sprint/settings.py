@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig', # app users
     'home.apps.HomeConfig', # app home
+    'search.apps.SearchConfig', # app search
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -172,7 +173,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Administration",
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to Administration",   
+    "welcome_sign": "Bem-vindo à página de Administração da Fundação Telles!",  
 
     # Logo to use for your site, must be present in static files, used for brand on top left
     "site_logo": "users/img/simbolo-telles.png",

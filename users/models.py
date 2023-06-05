@@ -80,6 +80,14 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
         ('Tocantins', 'Tocantins')
     )
 
+    User_type = (
+        ('Bolsista', 'Bolsista'),
+        ('Alumni', 'Alumni'),
+        ('Sponsor', 'Sponsor'),
+        ('Colaborador', 'Colaborador'),
+        ('Admin', 'Admin'),
+    )
+
     nome = models.CharField(max_length=150, null=True, verbose_name='Nome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
     sobrenome = models.CharField(max_length=150, null=True, verbose_name='Sobrenome') # null=True porque quando o usuário se registrar, cria-se automaticamente um objeto do tipo perfil ligado à esse usuário que ainda não preencheu o nome completo. Por isso, inicialmente, no banco de dados, o valor é nulo.
     email = models.EmailField(max_length=254, null=True, verbose_name='E-mail') # EmailField é um campo de email, que não pode ser maior que 254 caracteres
@@ -100,7 +108,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     cidade_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cidade Atual')
     cidade_fora_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cidade Fora Atual')
     linkedin = models.CharField(max_length=100, blank=True, null=True, verbose_name='LinkedIn')
-    tipo_usuario = models.CharField(max_length=100, blank=True, null=True, verbose_name='Tipo de Usuário')
+    tipo_usuario = models.CharField(max_length=100, choices=User_type, blank=True, null=True, verbose_name='Tipo de Usuário')
     faculdade = models.CharField(max_length=100, choices=University, blank=True, null=True, verbose_name='Faculdade')
     curso = models.CharField(max_length=100, blank=True, null=True, verbose_name='Curso')
     ano_ingresso = models.CharField(max_length=4, null=True, verbose_name='Ano de Ingresso')
