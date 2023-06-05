@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig', # app users
     'home.apps.HomeConfig', # app home
+    'search.apps.SearchConfig', # app search
 
     'django.contrib.admin',
     'django.contrib.auth',

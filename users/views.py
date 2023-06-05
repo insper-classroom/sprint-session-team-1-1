@@ -111,14 +111,16 @@ def custom_logout(request):
 
 @login_required
 def edit(request):
+
     user = request.user
     profile = user.profile
     if request.method == 'POST':
+        username_old = user.username
         form = edit_form.EditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             #Este pedaço dividido foi feito com a ajuda do chatGPT, pois estavamos com dificuldade de fazer a validação de username
             #Mas entendemos o conceito de utilizar a personal key para liberar a 'edição' para um username ja existente caso seja do msm usuario
-            if form.cleaned_data['username'] != user.username:
+            if form.cleaned_data['username'] != username_old:
                 new_username = form.cleaned_data['username']
                 existing_user = User.objects.filter(username=new_username).exclude(pk=user.pk).exists()
                 if not existing_user:
@@ -133,6 +135,7 @@ def edit(request):
                 ano_formatura = int(form.cleaned_data['ano_formatura'])
                 ano_atual = datetime.now().year
                 tipo_usuario = 'Bolsista' if ano_formatura > ano_atual else 'Alumni'
+                profile.tipo_usuario = tipo_usuario
 
             user.first_name = form.cleaned_data['nome']
             user.last_name = form.cleaned_data['sobrenome']
@@ -156,7 +159,6 @@ def edit(request):
             profile.curso = form.cleaned_data['curso']
             profile.ano_formatura = form.cleaned_data['ano_formatura']
             profile.renda_familiar = form.cleaned_data['renda_familiar']
-            profile.tipo_usuario = tipo_usuario
 
             profile.save()
             user.save()
