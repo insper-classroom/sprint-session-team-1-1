@@ -4,13 +4,14 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
+from .models import HistoricoProfissional
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
+from .models import HistoricoEscolar
 from datetime import datetime
 from .forms import UserForm
 from . import edit_form
 from . import forms
-from .models import HistoricoEscolar
 
 
 
@@ -198,15 +199,30 @@ def edit(request):
 
 
 @login_required
-def historico(request):
+def historico_escolar(request):
+    user= request.user
     if request.method == 'POST':
-        form = forms.HistoricoEscolarForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/accounts/profile/historico/')
+        form_escolar = forms.HistoricoEscolarForm(request.POST, request.FILES)
+        if form_escolar.is_valid():
+            form_escolar.save()
+            return redirect('/accounts/profile/historico/escolar')
 
     else:
-        form = forms.HistoricoEscolarForm()
-        historicos = HistoricoEscolar.objects.all()
-        return render(request, 'historical/historico.html', {'form': form, 'historicos': historicos})
+        form_escolar = forms.HistoricoEscolarForm(initial={'id_proprietario': user.id})
+        historicos_escolares = HistoricoEscolar.objects.all().order_by('-criado_em')
+        return render(request, 'historical/historico-escolar.html', {'form_escolar': form_escolar, 'historicos': historicos_escolares, 'user': user})
+    
+@login_required
+def historico_profissional(request):
+    user= request.user
+    if request.method == 'POST':
+        form_profissional = forms.HistoricoProfissionalForm(request.POST, request.FILES)
+        if form_profissional.is_valid():
+            form_profissional.save()
+            return redirect('/accounts/profile/historico/profissional')
+
+    else:
+        form_profissional = forms.HistoricoProfissionalForm(initial={'id_proprietario': user.id})
+        historicos_profissionais = HistoricoProfissional.objects.all()
+        return render(request, 'historical/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais})
 

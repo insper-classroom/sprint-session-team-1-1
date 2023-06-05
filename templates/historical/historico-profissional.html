@@ -1,0 +1,18 @@
+{% extends "historical/base-historico.html" %}
+{% load static %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form_profissional }}
+<button type="submit">Enviar Histórico</button>
+</form>
+
+{% for historico in historicos %}
+<h3>{{ historico.empresa }}</h3>
+<p>Cargo: {{ historico.cargo }}</p>
+<p>Descrição: {{ historico.descricao }}</p>
+<p>Salario: {{ historico.salario }}</p>
+
+{% endfor %}
+{% endblock %}
