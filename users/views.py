@@ -1,15 +1,14 @@
-from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
-from . import forms
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import Group
-from .forms import UserForm
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from datetime import datetime
+from django.views.generic.edit import CreateView
 
-
-# Create your views here.
+from . import forms
+from .forms import UserForm
 
 # Aqui nas views, teremos o cadastro de usuários
 class UserCreate(CreateView):
@@ -57,21 +56,17 @@ class UserCreate(CreateView):
         form.instance.tipo_usuario = tipo_usuario
         return super().form_valid(form)
 
+def index(request):
+    return render(request, 'home-page/home.html')
+
 
 def signup(request):
     if request.method == 'POST':
         form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            
-            group_names = list(Group.objects.values_list('name', flat=True))
-            if 'bolsista' not in group_names:
-                bolsista = Group(name='bolsista')
-                bolsista.save()
-            else:   
-                bolsista = Group.objects.get(name='bolsista')
-                
-            user.groups.add(bolsista)
+            group_bolsista = Group.objects.get(name='Bolsista')
+            user.groups.add(group_bolsista)
 
             return redirect('/accounts/login/')
         
