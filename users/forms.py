@@ -129,7 +129,13 @@ class UserForm(UserCreationForm):
                 self.fields['outra_cor_ou_raca'].widget.attrs['style'] = '' #Torna visivel
 
 
+
 class HistoricoEscolarForm(forms.ModelForm):
+    media = forms.CharField(max_length=100, required=True)
+    campo_extra = forms.CharField(max_length=100, required=True)
+    semestre_atual = forms.CharField(max_length=100, required=True)
+    pdf = forms.FileField(required=True)
+
     class Meta:
         model = HistoricoEscolar
         fields = [
@@ -138,3 +144,4 @@ class HistoricoEscolarForm(forms.ModelForm):
             'pdf', 
             'campo_extra'
         ]
+            

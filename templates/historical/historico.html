@@ -1,0 +1,20 @@
+{% extends "historical/base-historico.html" %}
+{% load static %}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Adicionar Histórico</button>
+  </form>
+  
+  {% for historico in historicos %}
+  <h3>{{ historico.semestre_atual }}</h3>
+  <p>Média das Notas: {{ historico.media }}</p>
+  <!-- <p>Faculdade: {{ historico.faculdade }}</p> -->
+  <p>Boletim: <a href="{{ historico.pdf.url }}">Download</a></p>
+{% endfor %}
+{% endblock %}
+
+

@@ -119,8 +119,10 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
 
 
 class HistoricoEscolar(models.Model):
-    id_proprietario = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    id_proprietario = models.CharField(max_length=100, blank=True, null=True, verbose_name="id_proprietario")
     media = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
-    campo_extra = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
-    semestre_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    campo_extra = models.CharField(max_length=100, blank=True, null=True, verbose_name="campo extra")
+    semestre_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="semestre atual")
     pdf = models.FileField(upload_to="sprint/static/pdfs" )
+    criado_em = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
+    

@@ -10,6 +10,8 @@ from datetime import datetime
 from .forms import UserForm
 from . import edit_form
 from . import forms
+from .models import HistoricoEscolar
+
 
 
 
@@ -116,6 +118,7 @@ def edit(request):
     profile = user.profile
     img = profile.foto_perfil
     img_user = "/".join(str(img).split('/')[2:])
+
     if request.method == 'POST':
         username_old = user.username
         form = edit_form.EditForm(request.POST, request.FILES, instance=user)
@@ -193,4 +196,17 @@ def edit(request):
 
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user, 'img_user': img_user})
 
+
+@login_required
+def historico(request):
+    if request.method == 'POST':
+        form = forms.HistoricoEscolarForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/profile/historico/')
+
+    else:
+        form = forms.HistoricoEscolarForm()
+        historicos = HistoricoEscolar.objects.all()
+        return render(request, 'historical/historico.html', {'form': form, 'historicos': historicos})
 
