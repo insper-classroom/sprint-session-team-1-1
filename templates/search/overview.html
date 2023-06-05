@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Gráficos de Bolsistas</title>
+    <style>
+        /* Estilos opcionais */
+        /* Adicione estilos personalizados conforme necessário */
+    </style>
+</head>
+<body>
+    <h1>Gráficos de Bolsistas</h1>
+    <div style="display: flex;">
+        <div style="flex: 1; margin-right: 200px;">
+            <h2>Gráfico de Bolsistas por Faculdade</h2>
+            <img src="data:image/png;base64,{{ graficos.graficos_faculdades }}" alt="Gráfico de Bolsistas por Faculdade">
+        </div>
+        <div style="flex: 1;">
+            <h2>Gráfico de Bolsistas por Curso</h2>
+            <img src="data:image/png;base64,{{ graficos.graficos_cursos }}" alt="Gráfico de Bolsistas por Curso">
+        </div>
+    </div>
+
+    <!-- Adicione outros elementos HTML conforme necessário -->
+    
+    <script>
+        // Adicione scripts JavaScript personalizados conforme necessário
+    </script>
+</body>
+</html>
+

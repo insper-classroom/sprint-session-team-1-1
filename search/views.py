@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime
 from .filters import apply_filters
+import matplotlib.pyplot as plt
+import io
+import urllib, base64
 
 
 
@@ -16,6 +19,7 @@ def individual_table(request):
         return redirect('/')
     else:
         all_users = User.objects.all().order_by('-date_joined')
+        # for user in all_users:
         filtered_users = apply_filters(all_users, request)
         return render(request, 'search/search.html', {'users': filtered_users})
     
@@ -39,3 +43,53 @@ def profile_id(request, user_id):
             profile.save()
 
         return render(request, 'search/profile-visitor.html', {'user': user, 'path_image': path_image,})
+    
+def charts(request):
+    # Recupere as informações dos usuários bolsistas
+    bolsistas = User.objects.filter(profile__tipo_usuario='Bolsista')
+    
+    # Gráfico 1: Contagem de bolsistas por faculdade
+    faculdades = [b.profile.faculdade for b in bolsistas]
+    contagem_faculdades = {}
+    for faculdade in faculdades:
+        if faculdade in contagem_faculdades:
+            contagem_faculdades[faculdade] += 1
+        else:
+            contagem_faculdades[faculdade] = 1
+    
+    
+    plt.bar(contagem_faculdades.keys(), contagem_faculdades.values())
+    plt.xlabel('Faculdade')
+    plt.ylabel('Número de Bolsistas')
+    plt.title('Contagem de Bolsistas por Faculdade')
+    
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    grafico_faculdades = base64.b64encode(buffer.getvalue()).decode()
+    buffer.close()
+    
+    # Gráfico 2: Contagem de bolsistas por curso
+    cursos = [b.profile.curso for b in bolsistas]
+    contagem_cursos = {}
+    for curso in cursos:
+        if curso in contagem_cursos:
+            contagem_cursos[curso] += 1
+        else:
+            contagem_cursos[curso] = 1
+    
+
+    plt.bar(contagem_cursos.keys(), contagem_cursos.values())
+    plt.xlabel('Curso')
+    plt.ylabel('Número de Bolsistas')
+    plt.title('Contagem de Bolsistas por Curso')
+    
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    grafico_cursos = base64.b64encode(buffer.getvalue()).decode()
+    buffer.close()
+    graficos = {'graficos_faculdades': grafico_faculdades, 'graficos_cursos': grafico_cursos}
+    
+    # Renderize a página com os gráficos
+    return render(request, 'search/overview.html', {'graficos': graficos})
