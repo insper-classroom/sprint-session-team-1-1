@@ -48,27 +48,48 @@ def charts(request):
     # Recupere as informações dos usuários bolsistas
     bolsistas = User.objects.filter(profile__tipo_usuario='Bolsista')
     
-    # Crie os dados para o gráfico
-    # Exemplo: Contagem de bolsistas por área de estudo
+    # Gráfico 1: Contagem de bolsistas por faculdade
     faculdades = [b.profile.faculdade for b in bolsistas]
-    contagem_faculs = {}
-    for area in faculdades:
-        if area in contagem_faculs:
-            contagem_faculs[area] += 1
+    contagem_faculdades = {}
+    for faculdade in faculdades:
+        if faculdade in contagem_faculdades:
+            contagem_faculdades[faculdade] += 1
         else:
-            contagem_faculs[area] = 1
+            contagem_faculdades[faculdade] = 1
     
     
-    plt.bar(contagem_faculs.keys(), contagem_faculs.values())
+    plt.bar(contagem_faculdades.keys(), contagem_faculdades.values())
     plt.xlabel('Faculdade')
     plt.ylabel('Número de Bolsistas')
-    plt.title('Contagem de Bolsistas por Área de Estudo')
+    plt.title('Contagem de Bolsistas por Faculdade')
     
-
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
-    image_base64 = base64.b64encode(buffer.getvalue()).decode()
+    grafico_faculdades = base64.b64encode(buffer.getvalue()).decode()
     buffer.close()
-    # Renderize a página com o gráfico
-    return render(request, 'search/overview.html', {'graficos': image_base64})
+    
+    # Gráfico 2: Contagem de bolsistas por curso
+    cursos = [b.profile.curso for b in bolsistas]
+    contagem_cursos = {}
+    for curso in cursos:
+        if curso in contagem_cursos:
+            contagem_cursos[curso] += 1
+        else:
+            contagem_cursos[curso] = 1
+    
+
+    plt.bar(contagem_cursos.keys(), contagem_cursos.values())
+    plt.xlabel('Curso')
+    plt.ylabel('Número de Bolsistas')
+    plt.title('Contagem de Bolsistas por Curso')
+    
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    grafico_cursos = base64.b64encode(buffer.getvalue()).decode()
+    buffer.close()
+    graficos = {'graficos_faculdades': grafico_faculdades, 'graficos_cursos': grafico_cursos}
+    
+    # Renderize a página com os gráficos
+    return render(request, 'search/overview.html', {'graficos': graficos})
