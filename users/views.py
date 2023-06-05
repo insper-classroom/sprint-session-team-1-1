@@ -205,12 +205,12 @@ def historico_escolar(request):
         form_escolar = forms.HistoricoEscolarForm(request.POST, request.FILES)
         if form_escolar.is_valid():
             form_escolar.save()
-            return redirect('/accounts/profile/historico/escolar')
+            return redirect('/accounts/profile/history/school')
 
     else:
         form_escolar = forms.HistoricoEscolarForm(initial={'id_proprietario': user.id})
         historicos_escolares = HistoricoEscolar.objects.all().order_by('-criado_em')
-        return render(request, 'historical/historico-escolar.html', {'form_escolar': form_escolar, 'historicos': historicos_escolares, 'user': user})
+        return render(request, 'history/historico-escolar.html', {'form_escolar': form_escolar, 'historicos': historicos_escolares, 'user': user})
     
 @login_required
 def historico_profissional(request):
@@ -219,10 +219,10 @@ def historico_profissional(request):
         form_profissional = forms.HistoricoProfissionalForm(request.POST, request.FILES)
         if form_profissional.is_valid():
             form_profissional.save()
-            return redirect('/accounts/profile/historico/profissional')
+            return redirect('/accounts/profile/history/professional')
 
     else:
         form_profissional = forms.HistoricoProfissionalForm(initial={'id_proprietario': user.id})
         historicos_profissionais = HistoricoProfissional.objects.all()
-        return render(request, 'historical/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais})
+        return render(request, 'history/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais})
 

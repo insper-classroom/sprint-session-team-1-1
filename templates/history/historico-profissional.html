@@ -1,0 +1,43 @@
+{% extends "history/base-historico.html" %}
+{% load static %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="form">
+  <label for="">Empresa</label>
+  {{ form_profissional.empresa }}
+</div>
+
+<div class="form">
+  <label for="">Cargo</label>
+  {{ form_profissional.cargo }}
+</div>
+
+<div class="form">
+  <label for="">Setor da Empresa</label>
+  {{ form_profissional.setor_empresa }}
+</div>
+
+<div class="form">
+  <label for="">Salário</label>
+  {{ form_profissional.salario }}
+</div>
+
+  <button type="submit">Enviar Histórico</button>
+</form>
+
+{% for historico in historicos %}
+
+<div class="historicos">
+  <p>Empresa: {{ historico.empresa }}</p>
+  <p>Cargo: {{ historico.cargo }}</p>
+  <p>Setor: {{ historico.descricao }}</p>
+  <p>Salario: {{ historico.salario }}</p>
+</div>
+<!-- {% if historico.id_proprietario == user.id %} -->
+
+<!-- {% endif %} -->
+{% endfor %}
+{% endblock %}
