@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/logout/', custom_logout, name='logout'),
     path('accounts/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
-    path('email/', include('emails.urls')),
+    path('accounts/', include('emails.urls')),
     # path('accounts/profile/', include('user_profile.urls')),
     path('', include('home.urls')),
 ]
