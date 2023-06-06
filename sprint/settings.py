@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #providers
     'allauth.socialaccount.providers.google',
+    'emails',
+    'django_celery_results',
+    'django_celery_beat',
+    'send_email'
 ]
 SITE_ID = 1
 
@@ -118,8 +122,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'team1sprint.session@gmail.com'
 EMAIL_HOST_PASSWORD = 'tanxugdehzndcwzv'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = 'Celery <team1sprint.session@gmail.com>'
 
+# EMAIL_HOST_USER
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -145,7 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br' # linguagem português do Brasil é 'pt-br'
 
-TIME_ZONE = 'UTC' # fuso horário do Brasil é 'America/Sao_Paulo'
+TIME_ZONE = 'America/Sao_Paulo' # fuso horário do Brasil é 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -184,3 +189,15 @@ JAZZMIN_SETTINGS = {
     # Relative paths to custom CSS/JS scripts (must be present in static files)
     "custom_css": "css/admin.css",
 }       
+
+# CELERY
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Sao_Paulo'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# bljdtokhqiylgvbt
