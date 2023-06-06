@@ -132,5 +132,6 @@ class HistoricoProfissional(models.Model):
     cargo = models.CharField(max_length=100, blank=True, null=True, verbose_name="cargo")
     setor_empresa = models.CharField(max_length=100, blank=True, null=True, verbose_name="setor_empresa")
     salario = models.CharField(max_length=100, blank=True, null=True, verbose_name="salario")
+    data_ingresso = models.DateField(max_length=100, blank=True, null=True, verbose_name="data_inicio")
     criado_em = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
     

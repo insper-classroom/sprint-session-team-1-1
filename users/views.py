@@ -4,10 +4,10 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
-from .models import HistoricoProfissional
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from .models import HistoricoEscolar
+from .models import HistoricoProfissional
 from datetime import datetime
 from .forms import UserForm
 from . import edit_form
@@ -205,7 +205,7 @@ def historico_escolar(request):
         form_escolar = forms.HistoricoEscolarForm(request.POST, request.FILES)
         if form_escolar.is_valid():
             form_escolar.save()
-            return redirect('/accounts/profile/history/school')
+        return redirect('/accounts/profile/history/school')
 
     else:
         form_escolar = forms.HistoricoEscolarForm(initial={'id_proprietario': user.id})
@@ -219,10 +219,10 @@ def historico_profissional(request):
         form_profissional = forms.HistoricoProfissionalForm(request.POST, request.FILES)
         if form_profissional.is_valid():
             form_profissional.save()
-            return redirect('/accounts/profile/history/professional')
+        return redirect('/accounts/profile/history/professional')
 
     else:
         form_profissional = forms.HistoricoProfissionalForm(initial={'id_proprietario': user.id})
         historicos_profissionais = HistoricoProfissional.objects.all().order_by('-criado_em')
-        return render(request, 'history/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais})
+        return render(request, 'history/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais, 'user': user})
 

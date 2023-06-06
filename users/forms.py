@@ -131,7 +131,7 @@ class UserForm(UserCreationForm):
 
 
 class HistoricoEscolarForm(forms.ModelForm):
-    id_proprietario = forms.CharField(max_length=100, required=True)
+    id_proprietario = forms.NumberInput()
     media = forms.CharField(max_length=100, required=True)
     campo_extra = forms.CharField(max_length=100, required=False)
     semestre_atual = forms.CharField(max_length=100, required=True)
@@ -153,6 +153,7 @@ class HistoricoProfissionalForm(forms.ModelForm):
     cargo = forms.CharField(max_length=100, required=True)
     setor_empresa = forms.CharField(max_length=100, required=True)
     salario = forms.CharField(max_length=100, required=True)
+    data_ingresso = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True)
 
     class Meta:
         model = HistoricoProfissional
@@ -161,5 +162,6 @@ class HistoricoProfissionalForm(forms.ModelForm):
             'empresa',
             'cargo',
             'setor_empresa',
-            'salario'
+            'salario',
+            'data_ingresso'
         ]

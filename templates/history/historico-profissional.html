@@ -22,56 +22,78 @@
 
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
+<h1>Atualização de Emprego</h1>
 <div class="historico-profissional">
 
-  <div class="bloco1">
+  <section>
+    <div class="bloco1">
 
-    <div class="form">
-      <label for="">Empresa</label>
-      <div class="input">{{ form_profissional.empresa }}</div>
+      <div class="form">
+        <label for="">Empresa</label>
+        <div class="input">{{ form_profissional.empresa }}</div>
+      </div>
+  
+      <div class="form">
+        <label for="">Cargo</label>
+        <div class="input">{{ form_profissional.cargo }}</div>
+      </div>
+  
     </div>
-
-    <div class="form">
-      <label for="">Cargo</label>
-      <div class="input">{{ form_profissional.cargo }}</div>
+  
+    <div class="bloco2">
+  
+      <div class="form">
+        <label for="">Setor da Empresa</label>
+        <div class="input">{{ form_profissional.setor_empresa }}</div>
+      </div>
+  
+      <div class="form">
+        <label for="">Salário</label>
+        <div class="input">{{ form_profissional.salario }}</div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <div class="form_data">
+    <div class="bloco3">
+      <label class="data_ingresso" for="">Data de Ingresso</label>
+        <div class="input">{{ form_profissional.data_ingresso }}</div>
     </div>
 
   </div>
+    
 
-  <div class="bloco2">
-
-    <div class="form">
-      <label for="">Setor da Empresa</label>
-      <div class="input">{{ form_profissional.setor_empresa }}</div>
-    </div>
-
-    <div class="form">
-      <label for="">Salário</label>
-      <div class="input">{{ form_profissional.salario }}</div>
-    </div>
-
-  </div>
+<div class="id">
+ {{  form_profissional.id_proprietario  }}
+</div>
 
 </div>
 <div class="botao">
-<button type="submit">Adicionar Histórico</button>
+<button type="submit">Adicionar ao Histórico</button>
 </div>
 
 </form>
 
-<div class="historicos">
-
+<hr>
+<h1>Históricos</h1>
   {% for historico in historicos %}
-  <div class="bloco-historico">
-    <p>Empresa: {{ historico.empresa }}</p>
-    <p>Cargo: {{ historico.cargo }}</p>
-    <p>Setor: {{ historico.setor_empresa }}</p>
-    <p>Salario: {{ historico.salario }}</p>
-  </div>
+    {% if historico.id_proprietario == user.id %}
+    <div class="bloco-historico">
+        <p>{{historico.data_ingresso}}</p>
+        <br>
+        <div class="bloco-infos">
+          <div class="bloco1">
+            <p>Empresa: {{ historico.empresa }}</p>
+            <p>Cargo: {{ historico.cargo }}</p>
+          </div>
+          <div class="bloco2">
+            <p>Setor: {{ historico.setor_empresa }}</p>
+            <p>Salario: {{ historico.salario }}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
   {% endfor %}
-  <!-- {% if historico.id_proprietario == user.id %} -->
-  <!-- {% endif %} -->
 
-</div>
-
-  {% endblock %}
+{% endblock %}
