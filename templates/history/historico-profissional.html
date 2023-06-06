@@ -2,42 +2,67 @@
 {% load static %}
 
 {% block content %}
+
+<div class="background">
+  <img src="{% static 'img/foto_historico.png' %}" alt="Imagem de fundo">
+</div>
+
+<div class="logo">
+  <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo"></a>
+</div>
+
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
+<div class="historico-profissional">
 
-<div class="form">
-  <label for="">Empresa</label>
-  {{ form_profissional.empresa }}
+  <div class="bloco1">
+
+    <div class="form">
+      <label for="">Empresa</label>
+      <div class="input">{{ form_profissional.empresa }}</div>
+    </div>
+
+    <div class="form">
+      <label for="">Cargo</label>
+      <div class="input">{{ form_profissional.cargo }}</div>
+    </div>
+
+  </div>
+
+  <div class="bloco2">
+
+    <div class="form">
+      <label for="">Setor da Empresa</label>
+      <div class="input">{{ form_profissional.setor_empresa }}</div>
+    </div>
+
+    <div class="form">
+      <label for="">Salário</label>
+      <div class="input">{{ form_profissional.salario }}</div>
+    </div>
+
+  </div>
+
+</div>
+<div class="botao">
+<button type="submit">Adicionar Histórico</button>
 </div>
 
-<div class="form">
-  <label for="">Cargo</label>
-  {{ form_profissional.cargo }}
-</div>
-
-<div class="form">
-  <label for="">Setor da Empresa</label>
-  {{ form_profissional.setor_empresa }}
-</div>
-
-<div class="form">
-  <label for="">Salário</label>
-  {{ form_profissional.salario }}
-</div>
-
-  <button type="submit">Enviar Histórico</button>
 </form>
 
-{% for historico in historicos %}
-
 <div class="historicos">
-  <p>Empresa: {{ historico.empresa }}</p>
-  <p>Cargo: {{ historico.cargo }}</p>
-  <p>Setor: {{ historico.descricao }}</p>
-  <p>Salario: {{ historico.salario }}</p>
+
+  {% for historico in historicos %}
+  <div class="bloco-historico">
+    <p>Empresa: {{ historico.empresa }}</p>
+    <p>Cargo: {{ historico.cargo }}</p>
+    <p>Setor: {{ historico.setor_empresa }}</p>
+    <p>Salario: {{ historico.salario }}</p>
+  </div>
+  {% endfor %}
+  <!-- {% if historico.id_proprietario == user.id %} -->
+  <!-- {% endif %} -->
+
 </div>
 
-<!-- {% if historico.id_proprietario == user.id %} -->
-<!-- {% endif %} -->
-{% endfor %}
-{% endblock %}
+  {% endblock %}

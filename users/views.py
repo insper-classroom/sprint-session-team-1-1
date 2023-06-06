@@ -223,6 +223,6 @@ def historico_profissional(request):
 
     else:
         form_profissional = forms.HistoricoProfissionalForm(initial={'id_proprietario': user.id})
-        historicos_profissionais = HistoricoProfissional.objects.all()
+        historicos_profissionais = HistoricoProfissional.objects.all().order_by('-criado_em')
         return render(request, 'history/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais})
 

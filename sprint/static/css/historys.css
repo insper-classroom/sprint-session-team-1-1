@@ -1,0 +1,73 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Urbanist', sans-serif;
+    box-sizing: content-box;
+  }
+     
+  .background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .background img{
+    position: fixed;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    object-fit: cover;
+    height: 110%;
+    width: 100%;
+  }
+
+  .logo{
+    width: 250px;
+    padding: 10px 20px;
+  }
+
+  
+  .historico-profissional{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .bloco1{
+    display: block;
+    flex-direction: column;
+  }
+
+  .bloco2{
+    display: block;
+    flex-direction: column;
+  }
+
+  .botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .historicos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bloco-historico{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #000;
+    width: 50%;
+    margin: 0 auto;
+  }
