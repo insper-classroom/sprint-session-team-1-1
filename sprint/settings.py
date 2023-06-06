@@ -145,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br' # linguagem português do Brasil é 'pt-br'
 
-TIME_ZONE = 'UTC' # fuso horário do Brasil é 'America/Sao_Paulo'
+TIME_ZONE = 'America/Sao_Paulo' # fuso horário do Brasil é 'America/Sao_Paulo'
 
 USE_I18N = True
 

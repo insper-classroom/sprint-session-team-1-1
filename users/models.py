@@ -51,33 +51,33 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     )
 
     States = (
-        ('Acre', 'Acre'),
-        ('Alagoas', 'Alagoas'),
-        ('Amapá', 'Amapá'),
-        ('Amazonas', 'Amazonas'),
-        ('Bahia', 'Bahia'),
-        ('Ceará', 'Ceará'),
-        ('Distrito Federal', 'Distrito Federal'),
-        ('Espírito Santo', 'Espírito Santo'),
-        ('Goiás', 'Goiás'),
-        ('Maranhão', 'Maranhão'),
-        ('Mato Grosso', 'Mato Grosso'),
-        ('Mato Grosso do Sul', 'Mato Grosso do Sul'),
-        ('Minas Gerais', 'Minas Gerais'),
-        ('Pará', 'Pará'),
-        ('Paraíba', 'Paraíba'),
-        ('Paraná', 'Paraná'),
-        ('Pernambuco', 'Pernambuco'),
-        ('Piauí', 'Piauí'),
-        ('Rio de Janeiro', 'Rio de Janeiro'),
-        ('Rio Grande do Norte', 'Rio Grande do Norte'),
-        ('Rio Grande do Sul', 'Rio Grande do Sul'),
-        ('Rondônia', 'Rondônia'),
-        ('Roraima', 'Roraima'),
-        ('Santa Catarina', 'Santa Catarina'),
-        ('São Paulo', 'São Paulo'),
-        ('Sergipe', 'Sergipe'),
-        ('Tocantins', 'Tocantins')
+        ('AC', 'AC'),
+        ('AL', 'AL'),
+        ('AP', 'AP'),
+        ('AM', 'AM'),
+        ('BA', 'BA'),
+        ('CE', 'CE'),
+        ('DF', 'DF'),
+        ('ES', 'ES'),
+        ('GO', 'GO'),
+        ('MA', 'MA'),
+        ('MT', 'MT'),
+        ('MS', 'MS'),
+        ('MG', 'MG'),
+        ('PA', 'PA'),
+        ('PB', 'PB'),
+        ('PR', 'PR'),
+        ('PE', 'PE'),
+        ('PI', 'PI'),
+        ('RJ', 'RJ'),
+        ('RN', 'RN'),
+        ('RS', 'RS'),
+        ('RO', 'RO'),
+        ('RR', 'RR'),
+        ('SC', 'SC'),
+        ('SP', 'SP'),
+        ('SE', 'SE'),
+        ('TO', 'TO')
     )
 
     User_type = (
@@ -115,3 +115,10 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     ano_formatura = models.CharField(max_length=4, null=True, verbose_name='Ano de Formatura')
     renda_familiar = models.CharField(max_length=100, choices=Income, blank=True, null=True, verbose_name='Renda Familiar')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE) # Um usuário tem UM perfil, e quando o usuário é deletado, o perfil também é (CASCADE).
+
+
+class Keys(models.Model):
+    key = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.key

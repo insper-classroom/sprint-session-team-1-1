@@ -1,4 +1,5 @@
 from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect
@@ -8,9 +9,10 @@ from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from datetime import datetime
 from .forms import UserForm
+from .models import Keys
 from . import edit_form
 from . import forms
-
+import random
 
 
 # Create your views here.
@@ -62,27 +64,27 @@ class UserCreate(CreateView):
         return super().form_valid(form)
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = forms.UserForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save()
+# def signup(request):
+#     if request.method == 'POST':
+#         form = forms.UserForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             user = form.save()
             
-            group_names = list(Group.objects.values_list('name', flat=True))
-            if 'bolsista' not in group_names:
-                bolsista = Group(name='bolsista')
-                bolsista.save()
-            else:   
-                bolsista = Group.objects.get(name='bolsista')
+#             group_names = list(Group.objects.values_list('name', flat=True))
+#             if 'bolsista' not in group_names:
+#                 bolsista = Group(name='bolsista')
+#                 bolsista.save()
+#             else:   
+#                 bolsista = Group.objects.get(name='bolsista')
                 
-            user.groups.add(bolsista)
+#             user.groups.add(bolsista)
 
-            return redirect('/accounts/login/')
+#             return redirect('/accounts/login/')
         
-    else:
-        form = UserForm()
+#     else:
+#         form = UserForm()
 
-    return render(request, 'users/signup.html', {'form': form})
+#     return render(request, 'users/signup.html', {'form': form})
 
 
 @login_required
@@ -192,3 +194,53 @@ def edit(request):
         form.fields['username'].validators.append(UnicodeUsernameValidator())
 
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user, 'img_user': img_user})
+
+def gerador():
+    caracteres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
+    key = ""
+
+    for i in range(50):
+        indice = random.randint(0, len(caracteres)-1) # Gera um índice aleatório
+        key += caracteres[indice]  # Concatena o caractere correspondente ao índice na chave
+
+    # Salvando a chave no banco de dados
+    return key
+
+
+def signup(request, key):
+    lista_keys = Keys.objects.all()
+    for ativa in lista_keys:
+        if key == ativa.key:  # Verifique se a chave corresponde à chave no objeto
+            if request.method == 'POST':
+                form = forms.UserForm(request.POST, request.FILES)
+                if form.is_valid():
+                    user = form.save()
+                    group_names = list(Group.objects.values_list('name', flat=True))
+                    if 'bolsista' not in group_names:
+                        bolsista = Group(name='bolsista')
+                        bolsista.save()
+                    else:   
+                        bolsista = Group.objects.get(name='bolsista')
+                    user.groups.add(bolsista)
+                    # Excluir a chave
+                    ativa.delete()
+                    return redirect('/accounts/login/')       
+            else:
+                form = UserForm()
+            return render(request, 'users/signup.html', {'form': form})
+    return redirect('/')
+
+
+def redirect_home(request):
+    return redirect('/')
+
+@login_required
+def generate_link(request):
+    user = request.user
+    if user.profile.tipo_usuario == 'Admin' and user.profile.tipo_usuario == 'Colaborador':
+        key = gerador()
+        key_obj = Keys(key=key)
+        key_obj.save()
+        return HttpResponse(f"<h1>localhost:8000/accounts/signup/{key}</h1>")
+    else:
+        return redirect('/')

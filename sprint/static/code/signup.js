@@ -43,11 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
       estados.required = true;
       estados.style.display = '';
       estados.parentElement.previousElementSibling.style.display = '';
+      estados.parentElement.parentElement.style.display = '';
+
     } else {
       estados.required = false;
-      estadoParaDebug = estados;
       estados.style.display = 'none';
       estados.parentElement.previousElementSibling.style.display = 'none';
+      estados.parentElement.parentElement.style.display = 'none';
+
       estados.value = '';
     }
   }
@@ -56,9 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (estados.value !== '') {
       cidade.style.display = '';
       cidade.parentElement.previousElementSibling.style.display  = '';
+      cidade.parentElement.parentElement.style.display  = '';
+
     } else {
       cidade.style.display = 'none';
       cidade.parentElement.previousElementSibling.style.display  = 'none';
+      cidade.parentElement.parentElement.style.display  = 'none';
+
     }
   }
 

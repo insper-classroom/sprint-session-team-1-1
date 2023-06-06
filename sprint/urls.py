@@ -17,6 +17,7 @@ Including another URLconf
 """
 from django.urls import path, include # include is new
 from users.views import custom_logout
+from users.views import generate_link
 from django.contrib import admin
 
 urlpatterns = [
@@ -26,5 +27,6 @@ urlpatterns = [
     path('accounts/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('search/', include('search.urls')),
+    path('generate/', generate_link, name='generate'),
     path('', include('home.urls')),
 ]
