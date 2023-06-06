@@ -1,13 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm # Classe que já vem com o Django para criar um formulário de registro de usuários
 from django.contrib.auth.models import User
 from datetime import datetime
-from .models import Profile
 from django import forms
+
+from .models import Profile
 
 
 class UserForm(UserCreationForm):
-
-    #Formulario base
     username = forms.CharField(max_length=100, required=True) # O campo username não é obrigatório
     email = forms.EmailField(max_length=100, required=True) # O campo email é obrigatório
     password1 = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput) # O campo password1 é obrigatório
@@ -71,6 +70,7 @@ class UserForm(UserCreationForm):
         'ano_formatura',
         'renda_familiar',
         ] # Campos que serão exibidos no formulário de registro
+
 
     def save(self, commit=True): # Sobrescrevemos o método save para adicionar o email ao usuário
         user = super(UserForm, self).save(commit=False) # Chamamos o método save da classe UserCreationForm

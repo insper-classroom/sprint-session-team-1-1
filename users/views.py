@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -8,24 +10,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from datetime import datetime
+
 from .forms import UserForm
 from .models import Keys
 from . import edit_form
 from . import forms
-import random
 
 
-# Create your views here.
+def home(request):
+    return render(request, 'home-page/home.html')
 
-# Aqui nas views, teremos o cadastro de usuários
+
 class UserCreate(CreateView):
-    # template_name = ""
     form_class = forms.UserForm # Aqui, definimos o formulário que será usado para o cadastro de usuários
     success_url = reverse_lazy('home') # Aqui, definimos a URL para onde o usuário será redirecionado após o cadastro
 
+
     def get_context_data(self, *args, **kwargs): # Sobrescrevemos o método get_context_data para adicionar mais campos ao contexto
         context = super().get_context_data(*args, **kwargs)
-
         # Aqui, adicionamos os campos do Profile ao contexto para que possam ser preenchidos pelo usuário
         context['nome'] = self.request.POST.get('nome')
         context['sobrenome'] = self.request.POST.get('sobrenome')
@@ -55,6 +57,7 @@ class UserCreate(CreateView):
         
         return context
     
+
     def form_valid(self, form):
         # Determinar o tipo de usuário com base na data de formatura
         ano_formatura = form.instance.ano_formatura
@@ -68,17 +71,7 @@ class UserCreate(CreateView):
 #     if request.method == 'POST':
 #         form = forms.UserForm(request.POST, request.FILES)
 #         if form.is_valid():
-#             user = form.save()
-            
-#             group_names = list(Group.objects.values_list('name', flat=True))
-#             if 'bolsista' not in group_names:
-#                 bolsista = Group(name='bolsista')
-#                 bolsista.save()
-#             else:   
-#                 bolsista = Group.objects.get(name='bolsista')
-                
-#             user.groups.add(bolsista)
-
+#             form.save()
 #             return redirect('/accounts/login/')
         
 #     else:
@@ -110,10 +103,8 @@ def custom_logout(request):
     return redirect('home')
 
 
-
 @login_required
 def edit(request):
-
     user = request.user
     profile = user.profile
     img = profile.foto_perfil
@@ -132,8 +123,6 @@ def edit(request):
                     profile.nome_exibicao = new_username
                 else:
                     form.add_error('username', 'A user with that username already exists.')
-            #
-
             # Determinar o tipo de usuário com base na data de formatura
             if profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor' and profile.tipo_usuario != 'Colaborador':
                 ano_formatura = int(form.cleaned_data['ano_formatura'])
@@ -233,6 +222,7 @@ def signup(request, key):
 
 def redirect_home(request):
     return redirect('/')
+
 
 @login_required
 def generate_link(request):
