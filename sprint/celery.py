@@ -30,11 +30,11 @@ app.conf.beat_schedule = {
                 # 'args': 
         },
 
-        # 'send-email-periodic': {
-        #         'task' : 'send_email.tasks.send_email_func',
-        #         'schedule': crontab(hour = 12, minute = 39, day_of_month = 6, month_of_year = 6)
-        #         # 'args': 
-        # }
+        'send-email-periodic': {
+                'task' : 'send_email.tasks.send_email_func',
+                'schedule': crontab(hour = 13, minute = 45, day_of_month = 6, month_of_year = 6)
+                # 'args': 
+        }
 }
  
 app.autodiscover_tasks()
