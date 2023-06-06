@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+# from django.shortcuts import render
 from .tasks import test_func
 from send_email.tasks import send_email_func
 from django_celery_beat.models import PeriodicTask, CrontabSchedule

@@ -18,11 +18,23 @@ app.conf.update(timezone = 'America/Sao_Paulo')
 app.config_from_object(settings, namespace = 'CELERY')
 
 app.conf.beat_schedule = {
-        'send-email-periodic': {
+        'send-email-periodic1': {
                 'task' : 'send_email.tasks.send_email_func',
-                'schedule': crontab(hour = 18, minute = 15, day_of_month = 5, month_of_year = 6)
+                'schedule': crontab(hour = 12, minute = 0, day_of_month = 5, month_of_year = 1)
                 # 'args': 
-        }
+        },
+
+        'send-email-periodic2': {
+                'task' : 'send_email.tasks.send_email_func',
+                'schedule': crontab(hour = 12, minute = 0, day_of_month = 5, month_of_year = 8)
+                # 'args': 
+        },
+
+        # 'send-email-periodic': {
+        #         'task' : 'send_email.tasks.send_email_func',
+        #         'schedule': crontab(hour = 12, minute = 39, day_of_month = 6, month_of_year = 6)
+        #         # 'args': 
+        # }
 }
  
 app.autodiscover_tasks()
