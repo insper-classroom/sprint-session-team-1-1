@@ -20,23 +20,9 @@ app.config_from_object(settings, namespace = 'CELERY')
 app.conf.beat_schedule = {
         'send-email-periodic1': {
                 'task' : 'send_email.tasks.send_email_func',
-                'schedule': crontab(hour = 12, minute = 0, day_of_month = 5, month_of_year = 1)
-                # 'args': 
-        },
-
-        'send-email-periodic2': {
-                'task' : 'send_email.tasks.send_email_func',
-                'schedule': crontab(hour = 12, minute = 0, day_of_month = 5, month_of_year = 8)
-                # 'args': 
-        },
-
-        'send-email-periodic': {
-                'task' : 'send_email.tasks.send_email_func',
-                'schedule': crontab(hour = 13, minute = 45, day_of_month = 6, month_of_year = 6)
-                # 'args': 
+                'schedule': crontab('tue') }
         }
-}
- 
+
 app.autodiscover_tasks()
 
 @app.task(bind = True)

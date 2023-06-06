@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #providers
     'allauth.socialaccount.providers.google',
-    'emails',
     'django_celery_results',
     'django_celery_beat',
     'send_email'
@@ -198,5 +197,3 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-
-# bljdtokhqiylgvbt
