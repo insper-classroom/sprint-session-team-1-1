@@ -27,7 +27,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('emails.urls')),
     # path('accounts/profile/', include('user_profile.urls')),
-        path('search/', include('search.urls')),
+    path('search/', include('search.urls')),
 
     path('', include('home.urls')),
 ]
