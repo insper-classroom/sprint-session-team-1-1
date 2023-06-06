@@ -7,9 +7,18 @@
   <img src="{% static 'img/foto_historico.png' %}" alt="Imagem de fundo">
 </div>
 
-<div class="logo">
-  <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação" class="logo"></a>
-</div>
+<nav>
+  <a href="https://tellesfoundation.uk/pt/home/"><div class="logo"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a></div>
+  <div class="nav-links">
+      <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+          <li><a href="{% url 'historico_profissional' %}" class="historico-link">HISTÓRICO PROFISSIONAL</a></li>
+          <li><a href="{% url 'historico_escolar' %}">HISTÓRICO ESCOLAR</a></li>
+          <li><a href="{% url 'logout' %}">SAIR</a></li>
+      </ul>
+  </div>
+</nav>
 
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
