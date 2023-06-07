@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm # Classe que já vem com o Django para criar um formulário de registro de usuários
 from django.contrib.auth.models import User
 from datetime import datetime
-from .models import Profile, HistoricoEscolar, HistoricoProfissional
+from .models import Profile, HistoricoAcademico, HistoricoProfissional
 from django import forms
 
 from .models import Profile
@@ -131,7 +131,7 @@ class UserForm(UserCreationForm):
 
 
 
-class HistoricoEscolarForm(forms.ModelForm):
+class HistoricoAcademicoForm(forms.ModelForm):
     id_proprietario = forms.NumberInput()
     media = forms.CharField(max_length=100, required=True)
     campo_extra = forms.CharField(max_length=100, required=False)
@@ -139,7 +139,7 @@ class HistoricoEscolarForm(forms.ModelForm):
     pdf = forms.FileField(required=True)
 
     class Meta:
-        model = HistoricoEscolar
+        model = HistoricoAcademico
         fields = [
             'id_proprietario',
             'semestre_atual',

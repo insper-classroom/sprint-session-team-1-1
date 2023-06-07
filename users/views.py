@@ -9,7 +9,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
-from .models import HistoricoEscolar
+from .models import HistoricoAcademico
 from .models import HistoricoProfissional
 from datetime import datetime
 
@@ -228,18 +228,18 @@ def edit(request):
 
 
 @login_required
-def historico_escolar(request):
+def historico_academico(request):
     user= request.user
     if request.method == 'POST':
-        form_escolar = forms.HistoricoEscolarForm(request.POST, request.FILES)
-        if form_escolar.is_valid():
-            form_escolar.save()
-        return redirect('/accounts/profile/history/school')
+        form_academico = forms.HistoricoEscolarForm(request.POST, request.FILES)
+        if form_academico.is_valid():
+            form_academico.save()
+        return redirect('/accounts/profile/history/academic')
 
     else:
-        form_escolar = forms.HistoricoEscolarForm(initial={'id_proprietario': user.id})
-        historicos_escolares = HistoricoEscolar.objects.all().order_by('-criado_em')
-        return render(request, 'history/historico-escolar.html', {'form_escolar': form_escolar, 'historicos': historicos_escolares, 'user': user})
+        form_academico = forms.HistoricoAcademicoForm(initial={'id_proprietario': user.id})
+        historicos_academicos = HistoricoAcademico.objects.all().order_by('-criado_em')
+        return render(request, 'history/historico-academico.html', {'form_academico': form_academico, 'historicos': historicos_academicos, 'user': user})
     
 @login_required
 def historico_profissional(request):

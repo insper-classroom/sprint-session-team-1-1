@@ -119,7 +119,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
 
 
 
-class HistoricoEscolar(models.Model):
+class HistoricoAcademico(models.Model):
     id_proprietario = models.IntegerField(blank=True, null=True, verbose_name="id_proprietario")
     media = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
     campo_extra = models.CharField(max_length=100, blank=True, null=True, verbose_name="campo extra")

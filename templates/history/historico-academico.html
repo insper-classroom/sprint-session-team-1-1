@@ -1,0 +1,92 @@
+{% extends "history/base-historico.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="background">
+  <img src="{% static 'img/foto_historico.png' %}" alt="Imagem de fundo">
+</div>
+
+<nav>
+  <a href="https://tellesfoundation.uk/pt/home/"><div class="logo"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a></div>
+  <div class="nav-links">
+      <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+          <li><a href="{% url 'historico_profissional' %}">HISTÓRICO PROFISSIONAL</a></li>
+          <li><a href="{% url 'historico_escolar' %}" class="historico-link">HISTÓRICO ACADÊMICO</a></li>
+          <li><a href="{% url 'logout' %}">SAIR</a></li>
+      </ul>
+  </div>
+</nav>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Atualização de Histórico Acadêmico</h1>
+    <div class="historico-escolar"></div>
+
+      <section>
+        <div class="bloco1">
+
+          <div class="form">
+            <label for="">Semestre atual</label>
+            <div class="input">{{ form_academico.semestre_atual }}</div>
+          </div>
+
+          <div class="form">
+            <label for="">Média das notas</label>
+            <div class="input">{{ form_academico.media }}</div>
+          </div>
+        </div>
+
+        <div class="bloco2">
+          
+          <div class="form">
+            <label for="">Campo extra</label>
+            <div class="input">{{ form_academico.campo_extra }}</div>
+          </div>
+
+          <div class="form">
+            <label for="">Anexo PDF</label>
+            <div class="input">{{ form_academico.pdf }}</div>
+          </div>
+
+        </div>
+      </section>
+
+    
+   
+      
+      <div class="id">
+        <div class="input">{{ form_academico.id_proprietario }}</div>
+      </div>
+    </div>
+
+    <div class="botao">
+      <button type="submit">Enviar Histórico</button>
+    </div>
+
+  </form>
+  <hr>
+  <h1>Históricos</h1>
+  {% for historico in historicos %}
+    {% if historico.id_proprietario == user.id %}
+
+    <div class="bloco-historico">
+      <div class="bloco-infos">
+        <div class="bloco1">
+          <p>Semestre atual: {{ historico.semestre_atual }}</p>
+          <p>Média das Notas: {{ historico.media }}</p>
+        </div>
+        <div class="bloco2">
+          <p>Comentário: {{ historico.campo_extra }}</p>
+          <p>PDF: <a href="{{ historico.pdf.url }}">Download</a></p>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+{% endfor %}
+{% endblock %}
+
+
