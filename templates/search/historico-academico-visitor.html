@@ -11,10 +11,9 @@
   <a href="https://tellesfoundation.uk/pt/home/"><div class="logo"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a></div>
   <div class="nav-links">
       <ul>
-        <li><a href="{% url 'profile' %}">HOME</a></li>
         <li><a href="/search/{{ user.id }}" class="perfil-link">PERFIL</a></li>
-        <li><a href="/search/history/academic/{{ user.id }}" class="historico-link">HISTÓRICO PROFISSIONAL</a></li>
-        <li><a href="/search/history/professional/{{ user.id }}" class="historico-link">HISTÓRICO ACADÊMICO</a></li>
+        <li><a href="/search/history/professional/{{ user.id }}">HISTÓRICO PROFISSIONAL</a></li>
+        <li><a href="/search/history/academic/{{ user.id }}" class="historico-link">HISTÓRICO ACADÊMICO</a></li>
         <li><a href="{% url 'logout' %}">SAIR</a></li>
       </ul>
   </div>

@@ -5,18 +5,29 @@
 
 {% block content %}
 
+<div class="background">
+    <img src="{% static 'users/img/background-profile.png' %}"/>
+</div>
+
 {% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
 
     <!-- <div class="background">
         <img src="{% static 'img/fundo_login.jpg' %}">
     </div> -->
 
-    <div class="logo">
-        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}"></a>
-    </div>
+    <nav>
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
+        <div class="nav-links">
+            <ul>
 
-    <div class="navbar">
-    </div>
+                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
+                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                
+            </ul>
+        </div>
+    </nav>
 
 
     {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}

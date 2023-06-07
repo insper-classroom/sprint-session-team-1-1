@@ -9,10 +9,17 @@
         <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
+                {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
                 <li><a href="{% url 'profile' %}" class="perfil-link">PERFIL</a></li>
                 <li><a href="{% url 'historico_profissional' %}">HISTÓRICO PROFISSIONAL</a></li>
                 <li><a href="{% url 'historico_escolar' %}">HISTÓRICO ESCOLAR</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
+                {% else %}
+                <li><a href="{% url 'profile' %}" class="perfil-link">PERFIL</a></li>
+                <li><a href="/search/">BUSCA</a></li>
+                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -56,7 +63,9 @@
                     <p> {{ user.profile.curso }} </p>
                     <label> Renda Familiar: </label>
                     <p> {{ user.profile.renda_familiar }} </p>
+                    {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
                     <button class="button-editar" onclick="window.location.href='edit/'"><a href="edit/" class="link-botao">EDITAR</a></button>
+                    {% endif %}
                 </div>
             </div>
 
