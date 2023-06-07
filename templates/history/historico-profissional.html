@@ -22,6 +22,8 @@
 
 <form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
+
+{% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
 <h1>Atualização de Emprego</h1>
 <div class="historico-profissional">
 
@@ -73,8 +75,8 @@
 </div>
 
 </form>
-
 <hr>
+{% endif %}
 <h1>Históricos</h1>
   {% for historico in historicos %}
     {% if historico.id_proprietario == user.id %}
@@ -88,7 +90,7 @@
           </div>
           <div class="bloco2">
             <p>Setor: {{ historico.setor_empresa }}</p>
-            <p>Salario: {{ historico.salario }}</p>
+            <p>Salário: {{ historico.salario }}</p>
           </div>
         </div>
       </div>
