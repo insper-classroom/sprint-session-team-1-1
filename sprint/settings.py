@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'jazzmin',
 
     'users.apps.UsersConfig', # app users
-    'home.apps.HomeConfig', # app home
     'search.apps.SearchConfig', # app search
 
     'django.contrib.admin',

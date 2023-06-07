@@ -107,7 +107,7 @@ nav{
   
 .finalizar{
   bottom: 40px;
-  right: 77px;
+  right: 40px;
   position: absolute;
   display: block;
   margin-left: 89%;
@@ -259,7 +259,7 @@ input #id_nome{
 }
 
 .img_perfil{
-  width: 105px;
+  width: 70px;
   border: solid 2px;
   border-color: rgb(29, 29, 27);
   margin-left: 22px;
