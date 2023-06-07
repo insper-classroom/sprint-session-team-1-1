@@ -127,8 +127,7 @@ nav img{
 
 .profile-info img{
     width: 105px;
-    border: 2px solid;
-    border-color: rgb(29, 29, 27);
+    border: transparent;
 }
 
 .button-editar{
