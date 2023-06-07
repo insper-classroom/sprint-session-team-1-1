@@ -1,6 +1,6 @@
 * {
     margin: 0px;
-    padding: 0px;
+    /* padding: 0px; */
     font-family: 'Urbanist', sans-serif;
     box-sizing: content-box;
   }
@@ -114,7 +114,7 @@ nav img{
 
   .logo{
     width: 250px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
   }
 
   
