@@ -9,6 +9,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
+from .models import HistoricoEscolar
+from .models import HistoricoProfissional
 from datetime import datetime
 
 from .forms import UserForm
@@ -66,20 +68,6 @@ class UserCreate(CreateView):
         form.instance.tipo_usuario = tipo_usuario
         return super().form_valid(form)
 
-
-# def signup(request):
-#     if request.method == 'POST':
-#         form = forms.UserForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/accounts/login/')
-        
-#     else:
-#         form = UserForm()
-
-#     return render(request, 'users/signup.html', {'form': form})
-
-
 @login_required
 def profile(request):
     user = request.user
@@ -103,12 +91,66 @@ def custom_logout(request):
     return redirect('home')
 
 
+
+# Função que gera uma key unica para ser usada no signup do usuario
+def gerador():
+    caracteres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
+    key = ""
+
+    for i in range(50):
+        indice = random.randint(0, len(caracteres)-1) # Gera um índice aleatório
+        key += caracteres[indice]  # Concatena o caractere correspondente ao índice na chave
+
+    return key
+
+def redirect_home(request):
+    return redirect('/')
+
+@login_required
+def generate_link(request):
+    user = request.user
+    if user.profile.tipo_usuario == 'Admin' or user.profile.tipo_usuario == 'Colaborador':
+        key = gerador()
+        key_obj = Keys(key=key) 
+        key_obj.save() # Salvando a chave no banco de dados
+        return HttpResponse(f"<h1>localhost:8000/accounts/signup/{key}</h1>")
+    else:
+        return redirect('/')
+
+# Signup 2.0, a função foi refeita usando a primeira de base para agora suportar o link gerado aleatoriamente.
+def signup(request, key):
+    lista_keys = Keys.objects.all()
+    for ativa in lista_keys:
+        if key == ativa.key:  # Verifique se a chave corresponde à chave no objeto
+            if request.method == 'POST':
+                form = forms.UserForm(request.POST, request.FILES)
+                if form.is_valid():
+                    user = form.save()
+                    group_names = list(Group.objects.values_list('name', flat=True))
+                    if 'bolsista' not in group_names:
+                        bolsista = Group(name='bolsista')
+                        bolsista.save()
+                    else:   
+                        bolsista = Group.objects.get(name='bolsista')
+                    user.groups.add(bolsista)
+                    # Excluir a chave
+                    ativa.delete()
+                    return redirect('/accounts/login/')       
+            else:
+                form = UserForm()
+            return render(request, 'users/signup.html', {'form': form})
+    return redirect('/')
+
+
+
+#Código para edição de usuario
 @login_required
 def edit(request):
     user = request.user
     profile = user.profile
     img = profile.foto_perfil
     img_user = "/".join(str(img).split('/')[2:])
+
     if request.method == 'POST':
         username_old = user.username
         form = edit_form.EditForm(request.POST, request.FILES, instance=user)
@@ -184,53 +226,31 @@ def edit(request):
 
     return render(request, 'profile/edit/edit.html', {'form': form, 'user': user, 'img_user': img_user})
 
-def gerador():
-    caracteres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
-    key = ""
-
-    for i in range(50):
-        indice = random.randint(0, len(caracteres)-1) # Gera um índice aleatório
-        key += caracteres[indice]  # Concatena o caractere correspondente ao índice na chave
-
-    # Salvando a chave no banco de dados
-    return key
-
-
-def signup(request, key):
-    lista_keys = Keys.objects.all()
-    for ativa in lista_keys:
-        if key == ativa.key:  # Verifique se a chave corresponde à chave no objeto
-            if request.method == 'POST':
-                form = forms.UserForm(request.POST, request.FILES)
-                if form.is_valid():
-                    user = form.save()
-                    group_names = list(Group.objects.values_list('name', flat=True))
-                    if 'bolsista' not in group_names:
-                        bolsista = Group(name='bolsista')
-                        bolsista.save()
-                    else:   
-                        bolsista = Group.objects.get(name='bolsista')
-                    user.groups.add(bolsista)
-                    # Excluir a chave
-                    ativa.delete()
-                    return redirect('/accounts/login/')       
-            else:
-                form = UserForm()
-            return render(request, 'users/signup.html', {'form': form})
-    return redirect('/')
-
-
-def redirect_home(request):
-    return redirect('/')
-
 
 @login_required
-def generate_link(request):
-    user = request.user
-    if user.profile.tipo_usuario == 'Admin' and user.profile.tipo_usuario == 'Colaborador':
-        key = gerador()
-        key_obj = Keys(key=key)
-        key_obj.save()
-        return HttpResponse(f"<h1>localhost:8000/accounts/signup/{key}</h1>")
+def historico_escolar(request):
+    user= request.user
+    if request.method == 'POST':
+        form_escolar = forms.HistoricoEscolarForm(request.POST, request.FILES)
+        if form_escolar.is_valid():
+            form_escolar.save()
+        return redirect('/accounts/profile/history/school')
+
     else:
-        return redirect('/')
+        form_escolar = forms.HistoricoEscolarForm(initial={'id_proprietario': user.id})
+        historicos_escolares = HistoricoEscolar.objects.all().order_by('-criado_em')
+        return render(request, 'history/historico-escolar.html', {'form_escolar': form_escolar, 'historicos': historicos_escolares, 'user': user})
+    
+@login_required
+def historico_profissional(request):
+    user= request.user
+    if request.method == 'POST':
+        form_profissional = forms.HistoricoProfissionalForm(request.POST, request.FILES)
+        if form_profissional.is_valid():
+            form_profissional.save()
+        return redirect('/accounts/profile/history/professional')
+
+    else:
+        form_profissional = forms.HistoricoProfissionalForm(initial={'id_proprietario': user.id})
+        historicos_profissionais = HistoricoProfissional.objects.all().order_by('-criado_em')
+        return render(request, 'history/historico-profissional.html', {'form_profissional': form_profissional, 'historicos': historicos_profissionais, 'user': user})

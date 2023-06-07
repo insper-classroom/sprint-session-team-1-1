@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm # Classe que já vem com o Django para criar um formulário de registro de usuários
 from django.contrib.auth.models import User
 from datetime import datetime
+from .models import Profile, HistoricoEscolar, HistoricoProfissional
 from django import forms
 
 from .models import Profile
@@ -127,3 +128,41 @@ class UserForm(UserCreationForm):
             if 'cor_ou_raca' in self.data and self.data['cor_ou_raca'] == 'Outra':
                 self.fields['outra_cor_ou_raca'].required = True
                 self.fields['outra_cor_ou_raca'].widget.attrs['style'] = '' #Torna visivel
+
+
+
+class HistoricoEscolarForm(forms.ModelForm):
+    id_proprietario = forms.NumberInput()
+    media = forms.CharField(max_length=100, required=True)
+    campo_extra = forms.CharField(max_length=100, required=False)
+    semestre_atual = forms.CharField(max_length=100, required=True)
+    pdf = forms.FileField(required=True)
+
+    class Meta:
+        model = HistoricoEscolar
+        fields = [
+            'id_proprietario',
+            'semestre_atual',
+            'media',
+            'pdf', 
+            'campo_extra'
+        ]
+            
+class HistoricoProfissionalForm(forms.ModelForm):
+    id_proprietario = forms.NumberInput()
+    empresa = forms.CharField(max_length=100, required=True)
+    cargo = forms.CharField(max_length=100, required=True)
+    setor_empresa = forms.CharField(max_length=100, required=True)
+    salario = forms.CharField(max_length=100, required=True)
+    data_ingresso = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=True)
+
+    class Meta:
+        model = HistoricoProfissional
+        fields = [
+            'id_proprietario',
+            'empresa',
+            'cargo',
+            'setor_empresa',
+            'salario',
+            'data_ingresso'
+        ]
