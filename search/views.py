@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import datetime
+from users.models import HistoricoAcademico
+from users.models import HistoricoProfissional
 from .filters import apply_filters
 import matplotlib.pyplot as plt
 import matplotlib 
@@ -17,20 +19,19 @@ import urllib, base64
 def individual_table(request):
     user = request.user
     profile = user.profile 
-    # if profile.tipo_usuario != 'Colaborador' and profile.tipo_usuario != 'Admin':
-    #     return redirect('/')
-    # else:
-    all_users = User.objects.all().order_by('-date_joined')
-    # for user in all_users:
-    filtered_users = apply_filters(all_users, request)
-    return render(request, 'search/search.html', {'users': filtered_users})
+    if profile.tipo_usuario != 'Colaborador' and profile.tipo_usuario != 'Admin':
+        return redirect('/')
+    else:
+        all_users = User.objects.all().order_by('-date_joined')
+        filtered_users = apply_filters(all_users, request)
+        return render(request, 'search/search.html', {'users': filtered_users})
     
 
 @login_required
 def profile_id(request, user_id):
-    # if request.user.profile.tipo_usuario != 'Colaborador' and request.user.profile.tipo_usuario != 'Administrador':
-    #     return redirect('/')
-    # else:
+    if request.user.profile.tipo_usuario != 'Colaborador' and request.user.profile.tipo_usuario != 'Administrador':
+        return redirect('/')
+    else:
         user = User.objects.get(id = user_id)
         profile = user.profile  # Certifique-se de ter um relacionamento correto entre os modelos User e Profile
         img = profile.foto_perfil
@@ -96,3 +97,21 @@ def charts(request):
     
     # Renderize a página com os gráficos
     return render(request, 'search/overview.html', {'graficos': graficos})
+
+@login_required
+def history_id_academic(request, user_id):
+    if request.user.profile.tipo_usuario != 'Colaborador' and request.user.profile.tipo_usuario != 'Administrador':
+        return redirect('/')
+    else:
+        user = User.objects.get(id = user_id)
+        historicos_academicos = HistoricoAcademico.objects.all().order_by('-criado_em')
+        return render(request, 'search/historico-profissional-visitor.html', {'historicos': historicos_academicos, 'user': user})
+    
+@login_required
+def history_id_professional(request, user_id):
+    if request.user.profile.tipo_usuario != 'Colaborador' and request.user.profile.tipo_usuario != 'Administrador':
+        return redirect('/')
+    else:
+        user = User.objects.get(id = user_id)
+        historicos_profissionais = HistoricoProfissional.objects.all().order_by('-criado_em')
+        return render(request, 'search/historico-profissional-visitor.html', {'historicos': historicos_profissionais, 'user': user})

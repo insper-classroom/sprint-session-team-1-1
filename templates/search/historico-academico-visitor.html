@@ -1,0 +1,43 @@
+{% extends "history/base-historico.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="background">
+  <img src="{% static 'img/foto_historico.png' %}" alt="Imagem de fundo">
+</div>
+
+<nav>
+  <a href="https://tellesfoundation.uk/pt/home/"><div class="logo"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a></div>
+  <div class="nav-links">
+      <ul>
+        <li><a href="{% url 'profile' %}">HOME</a></li>
+        <li><a href="/search/{{ user.id }}" class="perfil-link">PERFIL</a></li>
+        <li><a href="/search/history/academic/{{ user.id }}" class="historico-link">HISTÓRICO PROFISSIONAL</a></li>
+        <li><a href="/search/history/professional/{{ user.id }}" class="historico-link">HISTÓRICO ACADÊMICO</a></li>
+        <li><a href="{% url 'logout' %}">SAIR</a></li>
+      </ul>
+  </div>
+</nav>
+  <h1>Históricos</h1>
+  {% for historico in historicos %}
+    {% if historico.id_proprietario == user.id %}
+
+    <div class="bloco-historico">
+      <div class="bloco-infos">
+        <div class="bloco1">
+          <p>Semestre atual: {{ historico.semestre_atual }}</p>
+          <p>Média das Notas: {{ historico.media }}</p>
+        </div>
+        <div class="bloco2">
+          <p>Comentário: {{ historico.campo_extra }}</p>
+          <p>PDF: <a href="{{ historico.pdf.url }}" download>Download</a></p>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+{% endfor %}
+{% endblock %}
+
+
