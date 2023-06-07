@@ -115,6 +115,28 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     ano_formatura = models.CharField(max_length=4, null=True, verbose_name='Ano de Formatura')
     renda_familiar = models.CharField(max_length=100, choices=Income, blank=True, null=True, verbose_name='Renda Familiar')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE) # Um usuário tem UM perfil, e quando o usuário é deletado, o perfil também é (CASCADE).
+    ultima_atualizacao = models.DateTimeField(auto_now=True)
+
+
+
+class HistoricoEscolar(models.Model):
+    id_proprietario = models.IntegerField(blank=True, null=True, verbose_name="id_proprietario")
+    media = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
+    campo_extra = models.CharField(max_length=100, blank=True, null=True, verbose_name="campo extra")
+    semestre_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="semestre atual")
+    pdf = models.FileField(upload_to="sprint/static/pdfs" )
+    criado_em = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
+
+class HistoricoProfissional(models.Model):
+    id_proprietario = models.IntegerField(blank=True, null=True, verbose_name="id_proprietario")
+    empresa = models.CharField(max_length=100, blank=True, null=True, verbose_name="empresa")
+    cargo = models.CharField(max_length=100, blank=True, null=True, verbose_name="cargo")
+    setor_empresa = models.CharField(max_length=100, blank=True, null=True, verbose_name="setor_empresa")
+    salario = models.CharField(max_length=100, blank=True, null=True, verbose_name="salario")
+    data_ingresso = models.DateField(max_length=100, blank=True, null=True, verbose_name="data_inicio")
+    criado_em = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
+    
+
 
 
 class Keys(models.Model):

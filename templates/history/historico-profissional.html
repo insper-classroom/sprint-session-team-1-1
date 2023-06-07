@@ -1,0 +1,99 @@
+{% extends "history/base-historico.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="background">
+  <img src="{% static 'img/foto_historico.png' %}" alt="Imagem de fundo">
+</div>
+
+<nav>
+  <a href="https://tellesfoundation.uk/pt/home/"><div class="logo"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a></div>
+  <div class="nav-links">
+      <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+          <li><a href="{% url 'historico_profissional' %}" class="historico-link">HISTÓRICO PROFISSIONAL</a></li>
+          <li><a href="{% url 'historico_escolar' %}">HISTÓRICO ESCOLAR</a></li>
+          <li><a href="{% url 'logout' %}">SAIR</a></li>
+      </ul>
+  </div>
+</nav>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<h1>Atualização de Emprego</h1>
+<div class="historico-profissional">
+
+  <section>
+    <div class="bloco1">
+
+      <div class="form">
+        <label for="">Empresa</label>
+        <div class="input">{{ form_profissional.empresa }}</div>
+      </div>
+  
+      <div class="form">
+        <label for="">Cargo</label>
+        <div class="input">{{ form_profissional.cargo }}</div>
+      </div>
+  
+    </div>
+  
+    <div class="bloco2">
+  
+      <div class="form">
+        <label for="">Setor da Empresa</label>
+        <div class="input">{{ form_profissional.setor_empresa }}</div>
+      </div>
+  
+      <div class="form">
+        <label for="">Salário</label>
+        <div class="input">{{ form_profissional.salario }}</div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <div class="form_data">
+    <div class="bloco3">
+      <label class="data_ingresso" for="">Data de Ingresso</label>
+        <div class="input">{{ form_profissional.data_ingresso }}</div>
+    </div>
+
+  </div>
+    
+
+<div class="id">
+ {{  form_profissional.id_proprietario  }}
+</div>
+
+</div>
+<div class="botao">
+<button type="submit">Adicionar ao Histórico</button>
+</div>
+
+</form>
+
+<hr>
+<h1>Históricos</h1>
+  {% for historico in historicos %}
+    {% if historico.id_proprietario == user.id %}
+    <div class="bloco-historico">
+        <p>{{historico.data_ingresso}}</p>
+        <br>
+        <div class="bloco-infos">
+          <div class="bloco1">
+            <p>Empresa: {{ historico.empresa }}</p>
+            <p>Cargo: {{ historico.cargo }}</p>
+          </div>
+          <div class="bloco2">
+            <p>Setor: {{ historico.setor_empresa }}</p>
+            <p>Salario: {{ historico.salario }}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+{% endblock %}
