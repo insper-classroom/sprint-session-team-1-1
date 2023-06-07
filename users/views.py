@@ -231,7 +231,7 @@ def edit(request):
 def historico_academico(request):
     user= request.user
     if request.method == 'POST':
-        form_academico = forms.HistoricoEscolarForm(request.POST, request.FILES)
+        form_academico = forms.HistoricoAcademicoForm(request.POST, request.FILES)
         if form_academico.is_valid():
             form_academico.save()
         return redirect('/accounts/profile/history/academic')
