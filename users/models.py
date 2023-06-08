@@ -118,7 +118,6 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     ultima_atualizacao = models.DateTimeField(auto_now=True)
 
 
-
 class HistoricoAcademico(models.Model):
     id_proprietario = models.IntegerField(blank=True, null=True, verbose_name="id_proprietario")
     media = models.CharField(max_length=100, blank=True, null=True, verbose_name="media escolar")
@@ -126,6 +125,7 @@ class HistoricoAcademico(models.Model):
     semestre_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="semestre atual")
     pdf = models.FileField(upload_to="sprint/static/pdfs" )
     criado_em = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
+
 
 class HistoricoProfissional(models.Model):
     id_proprietario = models.IntegerField(blank=True, null=True, verbose_name="id_proprietario")
@@ -136,8 +136,6 @@ class HistoricoProfissional(models.Model):
     data_ingresso = models.DateField(max_length=100, blank=True, null=True, verbose_name="data_inicio")
     criado_em = models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
     
-
-
 
 class Keys(models.Model):
     key = models.CharField(max_length=50)
