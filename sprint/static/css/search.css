@@ -252,3 +252,50 @@ label{
     color: red;
     text-align: center;
 }
+  
+.gen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #3C5AF0;
+}
+  
+.gen h1{
+    font-size: 35px;
+    font-weight: 600;
+    margin-top: 235px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+  
+.gen p{
+    color: #506dff;
+    font-size: 22.5px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.button-voltar-search{
+    display: block;
+    margin-top: 15%;
+    margin-left: 46%;
+    margin-right: auto;
+    background-color: rgb(60, 90, 240);
+    color:white;
+    border: none;
+    border-radius: 100px;
+    font-size: 15px;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    padding: 8px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+button:hover{
+    background-color: rgb(45, 60, 255);
+    transition: 0.5s;
+}

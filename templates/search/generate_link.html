@@ -1,0 +1,18 @@
+{% extends "search/base-search.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="background">
+    <img src="{% static 'img/fundo_generate_link.png' %}">
+</div>
+
+<div class="gen">
+    <h1>Link para cadastro gerado:</h1>
+    <p>localhost:8000/accounts/signup/{{ key }}</p>
+</div>
+
+<button class="button-voltar-search" onclick="window.location.href='/search/'">VOLTAR</button>
+
+{% endblock %}
