@@ -105,7 +105,7 @@ def history_id_academic(request, user_id):
     else:
         user = User.objects.get(id = user_id)
         historicos_academicos = HistoricoAcademico.objects.all().order_by('-criado_em')
-        return render(request, 'search/historico-profissional-visitor.html', {'historicos': historicos_academicos, 'user': user})
+        return render(request, 'search/historico-academico-visitor.html', {'historicos': historicos_academicos, 'user': user})
     
 @login_required
 def history_id_professional(request, user_id):
