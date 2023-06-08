@@ -12,7 +12,6 @@ from django.urls import reverse_lazy
 from .models import HistoricoAcademico
 from .models import HistoricoProfissional
 from datetime import datetime
-
 from .forms import UserForm
 from .models import Keys
 from . import edit_form
@@ -26,7 +25,6 @@ def home(request):
 class UserCreate(CreateView):
     form_class = forms.UserForm # Aqui, definimos o formulário que será usado para o cadastro de usuários
     success_url = reverse_lazy('home') # Aqui, definimos a URL para onde o usuário será redirecionado após o cadastro
-
 
     def get_context_data(self, *args, **kwargs): # Sobrescrevemos o método get_context_data para adicionar mais campos ao contexto
         context = super().get_context_data(*args, **kwargs)
@@ -59,7 +57,6 @@ class UserCreate(CreateView):
         
         return context
     
-
     def form_valid(self, form):
         # Determinar o tipo de usuário com base na data de formatura
         ano_formatura = form.instance.ano_formatura
@@ -91,7 +88,6 @@ def custom_logout(request):
     return redirect('home')
 
 
-
 # Função que gera uma key unica para ser usada no signup do usuario
 def gerador():
     caracteres = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] 
@@ -103,8 +99,10 @@ def gerador():
 
     return key
 
+
 def redirect_home(request):
     return redirect('/')
+
 
 @login_required
 def generate_link(request):
@@ -113,9 +111,11 @@ def generate_link(request):
         key = gerador()
         key_obj = Keys(key=key) 
         key_obj.save() # Salvando a chave no banco de dados
-        return HttpResponse(f"<h1>localhost:8000/accounts/signup/{key}</h1>")
+        return render(request, 'search/generate_link.html', {'key': key})
+        # return HttpResponse(f"<h1>localhost:8000/accounts/signup/{key}</h1>")
     else:
         return redirect('/')
+
 
 # Signup 2.0, a função foi refeita usando a primeira de base para agora suportar o link gerado aleatoriamente.
 def signup(request, key):
@@ -140,7 +140,6 @@ def signup(request, key):
                 form = UserForm()
             return render(request, 'users/signup.html', {'form': form})
     return redirect('/')
-
 
 
 #Código para edição de usuario
@@ -241,6 +240,7 @@ def historico_academico(request):
         historicos_academicos = HistoricoAcademico.objects.all().order_by('-criado_em')
         return render(request, 'history/historico-academico.html', {'form_academico': form_academico, 'historicos': historicos_academicos, 'user': user})
     
+
 @login_required
 def historico_profissional(request):
     user= request.user
