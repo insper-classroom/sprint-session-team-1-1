@@ -57,6 +57,20 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'APP': {
+            'client_id': '741652841844-sidr7egm7dp2nprjpn0vlujk8dhkan32.apps.googleusercontent.com',
+            'secret': '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',
+        },
+        'REDIRECT_URI': 'http://localhost:8000/accounts/google/login/callback/',
+    },
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
