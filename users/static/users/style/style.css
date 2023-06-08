@@ -48,6 +48,7 @@ nav img{
     position: absolute;
     width: 100%;
     left: 0px;
+    gap: 180px;
 }
 
 .nav-links ul li{
