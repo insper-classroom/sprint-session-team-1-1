@@ -41,15 +41,15 @@
         </div>
 
         <div class="bloco2">
+
+          <div class="form">
+            <label for="">Anexo do Histórico</label>
+            <div class="input">{{ form_academico.pdf }}</div>
+          </div>
           
           <div class="form">
             <label for="">Campo extra</label>
             <div class="input">{{ form_academico.campo_extra }}</div>
-          </div>
-
-          <div class="form">
-            <label for="">Anexo PDF</label>
-            <div class="input">{{ form_academico.pdf }}</div>
           </div>
 
         </div>
@@ -77,12 +77,12 @@
     <div class="bloco-historico">
       <div class="bloco-infos">
         <div class="bloco1">
-          <p>Semestre atual: {{ historico.semestre_atual }}</p>
-          <p>Média das Notas: {{ historico.media }}</p>
+          <li> <b>Semestre atual:</b> {{ historico.semestre_atual }}</li>
+          <li> <b>Média das Notas:</b> {{ historico.media }}</li>
         </div>
         <div class="bloco2">
-          <p>Comentário: {{ historico.campo_extra }}</p>
-          <p>PDF: <a href="{{ historico.pdf.url }}" download>Download</a></p>
+          <li> <b>Comentário:</b> {{ historico.campo_extra }} </li>
+          <li> <b>PDF:</b> <a href="{{ historico.pdf.url }}" download>Download</a></li>
         </div>
       </div>
     </div>
