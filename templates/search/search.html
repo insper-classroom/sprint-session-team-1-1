@@ -5,6 +5,10 @@
 
 {% block content %}
 
+<div class="background">
+    <img src="{% static 'users/img/background-profile.png' %}"/>
+</div>
+
 {% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
 
     <!-- <div class="background">
@@ -14,17 +18,16 @@
     <div class="background">
         <img src="{% static 'img/fundo_search3.0.png' %}" alt="Imagem de fundo">
     </div>
-
     <nav>
-        <!-- <div class="logo"> -->
-            <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
-        <!-- </div> -->
-    
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
-                <li><a href="/search/" class="perfil-link-b">BUSCA</a></li>
-                <li><a href="/search/overview" class="perfil-link-bg">BUSCA GRÁFICOS</a></li>
+
+                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
+                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
+                
             </ul>
         </div>
     </nav>
@@ -193,7 +196,7 @@
                     <div class="text">
                     <!-- <h4> ID: {{ user.id }} </h4> -->
                     <!-- | CPF: {{ user.profile.cpf }} | RG: {{ user.profile.rg }} -->
-                    <a class="user-name"> {{ user.profile.nome }} {{user.profile.sobrenome}} - {{ user.profile.nome_exibicao }}</a>
+                    <a class="user-name" href="/search/{{ user.id }}"> {{ user.profile.nome }} {{user.profile.sobrenome}} - {{ user.profile.nome_exibicao }}</a>
                     <h3 class="dados_usuario"> Faculdade: {{ user.profile.faculdade }} <br> Curso: {{ user.profile.curso }} <br> Usuário: {{ user.profile.tipo_usuario }}</h3>
                     <span class="id">ID: {{ user.id }}</span>
             </div>

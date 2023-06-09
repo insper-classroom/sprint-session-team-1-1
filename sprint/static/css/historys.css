@@ -71,14 +71,14 @@ nav img{
 }
 
 .nav-links ul li a:hover{
-  /* color: rgb(0, 0, 0); */
+  color: rgb(0, 0, 0);
   transition: 0.4s;
 }
 
 @media (max-width: 1920px) {
   .nav-links {
       padding: 1% 4%;
-      flex: 1; /* Oculta os links da navegação */
+      flex: 1;
   }
 
   nav img {
@@ -91,13 +91,13 @@ nav img{
       justify-content: space-between;
       align-items: center;
       font-family: 'Urbanist', sans-serif;
-      font-weight: 600; /* Centraliza o conteúdo */
+      font-weight: 600;
   }
 
   .nav-links ul {
       display: flex;
       position: absolute;
-      margin: 0px 120px;
+      margin: 0 auto;
   }
 
   .nav-links ul li{
@@ -108,9 +108,9 @@ nav img{
   }
 }
 
-/* .historico-link{
+.historico-link{
   color: black !important;
-} */
+}
 
   .logo{
     width: 250px;

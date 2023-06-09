@@ -9,26 +9,56 @@
         <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}"></a>
         <div class="nav-links">
             <ul>
-                <li><a href="{% url 'profile' %}">HOME</a></li>
+                <li><a href="/search/">BUSCA</a></li>
                 <li><a href="/search/{{ user.id }}" class="perfil-link">PERFIL</a></li>
-                <li><a href="/search/history/academic/{{ user.id }}" class="historico-link">HISTÓRICO ACADÊMICO</a></li>
                 <li><a href="/search/history/professional/{{ user.id }}" class="historico-link">HISTÓRICO PROFISSIONAL</a></li>
-                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                <li><a href="/search/history/academic/{{ user.id }}" class="historico-link">HISTÓRICO ACADÊMICO</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="profile">
-            <div class="profile-info">
-                <img src="{% static path_image %}">
-                <div class="text">
-                    <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
-                    <span class="extra">{{ user.profile.faculdade }} - {{ user.profile.tipo_usuario }}</span>
-                </div>
-                <span class="id">ID: {{ user.id }}</span>
+    <div class="profile">
+        <div class="profile-info">
+            <img src="{% static path_image %}" class="img_perfil">
+            <div class="text">
+                <span class="name">{{ user.first_name }} {{ user.last_name }}</span>
+                <span class="extra">{{ user.profile.faculdade }} - {{ user.profile.tipo_usuario }}</span>
+            </div>
+            
+            
+        </div>
+        
+        <div class="infos">
+            <div class="bloco1">
+                <label> E-mail: </label>
+                <p> {{ user.profile.email}} </p>
+                <label> RG: </label>
+                <p> {{ user.profile.rg }} </p>
+                <label> Telefone: </label>
+                <p> {{ user.profile.telefone }} </p>
+                <label> Gênero: </label>
+                <p> {{ user.profile.genero }} </p>
+                <label> País Atual: </label>
+                <p> {{ user.profile.pais_atual }} </p>
+                <label> Ano de Formatura: </label>
+                <p> {{ user.profile.ano_formatura }} </p>
+            </div>
+
+            <div class="bloco2">
+                <label> Estado Atual: </label>
+                <p> {{ user.profile.estado_atual }} </p>
+                <label> Cidade Atual: </label>
+                <p> {{ user.profile.cidade_atual }} </p>
+                <label> Linkedin: </label>
+                <p> {{ user.profile.linkedin }} </p>
+                <label> Curso: </label>
+                <p> {{ user.profile.curso }} </p>
+                <label> Renda Familiar: </label>
+                <p> {{ user.profile.renda_familiar }} </p>
+                
             </div>
         </div>
+
     </div>
 
 {% endblock %}
