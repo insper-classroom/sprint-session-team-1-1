@@ -4,6 +4,10 @@ matplotlib.use('Agg')
 import io
 import urllib, base64
 
+#Variavel global com todas as cores para serem usadas nos graficos, em ordem
+cores = ['#3C5AF0', '#FAC800', '#64B100', 'orange', 'red', 'pink', 'lightblue', 'lime', 'purple', 'gray']
+
+
 def cria_grafico_cor_ou_raca(filtered_users):
     # Grafico usuarios por cor ou raça
     cor_raca = {}
@@ -18,7 +22,7 @@ def cria_grafico_cor_ou_raca(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -41,7 +45,7 @@ def cria_grafico_genero(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -64,7 +68,7 @@ def cria_grafico_tipo_usuario(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -87,7 +91,7 @@ def cria_grafico_faculdade(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -110,7 +114,7 @@ def cria_grafico_renda(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -133,7 +137,7 @@ def cria_grafico_estado_nascimento(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -156,7 +160,7 @@ def cria_grafico_pais_atual(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
@@ -180,7 +184,7 @@ def cria_grafico_estado_atual(filtered_users):
     labels_with_count = ['{} ({})'.format(label, count) for label, count in zip(labels, n_pessoas)]
 
     plt.figure(figsize=(8, 6))
-    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90)
+    plt.pie(n_pessoas, labels=labels_with_count, autopct='%.2f%%', counterclock=False, startangle=90, colors=cores)
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
