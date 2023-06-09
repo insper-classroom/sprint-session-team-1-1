@@ -71,7 +71,7 @@ nav img{
 }
 
 .nav-links ul li a:hover{
-  color: rgb(0, 0, 0);
+  color: #1D1D1B;
   transition: 0.4s;
 }
 
@@ -109,7 +109,7 @@ nav img{
 }
 
 .historico-link{
-  color: black !important;
+  color: #1D1D1B !important;
 }
 
   .logo{

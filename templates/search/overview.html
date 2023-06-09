@@ -16,18 +16,22 @@
     </div> -->
 
     <div class="background">
-        <img src="{% static 'img/fundo_search3.0.png' %}" alt="Imagem de fundo">
+        <img src="{% static 'img/fundo_overview.png' %}" alt="Imagem de fundo">
     </div>
     <nav>
         <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
-
+                {% if profile.tipo_usuario == 'Colaborador' or profile.tipo_usuario == 'Admin'%}
                 <li><a href="/search/" class="perfil-link">BUSCA</a></li>
+                <li><a href="/search/overview">BUSCA GRÁFICOS</a></li>
+                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                {% else %}
                 <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
                 <li><a href="{% url 'profile' %}" >PERFIL</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
-                
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -91,43 +95,48 @@
                 <div class="filtros-renda">
                     <h3>Filtros por Renda:</h3><br>
                     <input type="checkbox" class="renda-01" id="renda-01" name="renda-01" />
-                    <label for="renda-01"> 0-1 Salários Mínimos</label><br>
+                    <label for="renda-01"> 0-1 SM</label><br>
                     <input type="checkbox" class="renda-12" id="renda-12" name="renda-12" />
-                    <label for="renda-12"> 1-2 Salários Mínimos</label><br>
+                    <label for="renda-12"> 1-2 SM</label><br>
                     <input type="checkbox" class="renda-23" id="renda-23" name="renda-23" />
-                    <label for="renda-23"> 2-3 Salários Mínimos</label><br>
+                    <label for="renda-23"> 2-3 SM</label><br>
                     <input type="checkbox" class="renda-35" id="renda-35" name="renda-35" />
-                    <label for="renda-35"> 3-5 Salários Mínimos</label><br>
+                    <label for="renda-35"> 3-5 SM</label><br>
                     <input type="checkbox" class="renda-58" id="renda-58" name="renda-58" />
-                    <label for="renda-58"> 5-8 Salários Mínimos</label><br>
+                    <label for="renda-58"> 5-8 SM</label><br>
                     <input type="checkbox" class="renda-8" id="renda-8" name="renda-8" />
-                    <label for="renda-8"> 8+ Salários Mínimos</label><br>
+                    <label for="renda-8"> 8+ SM</label><br>
                 </div>
                 <button class="filterbutton" type="submit"> Filtrar </button>
             </div>
         </div>
     </form>
 
-    <div>
+    <div class="graficos">
         {% if graphs %}
-        <h3>Grafico por cor ou raça:</h3>
+        <div class="bloco-1-overview">
+        <h3>Gráfico por cor ou raça:</h3>
         <img src="data:image/png;base64,{{ graphs.cor_ou_raca }}" alt="Graph" class="graph-image">
-        <h3>Grafico por genero:</h3>
+        <h3>Gráfico por gênero:</h3>
         <img src="data:image/png;base64,{{ graphs.genero }}" alt="Graph" class="graph-image">
-        <h3>Grafico por tipo de usuario:</h3>
+        <h3>Gráfico por tipo de usuário:</h3>
         <img src="data:image/png;base64,{{ graphs.tipo_usuario }}" alt="Graph" class="graph-image">
-        <h3>Grafico por renda:</h3>
+        <h3>Gráfico por renda:</h3>
         <img src="data:image/png;base64,{{ graphs.renda }}" alt="Graph" class="graph-image">
-        <h3>Grafico por faculdade:</h3>
-        <img src="data:image/png;base64,{{ graphs.faculdade }}" alt="Graph" class="graph-image">
-        <h3>Grafico por estado de nascimento:</h3>
-        <img src="data:image/png;base64,{{ graphs.estado_nascimento }}" alt="Graph" class="graph-image">
-        <h3>Grafico por pais atual:</h3>
-        <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
-        <h3>Grafico por estado atual:</h3>
-        <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span>
-        <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
+        </div>
 
+        <div class="bloco-2-overview">
+        <h3>Gráfico por faculdade:</h3>
+        <img src="data:image/png;base64,{{ graphs.faculdade }}" alt="Graph" class="graph-image">
+        <h3>Gráfico por estado de nascimento:</h3>
+        <img src="data:image/png;base64,{{ graphs.estado_nascimento }}" alt="Graph" class="graph-image">
+        <h3>Gráfico por país atual:</h3>
+        <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
+        <h3>Gráfico por estado brasileiro atual:</h3>
+        <!-- <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span> -->
+        <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
+        </div>
+            
         {% endif %}
     </div>
 
