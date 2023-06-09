@@ -14,10 +14,17 @@
                 <li><a href="{% url 'historico_profissional' %}">HISTÓRICO PROFISSIONAL</a></li>
                 <li><a href="{% url 'historico_escolar' %}">HISTÓRICO ESCOLAR</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
-                {% else %}
-                <li><a href="/search/">BUSCA</a></li>
+                {% endif %}
+                
+                {% if user.profile.tipo_usuario == 'Colaborador'%}
                 <li><a href="{% url 'profile' %}" class="perfil-link">PERFIL</a></li>
-                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="/search/">BUSCA</a></li>
+                <li><a href="/search/overview">GRÁFICOS</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+
+                {% else %}
+                <li><a href="{% url 'profile' %}" class="perfil-link">PERFIL</a></li>
+                <li><a href="/search/overview">GRÁFICOS</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
                 {% endif %}
             </ul>

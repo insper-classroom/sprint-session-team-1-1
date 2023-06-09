@@ -16,16 +16,16 @@
     </div> -->
 
     <div class="background">
-        <img src="{% static 'img/fundo_search3.0.png' %}" alt="Imagem de fundo">
+        <img src="{% static 'img/fundo_overview.png' %}" alt="Imagem de fundo">
     </div>
     <nav>
         <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
 
-                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
-                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
                 <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
+                <li><a href="/search/overview">GRÁFICOS</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
                 
             </ul>
@@ -108,26 +108,31 @@
         </div>
     </form>
 
-    <div>
+    <div class="graficos">
         {% if graphs %}
-        <h3>Grafico por cor ou raça:</h3>
+        <div class="bloco-1-overview">
+        <h3>Gráfico por cor ou raça:</h3>
         <img src="data:image/png;base64,{{ graphs.cor_ou_raca }}" alt="Graph" class="graph-image">
-        <h3>Grafico por genero:</h3>
+        <h3>Gráfico por gênero:</h3>
         <img src="data:image/png;base64,{{ graphs.genero }}" alt="Graph" class="graph-image">
-        <h3>Grafico por tipo de usuario:</h3>
+        <h3>Gráfico por tipo de usuário:</h3>
         <img src="data:image/png;base64,{{ graphs.tipo_usuario }}" alt="Graph" class="graph-image">
-        <h3>Grafico por renda:</h3>
+        <h3>Gráfico por renda:</h3>
         <img src="data:image/png;base64,{{ graphs.renda }}" alt="Graph" class="graph-image">
-        <h3>Grafico por faculdade:</h3>
-        <img src="data:image/png;base64,{{ graphs.faculdade }}" alt="Graph" class="graph-image">
-        <h3>Grafico por estado de nascimento:</h3>
-        <img src="data:image/png;base64,{{ graphs.estado_nascimento }}" alt="Graph" class="graph-image">
-        <h3>Grafico por pais atual:</h3>
-        <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
-        <h3>Grafico por estado atual:</h3>
-        <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span>
-        <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
+        </div>
 
+        <div class="bloco-2-overview">
+        <h3>Gráfico por faculdade:</h3>
+        <img src="data:image/png;base64,{{ graphs.faculdade }}" alt="Graph" class="graph-image">
+        <h3>Gráfico por estado de nascimento:</h3>
+        <img src="data:image/png;base64,{{ graphs.estado_nascimento }}" alt="Graph" class="graph-image">
+        <h3>Gráfico por país atual:</h3>
+        <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
+        <h3>Gráfico por estado brasileiro atual:</h3>
+        <!-- <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span> -->
+        <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
+        </div>
+            
         {% endif %}
     </div>
 
