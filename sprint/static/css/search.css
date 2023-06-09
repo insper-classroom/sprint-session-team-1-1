@@ -496,3 +496,8 @@ button:hover{
     color:white;
     transition: 0.5s;
 }
+
+.graph-image {
+    width: 30vw;
+    height: 50vh;
+}

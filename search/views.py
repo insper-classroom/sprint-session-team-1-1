@@ -5,13 +5,7 @@ from datetime import datetime
 from users.models import HistoricoAcademico
 from users.models import HistoricoProfissional
 from .filters import apply_filters
-import matplotlib.pyplot as plt
-import matplotlib 
-matplotlib.use('Agg')
-import io
-import urllib, base64
-
-
+from .charts import *
 
 
 # Create your views here.
@@ -47,56 +41,41 @@ def profile_id(request, user_id):
 
         return render(request, 'search/profile-visitor.html', {'user': user, 'path_image': path_image,})
     
+
+# Função responsavel pela criação de gráficos
+@login_required
 def charts(request):
-    # Recupere as informações dos usuários bolsistas
-    bolsistas = User.objects.filter(profile__tipo_usuario='Bolsista')
-    
-    # Gráfico 1: Contagem de bolsistas por faculdade
-    faculdades = [b.profile.faculdade for b in bolsistas]
-    contagem_faculdades = {}
-    for faculdade in faculdades:
-        if faculdade in contagem_faculdades:
-            contagem_faculdades[faculdade] += 1
-        else:
-            contagem_faculdades[faculdade] = 1
-    
-    
-    plt.bar(contagem_faculdades.keys(), contagem_faculdades.values())
-    plt.xlabel('Faculdade')
-    plt.ylabel('Número de Bolsistas')
-    plt.title('Contagem de Bolsistas por Faculdade')
-    
-    buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    grafico_faculdades = base64.b64encode(buffer.getvalue()).decode()
-    plt.close()
+    user = request.user
+    profile = user.profile 
+    if profile.tipo_usuario != 'Colaborador' and profile.tipo_usuario != 'Admin':
+        return redirect('/')
+    else:
+        #Filtra os usuarios
+        all_users = User.objects.filter(profile__tipo_usuario__in=["Bolsista", "Alumni"]).order_by('-date_joined')
+        filtered_users = apply_filters(all_users, request)
 
-    # Gráfico 2: Contagem de bolsistas por curso
-    cursos = [b.profile.curso for b in bolsistas]
-    contagem_cursos = {}
-    for curso in cursos:
-        if curso in contagem_cursos:
-            contagem_cursos[curso] += 1
-        else:
-            contagem_cursos[curso] = 1
-    
+        #Cria os graficos a partir das funções no charts.py, separei por questão de organização
+        grafico_cor = cria_grafico_cor_ou_raca(filtered_users)
+        grafico_genero = cria_grafico_genero(filtered_users)
+        grafico_tipo_usuario = cria_grafico_tipo_usuario(filtered_users)
+        grafico_faculdade = cria_grafico_faculdade(filtered_users)
+        grafico_renda = cria_grafico_renda(filtered_users)
+        grafico_estado_nascimento = cria_grafico_estado_nascimento(filtered_users)
+        grafico_pais_atual = cria_grafico_pais_atual(filtered_users)
+        grafico_estado_atual = cria_grafico_estado_atual(filtered_users)
 
-    plt.bar(contagem_cursos.keys(), contagem_cursos.values())
-    plt.xlabel('Curso')
-    plt.ylabel('Número de Bolsistas')
-    plt.title('Contagem de Bolsistas por Curso')
-    
-    buffer2 = io.BytesIO()
-    plt.savefig(buffer2, format='png')
-    buffer2.seek(0)
-    grafico_cursos = base64.b64encode(buffer2.getvalue()).decode()
-    plt.close()
-    
-    graficos = {'graficos_faculdades': grafico_faculdades, 'graficos_cursos': grafico_cursos}
-    
-    # Renderize a página com os gráficos
-    return render(request, 'search/overview.html', {'graficos': graficos})
+        graphs = {
+            'cor_ou_raca': grafico_cor,
+            'genero': grafico_genero,
+            'tipo_usuario': grafico_tipo_usuario,
+            'faculdade': grafico_faculdade,
+            'renda': grafico_renda,
+            'estado_nascimento': grafico_estado_nascimento,
+            'pais_atual': grafico_pais_atual,
+            'estado_atual': grafico_estado_atual
+        }
+        return render(request, 'search/overview.html', {'users': filtered_users, 'graphs': graphs})
+
 
 @login_required
 def history_id_academic(request, user_id):
