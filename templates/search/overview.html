@@ -1,30 +1,134 @@
-<!DOCTYPE html>
+{% extends "search/base-search.html" %}
 {% load static %}
-<html>
-<head>
-    <title>Gráficos de Bolsistas</title>
-    <style>
-        /* Estilos opcionais */
-    </style>
-</head>
-<body>
-    <h1>Gráficos de Bolsistas</h1>
-    <div style="display: flex;">
-        <div style="flex: 1; margin-right: 200px;">
-            <h2>Gráfico de Bolsistas por Faculdade</h2>
-            <img src="data:image/png;base64,{{ graficos.graficos_faculdades }}" alt="Gráfico de Bolsistas por Faculdade">
+{% load tag %}
+
+
+{% block content %}
+
+<div class="background">
+    <img src="{% static 'users/img/background-profile.png' %}"/>
+</div>
+
+{% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
+
+    <!-- <div class="background">
+        <img src="{% static 'img/fundo_login.jpg' %}">
+    </div> -->
+
+    <div class="background">
+        <img src="{% static 'img/fundo_search3.0.png' %}" alt="Imagem de fundo">
+    </div>
+    <nav>
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
+        <div class="nav-links">
+            <ul>
+
+                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
+                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                
+            </ul>
         </div>
-        <div style="flex: 1;">
-            <h2>Gráfico de Bolsistas por Curso</h2>
-            <img src="data:image/png;base64,{{ graficos.graficos_cursos }}" alt="Gráfico de Bolsistas por Curso">
+    </nav>
+
+    <!-- <button id="filter-button">Mostrar Filtros</button> -->
+
+    {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}
+    <form method="get" action="{% url 'graficos' %}">
+        <div class="filtros">
+            <div class="filtros-basicos">    
+                {% comment %} Cor ou raça {% endcomment %}
+                <div class="filtros-cor">
+                    <h3>Filtro por Cor ou Raça:</h3><br>
+                    <input type="checkbox" class="cor-amarela" id="cor-amarela" name="cor-amarela" />
+                    <label for="genero-amarela"> Amarela</label><br>
+                    <input type="checkbox" class="cor-branca" id="cor-branca" name="cor-branca" />
+                    <label for="genero-branca"> Branca</label><br>
+                    <input type="checkbox" class="cor-indigena" id="cor-indigena" name="cor-indigena" />
+                    <label for="genero-indigena"> Indígena</label><br>
+                    <input type="checkbox" class="cor-parda" id="cor-parda" name="cor-parda" />
+                    <label for="genero-parda"> Parda</label><br>
+                    <input type="checkbox" class="cor-preta" id="cor-preta" name="cor-preta" />
+                    <label for="genero-preta"> Preta</label><br>
+                    <input type="checkbox" class="cor-nao" id="cor-nao" name="cor-nao" />
+                    <label for="genero-nao"> Prefiro Não Informar</label><br>
+                    <input type="checkbox" class="cor-outra" id="cor-outra" name="cor-outra" />
+                    <label for="genero-outra"> Outra</label><br>
+                </div>
+    
+                {% comment %} Gênero {% endcomment %}
+                <div class="filtros-genero">
+                    <h3>Filtros por Gênero:</h3><br>
+                    <input type="checkbox" class="genero-masculino" id="genero-masculino" name="genero-masculino" />
+                    <label for="genero-masculino"> Masculino</label><br>
+                    <input type="checkbox" class="genero-feminino" id="genero-feminino" name="genero-feminino" />
+                    <label for="genero-feminino"> Feminino</label><br>
+                    <input type="checkbox" class="genero-nao" id="genero-nao" name="genero-nao" />
+                    <label for="genero-nao"> Prefiro Não Informar</label><br>
+                    <input type="checkbox" class="genero-outro" id="genero-outro" name="genero-outro" />
+                    <label for="genero-outro"> Outro</label><br>
+                </div>
+    
+                <div class='filtros-user-facul'>
+                    <h3>Filtros Acadêmicos:</h3><br>
+                    <h4>Tipo de Usuário:</h4>
+                    <input type="checkbox" class="usuario-bolsista" id="usuario-bolsista" name="usuario-bolsista" />
+                    <label for="usuario-bolsista"> Bolsista</label><br>
+                    <input type="checkbox" class="usuario-alumni" id="usuario-alumni" name="usuario-alumni" />
+                    <label for="usuario-alumni"> Alumni</label><br><br>
+    
+                    <h4>Faculdade:</h4>
+                    <input type="checkbox" class="faculdade-insper" id="faculdade-insper" name="faculdade-insper" />
+                    <label for="faculdade-insper"> Insper</label><br>
+                    <input type="checkbox" class="faculdade-inteli" id="faculdade-inteli" name="faculdade-inteli" />
+                    <label for="faculdade-inteli"> Inteli</label><br>
+                    <input type="checkbox" class="faculdade-facul3" id="faculdade-facul3" name="faculdade-facul3" />
+                    <label for="faculdade-facul3"> Faculdade 3</label><br>
+                </div>
+    
+                {% comment %} Rendas {% endcomment %}
+                <div class="filtros-renda">
+                    <h3>Filtros por Renda:</h3><br>
+                    <input type="checkbox" class="renda-01" id="renda-01" name="renda-01" />
+                    <label for="renda-01"> 0-1 Salários Mínimos</label><br>
+                    <input type="checkbox" class="renda-12" id="renda-12" name="renda-12" />
+                    <label for="renda-12"> 1-2 Salários Mínimos</label><br>
+                    <input type="checkbox" class="renda-23" id="renda-23" name="renda-23" />
+                    <label for="renda-23"> 2-3 Salários Mínimos</label><br>
+                    <input type="checkbox" class="renda-35" id="renda-35" name="renda-35" />
+                    <label for="renda-35"> 3-5 Salários Mínimos</label><br>
+                    <input type="checkbox" class="renda-58" id="renda-58" name="renda-58" />
+                    <label for="renda-58"> 5-8 Salários Mínimos</label><br>
+                    <input type="checkbox" class="renda-8" id="renda-8" name="renda-8" />
+                    <label for="renda-8"> 8+ Salários Mínimos</label><br>
+                </div>
+                <button class="filterbutton" type="submit"> Filtrar </button>
+            </div>
         </div>
+    </form>
+
+    <div>
+        {% if graphs %}
+        <h3>Grafico por cor ou raça:</h3>
+        <img src="data:image/png;base64,{{ graphs.cor_ou_raca }}" alt="Graph" class="graph-image">
+        <h3>Grafico por genero:</h3>
+        <img src="data:image/png;base64,{{ graphs.genero }}" alt="Graph" class="graph-image">
+        <h3>Grafico por tipo de usuario:</h3>
+        <img src="data:image/png;base64,{{ graphs.tipo_usuario }}" alt="Graph" class="graph-image">
+        <h3>Grafico por renda:</h3>
+        <img src="data:image/png;base64,{{ graphs.renda }}" alt="Graph" class="graph-image">
+        <h3>Grafico por faculdade:</h3>
+        <img src="data:image/png;base64,{{ graphs.faculdade }}" alt="Graph" class="graph-image">
+        <h3>Grafico por estado de nascimento:</h3>
+        <img src="data:image/png;base64,{{ graphs.estado_nascimento }}" alt="Graph" class="graph-image">
+        <h3>Grafico por pais atual:</h3>
+        <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
+        <h3>Grafico por estado atual:</h3>
+        <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span>
+        <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
+
+        {% endif %}
     </div>
 
-    <!-- HTML conforme necessário -->
-    
-    <script>
-        // JavaScript personalizados conforme necessário
-    </script>
-</body>
-</html>
-
+{% endblock %}

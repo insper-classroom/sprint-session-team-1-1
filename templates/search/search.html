@@ -5,25 +5,40 @@
 
 {% block content %}
 
+<div class="background">
+    <img src="{% static 'users/img/background-profile.png' %}"/>
+</div>
+
 {% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
 
     <!-- <div class="background">
         <img src="{% static 'img/fundo_login.jpg' %}">
     </div> -->
 
-    <div class="logo">
-        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}"></a>
+    <div class="background">
+        <img src="{% static 'img/fundo_search3.0.png' %}" alt="Imagem de fundo">
     </div>
+    <nav>
+        <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
+        <div class="nav-links">
+            <ul>
 
-    <div class="navbar">
-    </div>
+                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
+                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                
+            </ul>
+        </div>
+    </nav>
 
+    <!-- <button id="filter-button">Mostrar Filtros</button> -->
 
     {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}
     <form method="get" action="{% url 'individual_table' %}">
         <div class="filtros">
             <div class="filtros-basicos">
-                <div class="filtros-nomes">
+                <!-- <div class="filtros-nomes">
                     <h3>Pesquisar:</h3><br>
                     <input type="search" class="busca" id="busca-nome" name="busca-nome" /><br>
                     <input type="search" class="busca" id="busca-sobrenome" name="busca-sobrenome" /><br>
@@ -32,7 +47,7 @@
                         <input type="search" class="busca" id="filtro-id" name="filtro-id" />
                     </div> 
                     
-                </div>
+                </div> -->
     
                 {% comment %} Cor ou raça {% endcomment %}
                 <div class="filtros-cor">
@@ -42,7 +57,7 @@
                     <input type="checkbox" class="cor-branca" id="cor-branca" name="cor-branca" />
                     <label for="genero-branca"> Branca</label><br>
                     <input type="checkbox" class="cor-indigena" id="cor-indigena" name="cor-indigena" />
-                    <label for="genero-indigena"> Indigena</label><br>
+                    <label for="genero-indigena"> Indígena</label><br>
                     <input type="checkbox" class="cor-parda" id="cor-parda" name="cor-parda" />
                     <label for="genero-parda"> Parda</label><br>
                     <input type="checkbox" class="cor-preta" id="cor-preta" name="cor-preta" />
@@ -67,7 +82,7 @@
                 </div>
     
                 <div class='filtros-user-facul'>
-                    <h3>Filtros por Usuário e Faculdade:</h3><br>
+                    <h3>Filtros Acadêmicos:</h3><br>
                     <h4>Tipo de Usuário:</h4>
                     <input type="checkbox" class="usuario-bolsista" id="usuario-bolsista" name="usuario-bolsista" />
                     <label for="usuario-bolsista"> Bolsista</label><br>
@@ -99,8 +114,8 @@
                     <input type="checkbox" class="renda-8" id="renda-8" name="renda-8" />
                     <label for="renda-8"> 8+ Salários Mínimos</label><br>
                 </div>
+                <button class="filterbutton" type="submit"> Filtrar </button>
             </div>
-            <button class="filterbutton" type="submit"> Filtrar </button>
             {% comment %} Divisão entre filtros basicos (sempre amostra) e avançados (precisa clicar para ver) {% endcomment %}
 
 
@@ -170,7 +185,7 @@
   {% comment %} Pessoal do CSS e HTML, aqui basta colocar o código 1 vez que aplica pra todos os user {% endcomment %}
   {% comment %} Deve ser apenas um breve resume por usuario. Vou deixar ja uma base {% endcomment %}
   <div>
-    <div class='usuario'>
+    <div class='usuario' href="/search/{{ user.id }}">
         <div class='nome-imagem'>
             {% image_path user.profile.foto_perfil as path_image %}
             <img class="foto_perfil" src="{% static path_image %}" />
@@ -181,7 +196,7 @@
                     <div class="text">
                     <!-- <h4> ID: {{ user.id }} </h4> -->
                     <!-- | CPF: {{ user.profile.cpf }} | RG: {{ user.profile.rg }} -->
-                    <a href="/search/{{ user.id }}" class="user-name"> {{ user.profile.nome }} {{user.profile.sobrenome}} - {{ user.profile.nome_exibicao }}</a>
+                    <a class="user-name" href="/search/{{ user.id }}"> {{ user.profile.nome }} {{user.profile.sobrenome}} - {{ user.profile.nome_exibicao }}</a>
                     <h3 class="dados_usuario"> Faculdade: {{ user.profile.faculdade }} <br> Curso: {{ user.profile.curso }} <br> Usuário: {{ user.profile.tipo_usuario }}</h3>
                     <span class="id">ID: {{ user.id }}</span>
             </div>

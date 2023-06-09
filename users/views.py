@@ -126,6 +126,15 @@ def signup(request, key):
                 form = forms.UserForm(request.POST, request.FILES)
                 if form.is_valid():
                     user = form.save()
+
+                    #Cadastra o usuario como Bolsista ou Alumni baseado no ano de formatura
+                    profile = user.profile
+                    ano_formatura = profile.ano_formatura
+                    ano_atual = datetime.now().year
+                    profile.tipo_usuario = 'Bolsista' if int(ano_formatura) > ano_atual else 'Alumni'
+                    profile.save()
+
+
                     group_names = list(Group.objects.values_list('name', flat=True))
                     if 'bolsista' not in group_names:
                         bolsista = Group(name='bolsista')
@@ -230,7 +239,7 @@ def edit(request):
 def historico_academico(request):
     user= request.user
     if request.method == 'POST':
-        form_academico = forms.HistoricoEscolarForm(request.POST, request.FILES)
+        form_academico = forms.HistoricoAcademicoForm(request.POST, request.FILES)
         if form_academico.is_valid():
             form_academico.save()
         return redirect('/accounts/profile/history/academic')
