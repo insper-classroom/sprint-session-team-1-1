@@ -47,7 +47,7 @@ def profile_id(request, user_id):
 def charts(request):
     user = request.user
     profile = user.profile 
-    if profile.tipo_usuario != 'Colaborador' and profile.tipo_usuario != 'Admin':
+    if profile.tipo_usuario != 'Colaborador' and profile.tipo_usuario != 'Admin' and profile.tipo_usuario != 'Sponsor':
         return redirect('/')
     else:
         #Filtra os usuarios
@@ -74,7 +74,7 @@ def charts(request):
             'pais_atual': grafico_pais_atual,
             'estado_atual': grafico_estado_atual
         }
-        return render(request, 'search/overview.html', {'users': filtered_users, 'graphs': graphs})
+        return render(request, 'search/overview.html', {'users': filtered_users, 'graphs': graphs, 'profile': profile})
 
 
 @login_required
