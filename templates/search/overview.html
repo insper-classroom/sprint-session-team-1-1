@@ -22,12 +22,16 @@
         <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
-
+                {% if profile.tipo_usuario == 'Colaborador' or profile.tipo_usuario == 'Admin'%}
                 <li><a href="/search/" class="perfil-link">BUSCA</a></li>
                 <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
                 <li><a href="{% url 'profile' %}" >PERFIL</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
-                
+                {% else %}
+                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
+                <li><a href="{% url 'logout' %}">SAIR</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
