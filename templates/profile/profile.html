@@ -44,6 +44,7 @@
             
             <div class="infos">
                 <div class="bloco1">
+                    {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
                     <label> E-mail: </label>
                     <p> {{ user.profile.email}} </p>
                     <label> RG: </label>
@@ -56,9 +57,20 @@
                     <p> {{ user.profile.pais_atual }} </p>
                     <label> Ano de Formatura: </label>
                     <p> {{ user.profile.ano_formatura }} </p>
+
+                    {% else %}
+                    <label> E-mail: </label>
+                    <p> {{ user.profile.email}} </p>
+                    <label> RG: </label>
+                    <p> {{ user.profile.rg }} </p>
+                    <label> Telefone: </label>
+                    <p> {{ user.profile.telefone }} </p>
+
+                    {% endif %}
                 </div>
 
                 <div class="bloco2">
+                    {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
                     <label> Estado Atual: </label>
                     <p> {{ user.profile.estado_atual }} </p>
                     <label> Cidade Atual: </label>
@@ -69,7 +81,6 @@
                     <p> {{ user.profile.curso }} </p>
                     <label> Renda Familiar: </label>
                     <p> {{ user.profile.renda_familiar }} </p>
-                    {% if user.profile.tipo_usuario == 'Bolsista' or user.profile.tipo_usuario == 'Alumni' %}
                     <button class="button-editar" onclick="window.location.href='edit/'"><a href="edit/" class="link-botao">EDITAR</a></button>
                     {% else %}
                     <button class="button-link"><a href="/generate/" class="link-botao">Criar Link</a></button>

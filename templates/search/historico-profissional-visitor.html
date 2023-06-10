@@ -15,7 +15,6 @@
         <li><a href="/search/{{ user.id }}" class="perfil-link">PERFIL</a></li>
         <li><a href="/search/history/professional/{{ user.id }}" class="historico-link">HISTÓRICO PROFISSIONAL</a></li>
         <li><a href="/search/history/academic/{{ user.id }}">HISTÓRICO ACADÊMICO</a></li>
-        <li><a href="{% url 'logout' %}">SAIR</a></li>
       </ul>
   </div>
 </nav>
@@ -29,12 +28,12 @@
         <br>
         <div class="bloco-infos">
           <div class="bloco1">
-            <p>Empresa: {{ historico.empresa }}</p>
-            <p>Cargo: {{ historico.cargo }}</p>
+            <li> <b>Empresa:</b> {{ historico.empresa }}</li>
+            <li> <b>Cargo:</b> {{ historico.cargo }}</li>
           </div>
           <div class="bloco2">
-            <p>Setor: {{ historico.setor_empresa }}</p>
-            <p>Salário: {{ historico.salario }}</p>
+            <li> <b>Setor:</b> {{ historico.setor_empresa }}</li>
+            <li> <b>Salário:</b> {{ historico.salario }}</li>
           </div>
         </div>
       </div>

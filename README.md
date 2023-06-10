@@ -83,6 +83,15 @@ Aqui estão as referências utilizadas para desenvolver e aprimorar o funcioname
 13. Título: "How To Write a USEFUL README On Github"
    Link: [https://www.youtube.com/watch?v=E6NO0rgFub4&t=63s](https://www.youtube.com/watch?v=E6NO0rgFub4&t=63s)
 
+14. Título: "AUTENTICAÇÃO PROFISSIONAL COM DJANGO | ALLAUTH"
+   Link: [https://www.youtube.com/watch?v=Q4Q3S7HLp4w](https://www.youtube.com/watch?v=Q4Q3S7HLp4w)
+
+15. Título: "GOOGLE LOGIN | DJANGO ALLAUTH"
+   link: [https://www.youtube.com/watch?v=qdOX-6Zhugs] (https://www.youtube.com/watch?v=qdOX-6Zhugs)
+
+16. Título: "How To Make A Website With Login And Register | HTML CSS & Javascript"
+   link: [https://www.youtube.com/watch?v=p1GmFCGuVjw] (https://www.youtube.com/watch?v=p1GmFCGuVjw)
+   
 Esses vídeos foram referências importantes no desenvolvimento do projeto.
 
 Aqui estão os sites que foram úteis para obter mais informações e recursos relacionados ao nosso sistema de acompanhamento para a Fundação Telles:
