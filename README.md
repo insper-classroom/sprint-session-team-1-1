@@ -35,6 +35,36 @@ Por fim, abra o seu navegador e acesse a seguinte URL para ver a página inicial
 http://localhost:8000/
 ```
 
+## Guia do serviço
+
+Ao executar seu sistema, você provavelmente não sera capaz de fazer nada alem de ver a tela de inicio e login.
+Para iniciar o processo, utilize o comando "python manage.py cratesuperuser" para criar um usuario de Admin.
+
+Tendo seu usuario de Admin preparado, entre em http://localhost:8000/admin e logue. Agora, você deve criar um novo usuario
+e classificar seu "Tipo de Usuario", na aba profile do user, como "Colaborador ou admin". Lembre-se de usar infos validas.
+(Isto é uma medida de segurança, contas importantes de funcionarios, moderadores e parceiros só podem ser criadas por contas mestras)
+
+Após isso você ja deve ser capaz de, normalmente, logar e ver o sistema como um funcionario. Para criar usuarios de Bolsistas/ALumnis
+(para testes ou para verdadeiros alunos), entre no link http://localhost:8000/generate (ou clique em 'gerar link' no seu profile).
+
+Neste endereço, você ira ver uma key criada que libera o acesso para a criação de contas.
+(Caso esteja utilizando outro host que não o localhost, basta substituir, o importante é a key após o /signup/). Isto se trata de
+uma função criada a pedido da teles para que cada usuario tenha um link de uso unico para criar sua conta, assim impedindo externos de
+entrarem no sistema.
+
+Com esta key, acesse "http://localhost:8000/accounts/signup/* key *" para criar um novo usuario, que sera automaticamente identificado
+como bolsista ou Alumni. Após este ponto, basta encher o servidor de usuarios.
+
+## Conta de Admin
+
+Na criação do deploy do app, criamos uma conta de admin no server da AWS, seguem as informações:
+Nome: admin
+Email: admin@admin.com
+senha: admin
+
+Lembrete: Este commit após a data limite (sexta feira) se trata apenas desse guia de serviço adicionado no Readme, nenhuma mudança
+técnica. Apenas sentimos que era necessario após fazermos o deploy.
+
 ## Modelo inicial do projeto
 
 Link dos primeiros protótipos de design do projeto:
