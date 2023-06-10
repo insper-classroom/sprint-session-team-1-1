@@ -3,7 +3,7 @@ body{
 }
 
 .background{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -95,7 +95,7 @@ nav img{
     .nav-links ul {
         display: flex;
         position: absolute;
-        margin: 0px 120px;
+        margin: 0 auto;
     }
 
     .nav-links ul li{

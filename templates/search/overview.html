@@ -9,10 +9,6 @@
     <img src="{% static 'users/img/background-profile.png' %}"/>
 </div>
 
-{% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
-
-   
-
     <div class="background">
         <img src="{% static 'img/fundo_overview.png' %}" alt="Imagem de fundo">
     </div>
@@ -20,23 +16,15 @@
         <a href="https://tellesfoundation.uk/pt/home/"><img src="{% static 'img/telles_foundation.png' %}" alt="Logo da Fundação"></a>
         <div class="nav-links">
             <ul>
-                {% if profile.tipo_usuario == 'Colaborador' or profile.tipo_usuario == 'Admin'%}
+
                 <li><a href="/search/" >BUSCA</a></li>
-                <li><a href="/search/overview" class="perfil-link">BUSCA GRÁFICOS</a></li>
+                <li><a href="/search/overview" class="perfil-link">GRÁFICOS</a></li>
                 <li><a href="{% url 'profile' %}" >PERFIL</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
-                {% else %}
-                <li><a href="/search/overview" class="perfil-link">BUSCA GRAFICOS</a></li>
-                <li><a href="{% url 'profile' %}" >PERFIL</a></li>
-                <li><a href="{% url 'logout' %}">SAIR</a></li>
-                {% endif %}
+                
             </ul>
         </div>
     </nav>
-
- 
-
-    {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}
     <form method="get" action="{% url 'graficos' %}">
         <div class="filtros">
             <div class="filtros-basicos">    
@@ -93,17 +81,17 @@
                 <div class="filtros-renda">
                     <h3>Filtros por Renda:</h3><br>
                     <input type="checkbox" class="renda-01" id="renda-01" name="renda-01" />
-                    <label for="renda-01"> 0-1 SM</label><br>
+                    <label for="renda-01"> 0-1 Salários Mínimos</label><br>
                     <input type="checkbox" class="renda-12" id="renda-12" name="renda-12" />
-                    <label for="renda-12"> 1-2 SM</label><br>
+                    <label for="renda-12"> 1-2 Salários Mínimos</label><br>
                     <input type="checkbox" class="renda-23" id="renda-23" name="renda-23" />
-                    <label for="renda-23"> 2-3 SM</label><br>
+                    <label for="renda-23"> 2-3 Salários Mínimos</label><br>
                     <input type="checkbox" class="renda-35" id="renda-35" name="renda-35" />
-                    <label for="renda-35"> 3-5 SM</label><br>
+                    <label for="renda-35"> 3-5 Salários Mínimos</label><br>
                     <input type="checkbox" class="renda-58" id="renda-58" name="renda-58" />
-                    <label for="renda-58"> 5-8 SM</label><br>
+                    <label for="renda-58"> 5-8 Salários Mínimos</label><br>
                     <input type="checkbox" class="renda-8" id="renda-8" name="renda-8" />
-                    <label for="renda-8"> 8+ SM</label><br>
+                    <label for="renda-8"> 8+ Salários Mínimos</label><br>
                 </div>
                 <button class="filterbutton" type="submit"> Filtrar </button>
             </div>
@@ -131,6 +119,7 @@
         <h3>Gráfico por país atual:</h3>
         <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
         <h3>Gráfico por estado brasileiro atual:</h3>
+        <!-- <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span> -->
         <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
         </div>
             

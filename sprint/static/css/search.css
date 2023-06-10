@@ -53,7 +53,6 @@ nav img{
     position: absolute;
     width: 100%;
     left: 0px;
-    gap: 120px;
 }
 
 .nav-links ul li{
@@ -69,7 +68,7 @@ nav img{
     font-size: 19px;
 }
 
-.perfil-link-b{
+.perfil-link{
     color: #1D1D1B !important;
 }
 
@@ -101,7 +100,7 @@ nav img{
     .nav-links ul {
         display: flex;
         position: absolute;
-        margin: 0px 120px;
+        margin: 0 auto;
     }
 
     .nav-links ul li{
@@ -116,8 +115,8 @@ nav img{
   input:hover{
     cursor: text;
   }
-  
-  
+
+
 .dados_usuario{
     font-size: 18px;
 }
@@ -164,19 +163,17 @@ nav img{
 
 /* CSS da navbar */
 .navbar {
-    /* Pra quem não sabe, VH é View Height e VW é View WIdth. É a msm coisa q %, mas adaptavel pela tela */
-    /* Aqui eu to removendo 10px só pq é o tamanho da borda, tirando ela tem q tirar isso tbm */
+
     width: 100vw - 10px;
     height: 10vh;
 }
 
 /* CSS dos filtros */
 .filtros {
-    
     width: 95vw - 10px;
-    margin-top: 50px;
-    margin-left: 2.5vw;
-    margin-right: 2.5vw;
+    margin-top: 10px;
+    margin-left: 8vw;
+    margin-right: 8vw;
 
 }
 
@@ -191,7 +188,6 @@ nav img{
 }
 
 .filtros-nomes {
-    
     margin-right: 2px;
 }
 
@@ -209,27 +205,22 @@ nav img{
     margin-bottom: 1%;
     padding-left: 8px;
     font-size: 1em;
-    
 }
 
 
 .filtros-cor {
-    
     margin-right: 15px;
 }
 
 .filtros-genero {
-    
     margin-right: 15px;
 }
 
 .filtros-user-facul {
-    
     margin-right: 15px;
 }
 
 .filtros-renda {
-    
     margin-right: 15px;
 }
 
@@ -241,7 +232,7 @@ nav img{
     display: flex;
 }
 
-
+/* CSS dos usuarios */
 
 .usuario {
     display: flex;
@@ -250,16 +241,15 @@ nav img{
     margin-right: 15vw;
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
+    background-color: white;
 }
 
 .nome-imagem {
     display: flex;
-    
 }
 
 .nome-id {
     width: 100%;
-   
 }
 
 .divisor {
@@ -267,13 +257,11 @@ nav img{
 }
 
 .metade-esquerda {
-    
     width: 70%;
     margin-left: 40px;
 }
 
 .metade-direita {
-    
     width: 50%;
 }
 
@@ -297,21 +285,19 @@ h4 {
 }
 
 .filterbutton{
-    margin-top: 16%;
-    margin-left: 46%;
-    margin-right: auto;
-    background-color: rgb(60, 90, 240);
-    color:white;
-    border: none;
+    display: block;
+    margin-left: 3.5%;
+    margin-top: 5.8%;
+    background-color: rgb(255, 255, 255);
+    color:#3C5AF0;
+    border: 1px solid #3C5AF0;
     border-radius: 100px;
     font-size: 25px;
     font-family: 'Urbanist', sans-serif;
-    font-weight: 500;
+    height: 50px;
     padding: 8px 30px;
     cursor: pointer;
     transition: 0.3s;
-    width: 200px;
-    height: 50px;
 }
 
 label{
@@ -366,7 +352,7 @@ label{
 .button-voltar-search{
     display: block;
     margin-top: 15%;
-    margin-left: 700px;
+    margin-left: 46%;
     margin-right: auto;
     background-color: rgb(60, 90, 240);
     color:white;
@@ -382,6 +368,7 @@ label{
   
 button:hover{
     background-color: rgb(45, 60, 255);
+    color:white;
     transition: 0.5s;
 }
 
@@ -409,6 +396,7 @@ display: block;
 flex-direction: column;
 }
 
-.perfil-link{
-    color: black !important;
+.graph-image{
+    border: 2px solid rgb(60, 90, 240);
+    border-radius: 20px;
 }
