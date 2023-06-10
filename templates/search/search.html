@@ -11,9 +11,7 @@
 
 {% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
 
-    <!-- <div class="background">
-        <img src="{% static 'img/fundo_login.jpg' %}">
-    </div> -->
+    
 
     <div class="background">
         <img src="{% static 'img/fundo_search3.0.png' %}" alt="Imagem de fundo">
@@ -32,22 +30,10 @@
         </div>
     </nav>
 
-    <!-- <button id="filter-button">Mostrar Filtros</button> -->
-
     {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}
     <form method="get" action="{% url 'individual_table' %}">
         <div class="filtros">
             <div class="filtros-basicos">
-                <!-- <div class="filtros-nomes">
-                    <h3>Pesquisar:</h3><br>
-                    <input type="search" class="busca" id="busca-nome" name="busca-nome" /><br>
-                    <input type="search" class="busca" id="busca-sobrenome" name="busca-sobrenome" /><br>
-                    <input type="search" class="busca" id="busca-exibicao" name="busca-exibicao" /><br>
-                    <div class="filtros-id">
-                        <input type="search" class="busca" id="filtro-id" name="filtro-id" />
-                    </div> 
-                    
-                </div> -->
     
                 {% comment %} Cor ou raça {% endcomment %}
                 <div class="filtros-cor">
@@ -121,60 +107,12 @@
 
             
             {% comment %} Pelo menos essa era a ideia, mas vendo como ficou talvez seja inutil. {% endcomment %}
-            <!-- <h3>Filtros Avançados:</h3> -->
+            
             <div class="filtros-avancados">
                 <div class="filtros-avancados-parte1">
-                    <!-- <div class="filtros-id">
-                        <input type="search" class="busca" id="filtro-id" name="filtro-id" />
-                    </div> -->
-                    <!-- <div class="filtros-cpf">
-                        <input type="search" class="busca" id="filtro-cpf" name="filtro-cpf" />
-                    </div>
-                    <div class="filtros-rg">
-                        <input type="search" class="busca" id="filtro-rg" name="filtro-rg" />
-                    </div> -->
-                    <!-- <div class="filtros-email">
-                        <input type="search" class="busca" id="filtro-email" name="filtro-email" />
-                    </div>
-                    <div class="filtros-numero">
-                        <input type="search" class="busca" id="filtro-numero" name="filtro-numero" />
-                    </div> -->
-                    <!-- <div class="filtros-curso">
-                        <input type="search" class="busca" id="filtro-curso" name="filtro-curso" />
-                    </div> -->
-                    <!-- <div class="filtros-estado-nascimento">
-                        <input type="search" class="busca" id="filtro-estado-nascimento" name="filtro-estado-nascimento" />
-                    </div>
-                    <div class="filtros-estado-atual">
-                        <input type="search" class="busca" id="filtro-estado-atual" name="filtro-estado-atual" />
-                    </div> -->
+                    
                 </div>
-                <!-- <div class="filtros-avancados-parte2">
-                    <div class="filtros-cidade-nascimento">
-                        <input type="search" class="filtro-cidade-nascimento" id="filtro-cidade-nascimento" name="filtro-cidade-nascimento" />
-                    </div>
-                    <div class="filtros-cidade-atual">
-                        <input type="search" class="filtro-cidade-atual" id="filtro-cidade-atual" name="filtro-cidade-atual" />
-                    </div>
-                    <div class="filtros-pais-atual">
-                        <input type="search" class="filtro-pais-atual" id="filtro-pais-atual" name="filtro-pais-atual" />
-                    </div>
-                    <div class="filtros-ano-nascimento">
-                        <input type="search" class="filtro-ano-nascimento" id="filtro-ano-nascimento" name="filtro-ano-nascimento" />
-                    </div>
-                    <div class="filtros-ano-matricula">
-                        <input type="search" class="filtro-ano-matricula" id="filtro-ano-matricula" name="filtro-ano-matricula" />
-                    </div>
-                    <div class="filtros-ano-formatura">
-                        <input type="search" class="filtro-ano-formatura" id="filtro-ano-formatura" name="filtro-ano-formatura" />
-                    </div>
-                    <div class="filtros-ano-inicial">
-                        <input type="search" class="filtro-ano-inicial" id="filtro-ano-inicial" name="filtro-ano-inicial" />
-                    </div>
-                    <div class="filtros-ano-final">
-                        <input type="search" class="filtro-ano-final" id="filtro-ano-final" name="filtro-ano-final" />
-                    </div>
-                </div> -->
+                
             </div>
         </div>
     </form>
@@ -194,8 +132,7 @@
                 <div class='divisor'></div>
                 <div class="nome-id">
                     <div class="text">
-                    <!-- <h4> ID: {{ user.id }} </h4> -->
-                    <!-- | CPF: {{ user.profile.cpf }} | RG: {{ user.profile.rg }} -->
+                  
                     <a class="user-name" href="/search/{{ user.id }}"> {{ user.profile.nome }} {{user.profile.sobrenome}} - {{ user.profile.nome_exibicao }}</a>
                     <h3 class="dados_usuario"> Faculdade: {{ user.profile.faculdade }} <br> Curso: {{ user.profile.curso }} <br> Usuário: {{ user.profile.tipo_usuario }}</h3>
                     <span class="id">ID: {{ user.id }}</span>
@@ -208,36 +145,6 @@
         <div class='metade-direita'>
                 <h3 class="contact">Contatos:<h3>
                 <h4 class="dados_contato">Telefone: {{ user.profile.telefone }} <br> E-mail: {{ user.profile.email }} </h4>
-            <!-- <h4>Local de Nascimento: {{ user.profile.cidade_nascimento }}/{{ user.profile.estado_nascimento }}</h4>
-
-            {% comment %} Aqui embaixo é o código pra fazer mostrar searcho diferente dependendo do pais atual {% endcomment %}
-            {% if user.profile.pais_atual == 'Brasil' %}
-            <h4>Local Atual: {{ user.profile.cidade_atual }}/{{ user.profile.estado_atual }}</h4>
-            {% else %}
-            <h4>Local Atual: {{ user.profile.cidade_atual }}/{{ user.profile.pais_atual }}</h4>
-            {% endif %}
-
-            {% comment %} Aqui é a mesma coisa, mas para o genero {% endcomment %}
-            {% if user.profile.genero == 'Outro' %}
-            <h4>Genero: {{ user.profile.outro_genero }}</h4>
-            {% else %}
-            <h4>Genero: {{ user.profile.genero }}</h4>
-            {% endif %} -->
-
-
-            <!-- {% comment %} Aqui é a mesma coisa, mas para a cor/raça {% endcomment %}
-            {% if user.profile.cor_ou_raca == 'Outra' %}
-            <h4>Cor ou Raça: {{ user.profile.outra_cor_ou_raca }}</h4>
-            {% else %}
-            <h4>Cor ou Raça: {{ user.profile.cor_ou_raca }}</h4>
-            {% endif %}
-
-            <h4>Renda familiar: {{ user.profile.renda_familiar }}</h4>
-
-            <h4>Data de Nascimento: {{ user.profile.data_nascimento }}</h4>
-
-            {% age user.profile.data_nascimento.year as idade %}
-            <h4>Idade: {{ idade }} anos</h4> -->
 
 
         </div>

@@ -27,101 +27,6 @@ body{
     width: 100%;
 }
 
-/* nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 600;
-}
-
-nav img{
-    padding: 10% 20%;   
-    width: 200px;
-}
-
-.nav-links{
-    padding: 1% 6%;
-    flex: 1;
-}
-
-.nav-links ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    left: 0px;
-}
-
-.nav-links ul li{
-    display: inline-block;
-    position: relative;
-    margin: 0px 80px;
-}
-
-.nav-links ul li a{
-    color: #969696;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 19px;
-}
-
-.perfil-link{
-    color: black !important;
-}
-
-.nav-links ul li a:hover{
-    color: rgb(0, 0, 0);
-    transition: 0.4s;
-}
-
-@media (max-width: 1920px) {
-    .nav-links {
-        padding: 1% 4%;
-        flex: 1;
-    }
-  
-    nav img {
-        padding: 10% 20%;   
-        width: 200px;
-    }
-    
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: 'Urbanist', sans-serif;
-        font-weight: 600; 
-    }
-
-    .nav-links ul {
-        display: flex;
-        position: absolute;
-        margin: 0px auto;
-    }
-
-    .nav-links ul li{
-        display: inline-block;
-        position: relative;
-        margin: 0px 45px;
-        align-items: center;
-    }
-  } */
-
-/* 
-input{
-    width: 165px;
-    height: 25px;
-    border-radius: 20px;
-    border: 1px solid #3C5AF0;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding-left: 8px;
-    font-size: 1em;
-  } */
-
-  
 nav{
     display: flex;
     justify-content: space-between;
@@ -212,17 +117,7 @@ nav img{
     cursor: text;
   }
   
-  /* select{
-    width: 10px;
-    height: 35px;
-    border-radius: 20px;
-    border: 1px solid #3C5AF0;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding-left: 8px;
-    font-size: 1em;
-  } */
-
+  
 .dados_usuario{
     font-size: 18px;
 }
@@ -269,16 +164,15 @@ nav img{
 
 /* CSS da navbar */
 .navbar {
-    /* border: 5px solid red; */
     /* Pra quem não sabe, VH é View Height e VW é View WIdth. É a msm coisa q %, mas adaptavel pela tela */
-    /* Aqui eu to removendo 10px só pq é o tamanho da boarda, tirando ela tem q tirar isso tbm */
+    /* Aqui eu to removendo 10px só pq é o tamanho da borda, tirando ela tem q tirar isso tbm */
     width: 100vw - 10px;
     height: 10vh;
 }
 
 /* CSS dos filtros */
 .filtros {
-    /* border: 5px solid magenta; */
+    
     width: 95vw - 10px;
     margin-top: 50px;
     margin-left: 2.5vw;
@@ -297,8 +191,7 @@ nav img{
 }
 
 .filtros-nomes {
-    /* border: 2px solid gray;
-    width: 35%; */
+    
     margin-right: 2px;
 }
 
@@ -316,27 +209,27 @@ nav img{
     margin-bottom: 1%;
     padding-left: 8px;
     font-size: 1em;
-    /* margin-left: 3px; */
+    
 }
 
 
 .filtros-cor {
-    /* border: 2px solid beige; */
+    
     margin-right: 15px;
 }
 
 .filtros-genero {
-    /* border: 2px solid darkorange; */
+    
     margin-right: 15px;
 }
 
 .filtros-user-facul {
-    /* border: 2px solid lightcoral; */
+    
     margin-right: 15px;
 }
 
 .filtros-renda {
-    /* border: 2px solid pink; */
+    
     margin-right: 15px;
 }
 
@@ -348,10 +241,7 @@ nav img{
     display: flex;
 }
 
-/* CSS dos usuarios */
-/* .foto_perfil{
-    margin-right: 15px;
-} */
+
 
 .usuario {
     display: flex;
@@ -364,12 +254,12 @@ nav img{
 
 .nome-imagem {
     display: flex;
-    /* border: 2px solid yellow; */
+    
 }
 
 .nome-id {
     width: 100%;
-    /* border: 2px solid pink; */
+   
 }
 
 .divisor {
@@ -377,13 +267,13 @@ nav img{
 }
 
 .metade-esquerda {
-    /* border: 5px solid blue; */
+    
     width: 70%;
     margin-left: 40px;
 }
 
 .metade-direita {
-    /* border: 5px solid green; */
+    
     width: 50%;
 }
 
@@ -407,8 +297,7 @@ h4 {
 }
 
 .filterbutton{
-    display: block;
-    margin-top: 1%;
+    margin-top: 16%;
     margin-left: 46%;
     margin-right: auto;
     background-color: rgb(60, 90, 240);
@@ -421,6 +310,8 @@ h4 {
     padding: 8px 30px;
     cursor: pointer;
     transition: 0.3s;
+    width: 200px;
+    height: 50px;
 }
 
 label{
@@ -516,4 +407,8 @@ button:hover{
 .bloco-2-overview{
 display: block;
 flex-direction: column;
+}
+
+.perfil-link{
+    color: black !important;
 }

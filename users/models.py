@@ -6,6 +6,7 @@ from django.db import models
 class Profile(models.Model): # Profile é uma classe que adiciona mais campos/dados ao User do Django, para os usuários bolsistas
     
     Genders = (
+        ('-----', '-----'),
         ('Masculino', 'Masculino'),
         ('Feminino', 'Feminino'),
         ('Prefiro não informar', 'Prefiro não informar'),
@@ -13,6 +14,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     )
 
     Race = (
+        ('-----', '-----'),
         ('Amarela', 'Amarela'),
         ('Branca', 'Branca'),
         ('Indígena', 'Indígena'),
@@ -23,12 +25,14 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     )
 
     University = (
+        ('-----', '-----'),
         ('Insper', 'Insper'),
         ('Inteli', 'Inteli'),
         ('Facul3', 'Facul3'),
     )
 
     Income = (
+        ('-----', '-----'),
         ('0-1 SM', '0-1 SM'),
         ('1-2 SM', '1-2 SM'),
         ('2-3 SM', '2-3 SM'),
@@ -38,6 +42,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     )
 
     Countries = (
+        ('-----', '-----'),
         ('Alemanha', 'Alemanha'),
         ('Brasil', 'Brasil'),
         ('China', 'China'),
@@ -51,6 +56,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     )
 
     States = (
+        ('-----', '-----'),
         ('AC', 'AC'),
         ('AL', 'AL'),
         ('AP', 'AP'),
@@ -81,6 +87,7 @@ class Profile(models.Model): # Profile é uma classe que adiciona mais campos/da
     )
 
     User_type = (
+        ('-----', '-----'),
         ('Bolsista', 'Bolsista'),
         ('Alumni', 'Alumni'),
         ('Sponsor', 'Sponsor'),

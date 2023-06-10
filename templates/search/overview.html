@@ -11,9 +11,7 @@
 
 {% comment %} Aqui um espaço em cima pra fazer de navbar ou qualquer bosta que acharem melhor {% endcomment %}
 
-    <!-- <div class="background">
-        <img src="{% static 'img/fundo_login.jpg' %}">
-    </div> -->
+   
 
     <div class="background">
         <img src="{% static 'img/fundo_overview.png' %}" alt="Imagem de fundo">
@@ -23,12 +21,12 @@
         <div class="nav-links">
             <ul>
                 {% if profile.tipo_usuario == 'Colaborador' or profile.tipo_usuario == 'Admin'%}
-                <li><a href="/search/" class="perfil-link">BUSCA</a></li>
-                <li><a href="/search/overview">BUSCA GRÁFICOS</a></li>
+                <li><a href="/search/" >BUSCA</a></li>
+                <li><a href="/search/overview" class="perfil-link">BUSCA GRÁFICOS</a></li>
                 <li><a href="{% url 'profile' %}" >PERFIL</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
                 {% else %}
-                <li><a href="/search/overview">BUSCA GRAFICOS</a></li>
+                <li><a href="/search/overview" class="perfil-link">BUSCA GRAFICOS</a></li>
                 <li><a href="{% url 'profile' %}" >PERFIL</a></li>
                 <li><a href="{% url 'logout' %}">SAIR</a></li>
                 {% endif %}
@@ -36,7 +34,7 @@
         </div>
     </nav>
 
-    <!-- <button id="filter-button">Mostrar Filtros</button> -->
+ 
 
     {% comment %} Aqui eu tinha pensado em deixar os filtros {% endcomment %}
     <form method="get" action="{% url 'graficos' %}">
@@ -133,7 +131,6 @@
         <h3>Gráfico por país atual:</h3>
         <img src="data:image/png;base64,{{ graphs.pais_atual }}" alt="Graph" class="graph-image">
         <h3>Gráfico por estado brasileiro atual:</h3>
-        <!-- <span>Importante: Neste grafico são excluidos todos os usuarios cujo pais atual não seja o Brasil</span> -->
         <img src="data:image/png;base64,{{ graphs.estado_atual }}" alt="Graph" class="graph-image">
         </div>
             
