@@ -70,6 +70,9 @@ técnica. Apenas sentimos que era necessario após fazermos o deploy.
 Link dos primeiros protótipos de design do projeto:
 https://www.canva.com/design/DAFi_NcwNwQ/A7esW5kU9ntsACHlWm5NOA/edit?utm_content=DAFi_NcwNwQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
+Power point de apresentação do projeto(Adicionado poteriormente com autorização do toshi)
+https://1drv.ms/p/s!AurO8k-dRncPiToINMqzv7vnM--f?e=PXnDYv 
+
 ## Referências
 
 Aqui estão as referências utilizadas para desenvolver e aprimorar o funcionamento do sistema de acompanhamento dos bolsistas Telles Scholars:
